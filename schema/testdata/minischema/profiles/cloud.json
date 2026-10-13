@@ -1,0 +1,12 @@
+{
+  "caption": "Cloud",
+  "description": "Cloud profile.",
+  "meta": "profile",
+  "name": "cloud",
+  "attributes": {
+    "region": {
+      "group": "context",
+      "requirement": "required"
+    }
+  }
+}

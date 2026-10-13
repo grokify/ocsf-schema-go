@@ -1,0 +1,16 @@
+{
+  "caption": "Entity",
+  "description": "A base entity.",
+  "extends": "object",
+  "name": "_entity",
+  "attributes": {
+    "name": {
+      "requirement": "recommended"
+    }
+  },
+  "constraints": {
+    "at_least_one": [
+      "name"
+    ]
+  }
+}

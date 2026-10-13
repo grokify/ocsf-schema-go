@@ -1,0 +1,18 @@
+{
+  "observable": 90,
+  "caption": "Widget",
+  "description": "A widget object added by the test extension.",
+  "extends": "object",
+  "name": "widget",
+  "attributes": {
+    "name": {
+      "requirement": "required"
+    },
+    "path": {
+      "caption": "Path",
+      "description": "The widget path.",
+      "requirement": "optional",
+      "type": "widget_path_t"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "caption": "Identity & Access Management",
+  "category": "iam",
+  "description": "The IAM base event.",
+  "extends": "base_event",
+  "name": "iam",
+  "attributes": {
+    "user": {
+      "group": "primary",
+      "requirement": "recommended"
+    }
+  }
+}

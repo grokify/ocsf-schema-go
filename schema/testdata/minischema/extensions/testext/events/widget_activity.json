@@ -1,0 +1,19 @@
+{
+  "uid": 1,
+  "caption": "Widget Activity",
+  "description": "Widget activity events from the test extension.",
+  "extends": "iam",
+  "name": "widget_activity",
+  "attributes": {
+    "activity_id": {
+      "enum": {
+        "1": {
+          "caption": "Spin"
+        }
+      }
+    },
+    "widget": {
+      "requirement": "required"
+    }
+  }
+}

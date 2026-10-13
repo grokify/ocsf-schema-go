@@ -1,0 +1,13 @@
+{
+  "caption": "User",
+  "description": "Extends the user object with test extension fields.",
+  "extends": "user",
+  "attributes": {
+    "$include": [
+      "profiles/tex.json"
+    ],
+    "kernel_flag": {
+      "requirement": "optional"
+    }
+  }
+}

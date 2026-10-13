@@ -1,0 +1,7 @@
+{
+  "uid": 998,
+  "caption": "External Patch Extension",
+  "description": "A test extension loaded from outside the schema tree.",
+  "name": "patchext",
+  "version": "0.1.0"
+}

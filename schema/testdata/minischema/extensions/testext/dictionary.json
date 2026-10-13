@@ -1,0 +1,27 @@
+{
+  "caption": "Test Extension Dictionary",
+  "description": "Attributes added by the test extension.",
+  "name": "dictionary",
+  "attributes": {
+    "kernel_flag": {
+      "caption": "Kernel Flag",
+      "description": "A test extension attribute.",
+      "type": "boolean_t"
+    },
+    "widget": {
+      "caption": "Widget",
+      "description": "The widget object.",
+      "type": "widget"
+    }
+  },
+  "types": {
+    "caption": "Data Types",
+    "description": "Types added by the test extension.",
+    "attributes": {
+      "widget_path_t": {
+        "caption": "Widget Path",
+        "type": "string_t"
+      }
+    }
+  }
+}

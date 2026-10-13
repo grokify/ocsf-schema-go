@@ -1,0 +1,7 @@
+{
+  "uid": 2,
+  "caption": "Test Extension",
+  "description": "A test platform extension.",
+  "name": "tex",
+  "version": "1.10.0-test"
+}

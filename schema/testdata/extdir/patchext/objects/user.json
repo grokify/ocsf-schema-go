@@ -1,0 +1,10 @@
+{
+  "caption": "User",
+  "description": "Extends the user object with an external extension field.",
+  "extends": "user",
+  "attributes": {
+    "external_flag": {
+      "requirement": "optional"
+    }
+  }
+}

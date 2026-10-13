@@ -1,0 +1,11 @@
+{
+  "caption": "Test Extension Profile",
+  "description": "Profile attributes added by the test extension.",
+  "meta": "profile",
+  "name": "tex",
+  "attributes": {
+    "labels": {
+      "requirement": "optional"
+    }
+  }
+}

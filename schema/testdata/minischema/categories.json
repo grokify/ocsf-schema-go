@@ -1,0 +1,12 @@
+{
+  "caption": "Categories",
+  "description": "Test categories.",
+  "name": "category",
+  "attributes": {
+    "iam": {
+      "caption": "Identity & Access Management",
+      "description": "IAM events.",
+      "uid": 3
+    }
+  }
+}

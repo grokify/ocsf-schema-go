@@ -1,0 +1,38 @@
+{
+  "caption": "Base Event",
+  "category": "other",
+  "description": "The base event.",
+  "name": "base_event",
+  "attributes": {
+    "$include": [
+      "profiles/cloud.json"
+    ],
+    "activity_id": {
+      "group": "classification",
+      "requirement": "required",
+      "enum": {
+        "0": {
+          "caption": "Unknown"
+        },
+        "99": {
+          "caption": "Other"
+        }
+      }
+    },
+    "category_uid": {
+      "group": "classification",
+      "requirement": "required"
+    },
+    "class_uid": {
+      "group": "classification",
+      "requirement": "required"
+    },
+    "severity_id": {
+      "group": "classification",
+      "requirement": "recommended"
+    },
+    "time": {
+      "requirement": "required"
+    }
+  }
+}

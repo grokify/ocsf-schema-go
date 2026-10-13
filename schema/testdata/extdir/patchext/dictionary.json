@@ -1,0 +1,12 @@
+{
+  "caption": "External Patch Extension Dictionary",
+  "description": "Attributes added by the external test extension.",
+  "name": "dictionary",
+  "attributes": {
+    "external_flag": {
+      "caption": "External Flag",
+      "description": "An attribute added by an external extension.",
+      "type": "boolean_t"
+    }
+  }
+}

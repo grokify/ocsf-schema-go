@@ -1,0 +1,35 @@
+{
+  "caption": "User",
+  "description": "The user object.",
+  "extends": "_entity",
+  "name": "user",
+  "attributes": {
+    "name": {
+      "description": "The username."
+    },
+    "is_disabled": {
+      "requirement": "optional"
+    },
+    "labels": {
+      "requirement": "optional"
+    },
+    "type_id": {
+      "requirement": "recommended",
+      "enum": {
+        "0": {
+          "caption": "Unknown"
+        },
+        "1": {
+          "caption": "User"
+        },
+        "2": {
+          "caption": "Admin",
+          "description": "An administrator."
+        },
+        "99": {
+          "caption": "Other"
+        }
+      }
+    }
+  }
+}

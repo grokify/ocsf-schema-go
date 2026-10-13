@@ -1,0 +1,25 @@
+{
+  "uid": 2,
+  "caption": "Authentication",
+  "description": "Authentication events.",
+  "extends": "iam",
+  "name": "authentication",
+  "attributes": {
+    "activity_id": {
+      "enum": {
+        "1": {
+          "caption": "Logon"
+        },
+        "2": {
+          "caption": "Logoff"
+        }
+      }
+    },
+    "src_ip": {
+      "requirement": "optional"
+    },
+    "user": {
+      "requirement": "required"
+    }
+  }
+}

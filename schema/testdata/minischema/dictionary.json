@@ -1,0 +1,129 @@
+{
+  "caption": "Attribute Dictionary",
+  "description": "Test dictionary.",
+  "name": "dictionary",
+  "attributes": {
+    "activity_id": {
+      "caption": "Activity ID",
+      "description": "The normalized identifier of the activity that triggered the event.",
+      "sibling": "activity_name",
+      "type": "integer_t"
+    },
+    "activity_name": {
+      "caption": "Activity",
+      "description": "The event activity name, as defined by the activity_id.",
+      "type": "string_t"
+    },
+    "category_uid": {
+      "caption": "Category ID",
+      "description": "The category unique identifier of the event.",
+      "type": "integer_t"
+    },
+    "class_uid": {
+      "caption": "Class ID",
+      "description": "The unique identifier of a class.",
+      "type": "integer_t"
+    },
+    "is_disabled": {
+      "caption": "Disabled",
+      "description": "Indicates if the entity is disabled.",
+      "type": "boolean_t"
+    },
+    "labels": {
+      "caption": "Labels",
+      "description": "The list of labels.",
+      "type": "string_t",
+      "is_array": true
+    },
+    "name": {
+      "caption": "Name",
+      "description": "The name of the entity.",
+      "type": "string_t"
+    },
+    "severity": {
+      "caption": "Severity",
+      "description": "The event severity, normalized to the caption of the severity_id value.",
+      "type": "string_t"
+    },
+    "severity_id": {
+      "caption": "Severity ID",
+      "description": "The normalized identifier of the event severity.",
+      "sibling": "severity",
+      "type": "integer_t",
+      "enum": {
+        "0": {
+          "caption": "Unknown"
+        },
+        "1": {
+          "caption": "Informational"
+        },
+        "99": {
+          "caption": "Other"
+        }
+      }
+    },
+    "region": {
+      "caption": "Region",
+      "description": "The cloud region.",
+      "type": "string_t"
+    },
+    "src_ip": {
+      "caption": "Source IP",
+      "description": "The source IP address.",
+      "type": "ip_t"
+    },
+    "time": {
+      "caption": "Event Time",
+      "description": "The normalized event occurrence time.",
+      "type": "timestamp_t"
+    },
+    "type_id": {
+      "caption": "Type ID",
+      "description": "The normalized type identifier.",
+      "sibling": "type_name",
+      "type": "integer_t",
+      "enum": {
+        "0": {
+          "caption": "Unknown"
+        }
+      }
+    },
+    "type_name": {
+      "caption": "Type Name",
+      "description": "The type name.",
+      "type": "string_t"
+    },
+    "user": {
+      "caption": "User",
+      "description": "The user.",
+      "type": "user"
+    }
+  },
+  "types": {
+    "caption": "Data Types",
+    "description": "Test types.",
+    "attributes": {
+      "boolean_t": {
+        "caption": "Boolean"
+      },
+      "integer_t": {
+        "caption": "Integer"
+      },
+      "ip_t": {
+        "caption": "IP Address",
+        "max_len": 40,
+        "type": "string_t"
+      },
+      "long_t": {
+        "caption": "Long"
+      },
+      "string_t": {
+        "caption": "String"
+      },
+      "timestamp_t": {
+        "caption": "Timestamp",
+        "type": "long_t"
+      }
+    }
+  }
+}
