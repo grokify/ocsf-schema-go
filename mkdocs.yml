@@ -1,0 +1,54 @@
+site_name: ocsf-schema-go
+site_description: Go bindings, schema compiler, validator, and record-integrity crypto for OCSF
+site_url: https://grokify.github.io/ocsf-schema-go/
+repo_url: https://github.com/grokify/ocsf-schema-go
+repo_name: grokify/ocsf-schema-go
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Specs:
+      - PRD: specs/PRD.md
+      - TRD: specs/TRD.md
+      - Plan: specs/PLAN.md
+      - Roadmap: specs/ROADMAP.md
+  - Upstream:
+      - "Signature bytes (ocsf-schema#1698)": upstream/signature-value-issue-1698.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/grokify/ocsf-schema-go
