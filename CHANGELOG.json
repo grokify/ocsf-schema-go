@@ -1,0 +1,101 @@
+{
+  "irVersion": "1.0",
+  "project": "ocsf-schema-go",
+  "repository": "https://github.com/grokify/ocsf-schema-go",
+  "versioning": "semver",
+  "commitConvention": "conventional",
+  "maintainers": [
+    "grokify",
+    "johncwang@gmail.com"
+  ],
+  "releases": [
+    {
+      "version": "v0.1.0",
+      "date": "2026-10-13",
+      "commit": "9e2d930",
+      "highlights": [
+        {
+          "description": "Initial release: a Go implementation of the OCSF standard covering schema compilation, generated bindings for every event class and object, semantic validation, and `record_integrity` cryptography",
+          "commit": "9e2d930"
+        },
+        {
+          "description": "Generated from OCSF 1.10.0-dev, including the `win`, `linux`, and `macos` platform extensions",
+          "commit": "68b4d1d"
+        },
+        {
+          "description": "Compiled schema embedded in the module, so validation needs no OCSF checkout at runtime",
+          "commit": "68b4d1d"
+        }
+      ],
+      "added": [
+        {
+          "description": "[schema] Loader and compiler for OCSF's metaschema source format: `extends` flattening, `$include` profiles, dictionary type joins, platform extensions, external extension roots, class-UID computation, and observable enum synthesis",
+          "commit": "b65919c",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-001",
+            "RMI-OCSFSCHEMAGO-002"
+          ]
+        },
+        {
+          "description": "[gen] Go code generator emitting structs, enum constants, caption maps, and the class-UID registry from a compiled schema",
+          "commit": "56d3bb6",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-003"
+          ]
+        },
+        {
+          "description": "[cmd/ocsfgen] Cobra CLI to regenerate bindings from any OCSF schema checkout, with `--extensions` and `--extension-dirs` flags",
+          "commit": "56d3bb6",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-004"
+          ]
+        },
+        {
+          "description": "[ocsf/events, ocsf/objects] Generated event and object structs with caption lookup tables, observable type registries, and the `NewEventByClassUID` / `UnmarshalEvent` class-UID dispatcher",
+          "commit": "68b4d1d",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-005",
+            "RMI-OCSFSCHEMAGO-007",
+            "RMI-OCSFSCHEMAGO-008",
+            "RMI-OCSFSCHEMAGO-009",
+            "RMI-OCSFSCHEMAGO-012"
+          ]
+        },
+        {
+          "description": "[ocsf/ocsfdata] Embedded compiled schema as indented JSON (`MustSchema()`) for runtime use without an OCSF checkout",
+          "commit": "68b4d1d",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-013"
+          ]
+        },
+        {
+          "description": "[validate] Semantic validator: profile-aware required attributes, scalar types, enum membership, nested objects, `at_least_one`/`just_one` constraints, and class/category/type UID consistency",
+          "commit": "9a34cbc",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-006"
+          ]
+        },
+        {
+          "description": "[recordintegrity] `record_integrity` profile cryptography: JCS (RFC 8785) canonicalization, content and chain fingerprints, ECDSA/RSA attestation signing, verification with a status taxonomy, and tamper-evident chain-link verification",
+          "commit": "ccff37f",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-014"
+          ]
+        },
+        {
+          "description": "[ocsfext/integrity] Schema extension adding `digital_signature.signature_value`, which OCSF 1.10.0-dev lacks; interim until upstream ocsf-schema#1698 lands an official attribute",
+          "commit": "15d7ac2",
+          "rmis": [
+            "RMI-OCSFSCHEMAGO-015"
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "description": "README, MkDocs site, PRD/TRD/PLAN/ROADMAP specs, and upstream issue draft for ocsf-schema#1698",
+          "commit": "9e2d930"
+        }
+      ]
+    }
+  ]
+}
