@@ -1,0 +1,17 @@
+{
+  "caption": "Record Integrity Signature Value Dictionary",
+  "description": "Attributes added by the integrity extension.",
+  "name": "dictionary",
+  "attributes": {
+    "signature_value": {
+      "caption": "Signature Value",
+      "description": "The digital signature bytes, Base64-encoded. For enveloped schemes identified by <code>serialization_id</code> (JWS, COSE, DSSE), this carries the complete detached envelope; for Flat or JCS schemes it carries the raw signature over the signed byte sequence.",
+      "type": "bytestring_t"
+    }
+  },
+  "types": {
+    "caption": "Data Types",
+    "description": "No additional types.",
+    "attributes": {}
+  }
+}

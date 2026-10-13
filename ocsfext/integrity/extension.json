@@ -1,0 +1,7 @@
+{
+  "uid": 999,
+  "caption": "Record Integrity Signature Value",
+  "description": "Grokify extension that adds a signature_value attribute to the digital_signature object, carrying the raw signature bytes needed to verify record_integrity attestations. OCSF 1.10.0-dev records signature metadata (algorithm, certificate, serialization scheme) but has no field for the signature itself; this extension fills that gap and should be retired if upstream adds an official attribute.",
+  "name": "integrity",
+  "version": "0.1.0"
+}

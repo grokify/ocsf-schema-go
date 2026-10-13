@@ -1,0 +1,10 @@
+{
+  "caption": "Digital Signature",
+  "description": "Extends the digital_signature object with the signature bytes themselves, enabling verification of record_integrity attestations.",
+  "extends": "digital_signature",
+  "attributes": {
+    "signature_value": {
+      "requirement": "recommended"
+    }
+  }
+}
