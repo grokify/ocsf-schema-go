@@ -118,9 +118,14 @@ func TestCompileObjects(t *testing.T) {
 func TestCompileClasses(t *testing.T) {
 	c := compileMini(t)
 
+	// base_event is concrete: OCSF's Base Event, class_uid 0 and
+	// category_uid 0. A category base without a uid (iam) stays abstract.
 	base := c.Classes["base_event"]
-	if base == nil || !base.Abstract || base.ClassUID != 0 {
-		t.Errorf("base_event = %+v, want abstract with ClassUID 0", base)
+	if base == nil || base.Abstract || base.ClassUID != 0 || base.CategoryUID != 0 {
+		t.Fatalf("base_event = %+v, want concrete with ClassUID 0 and CategoryUID 0", base)
+	}
+	if iam := c.Classes["iam"]; iam != nil && !iam.Abstract {
+		t.Errorf("iam = %+v, want abstract", iam)
 	}
 
 	auth := c.Classes["authentication"]

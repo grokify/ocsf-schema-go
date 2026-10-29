@@ -29749,7 +29749,7 @@
       "Category": "other",
       "CategoryUID": 0,
       "ClassUID": 0,
-      "Abstract": true,
+      "Abstract": false,
       "Extension": "",
       "Ancestors": [],
       "Attributes": {

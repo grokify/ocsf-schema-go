@@ -137,6 +137,14 @@ func (s *Schema) Compile() (*CompiledSchema, error) {
 			Constraints: inheritedConstraints(chain),
 			Deprecated:  def.Deprecated,
 		}
+		// base_event is the root of every class and also an event class of
+		// its own: the OCSF schema server lists it as Base Event, class_uid
+		// 0 in category "other" (category_uid 0), for events that fit no
+		// other class. Its source has no uid, and categories.json has no
+		// "other", so both stay 0.
+		if name == BaseEventClass && len(chain) == 1 {
+			cls.Abstract = false
+		}
 		// Category may only be set on an ancestor (subclasses inherit it).
 		for i := len(chain) - 1; i >= 0 && cls.Category == ""; i-- {
 			cls.Category = chain[i].Category
@@ -380,6 +388,10 @@ func mergeAttribute(dst map[string]*Attribute, name string, src *Attribute, sour
 	// A direct redeclaration takes over ownership of the attribute.
 	cur.Source = source
 }
+
+// BaseEventClass is the name of the OCSF Base Event class, the root of every
+// event class and itself a concrete class with class_uid 0.
+const BaseEventClass = "base_event"
 
 // mergeEnum returns the members of base and over together, over's member
 // winning where both define a value. An OCSF enum is refined, not replaced,

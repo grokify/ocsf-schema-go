@@ -5,10 +5,10 @@ package events
 
 import "github.com/grokify/ocsf-schema-go/ocsf/objects"
 
-// BaseEvent is the OCSF "base_event" event class (abstract base class). The base event is a
-// generic and concrete event. It also defines a set of attributes available in most event classes.
-// As a generic event that does not belong to any event category, it could be used to log events
-// that are not otherwise defined by the schema.
+// BaseEvent is the OCSF "base_event" event class (class_uid 0). The base event is a generic and
+// concrete event. It also defines a set of attributes available in most event classes. As a
+// generic event that does not belong to any event category, it could be used to log events that
+// are not otherwise defined by the schema.
 type BaseEvent struct {
 	// The normalized caption of action_id .
 	Action string `json:"action,omitempty"`

@@ -28,6 +28,8 @@ const (
 
 // Event class unique identifiers (class_uid).
 const (
+	// Base Event
+	ClassUIDBaseEvent = 0
 	// File System Activity
 	ClassUIDFileActivity = 1001
 	// Kernel Extension Activity
