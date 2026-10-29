@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -961,7 +961,7 @@ for Option B's extra nesting. When an official attribute lands, the
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gs">**+1 for Option A**</span> (<span class="sb">`value`</span> + <span class="sb">`encoding`</span>/<span class="sb">`encoding_id`</span> on <span class="sb">`digital_signature`</span>), with
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>implementation experience to back it.
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>We've built a working record-integrity implementation in Go — canonicalization,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>We&#39;ve built a working record-integrity implementation in Go — canonicalization,
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>signing, verification, and tamper-evident chain walking over <span class="sb">`prev_event`</span> links —
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>against OCSF main. Since <span class="sb">`digital_signature`</span> has no field for the bytes today, we
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>carried them via a small schema extension that patches <span class="sb">`digital_signature`</span> with a
@@ -975,7 +975,7 @@ for Option B's extra nesting. When an official attribute lands, the
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  the event with <span class="sb">`attestation_list`</span> excluded), and per-signature <span class="sb">`certificate`</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  metadata (SHA-256 fingerprint, issuer + serial) was enough to select the
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  verification key. End-to-end verification and hash-chain validation work with no
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  additional nesting, which makes Option B's wrapper object feel like structure
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  additional nesting, which makes Option B&#39;s wrapper object feel like structure
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  without a payoff.
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">-</span><span class="w"> </span>**Mirroring the <span class="sb">`fingerprint`</span> pattern (<span class="sb">`value`</span> + <span class="sb">`encoding_id`</span>) is the right
@@ -995,7 +995,7 @@ for Option B's extra nesting. When an official attribute lands, the
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>attribute on <span class="sb">`certificate`</span> (or a defined external-reference convention) would close
 <a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>that loop; happy to open a separate issue if useful.
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>If Option A lands, we'll drop our extension and align with the official attribute.
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>If Option A lands, we&#39;ll drop our extension and align with the official attribute.
 <a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>Happy to share the implementation once we publish it, or draft the schema PR for
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>Option A if that helps move this along.
 </code></pre></div>
@@ -1079,10 +1079,10 @@ for Option B's extra nesting. When an official attribute lands, the
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
