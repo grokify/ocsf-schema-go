@@ -143,13 +143,19 @@ func TestCompileClasses(t *testing.T) {
 		t.Errorf("authentication.Ancestors = %v, want %v", auth.Ancestors, want)
 	}
 
-	// Enum override: base_event's {0,99} replaced by {1,2}.
+	// Enum refinement: authentication's {1,2} are merged into base_event's
+	// {0,99}, as the OCSF schema server presents the class.
 	activity := auth.Attributes["activity_id"]
 	if activity == nil {
 		t.Fatal("authentication.activity_id missing")
 	}
-	if len(activity.Enum) != 2 || activity.Enum["1"].Caption != "Logon" {
-		t.Errorf("authentication.activity_id enum = %+v, want {1:Logon, 2:Logoff}", activity.Enum)
+	if len(activity.Enum) != 4 || activity.Enum["0"].Caption != "Unknown" ||
+		activity.Enum["1"].Caption != "Logon" || activity.Enum["2"].Caption != "Logoff" || activity.Enum["99"].Caption != "Other" {
+		t.Errorf("authentication.activity_id enum = %+v, want {0:Unknown, 1:Logon, 2:Logoff, 99:Other}", activity.Enum)
+	}
+	// The merge builds a new map: base_event keeps only its own members.
+	if got := base.Attributes["activity_id"].Enum; len(got) != 2 {
+		t.Errorf("base_event.activity_id enum = %+v, want {0, 99} only", got)
 	}
 	if activity.Requirement != RequirementRequired {
 		t.Errorf("activity_id requirement = %q, want required (inherited)", activity.Requirement)

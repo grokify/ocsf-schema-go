@@ -541,6 +541,10 @@
           "requirement": "recommended",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Applicable",
               "description": "This restriction is currently applicable and being enforced."
@@ -552,6 +556,10 @@
             "3": {
               "caption": "Evaluation Error",
               "description": "This restriction could not be properly evaluated due to an error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         }
@@ -895,6 +903,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Application",
               "description": "An application software package."
@@ -902,6 +914,10 @@
             "2": {
               "caption": "Operating System",
               "description": "An operating system software package."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "package"
@@ -966,6 +982,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Endpoint Detection and Response",
               "description": "Any EDR sensor or agent. Or any tool that provides similar threat detection, anti-malware, anti-ransomware, or similar capabilities. E.g., Crowdstrike Falcon, Microsoft Defender for Endpoint, Wazuh."
@@ -1001,6 +1021,10 @@
             "9": {
               "caption": "Remote Access",
               "description": "Any agent or sensor that provides remote access capabilities to a device. E.g., BeyondTrust, Amazon Systems Manager Agent, Verkada Agent."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -1373,6 +1397,10 @@
           "requirement": "optional",
           "sibling": "state",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The state is unknown."
+            },
             "1": {
               "caption": "Active",
               "description": "The Analytic is active."
@@ -1384,6 +1412,10 @@
             "3": {
               "caption": "Experimental",
               "description": "The Analytic is still under development and considered experimental."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The state is not mapped. See the \u003ccode\u003estate\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -2186,6 +2218,14 @@
               "caption": "SAML Assertion",
               "description": "Authentication Assertion for SAML."
             },
+            "6": {
+              "caption": "Client Token",
+              "description": "Client Token issued by an Identity Provider (IdP) for application authentication. Use this value for IdP-issued tokens used for service-to-service authentication. Examples: Microsoft Entra ID Application Registration client secrets, Okta API tokens, Auth0 Machine-to-Machine tokens. Key characteristic: These tokens are issued by Identity Providers, not by individual services."
+            },
+            "7": {
+              "caption": "API Token",
+              "description": "A generic API token or API key used for authenticating API requests. Use this value for service-specific API authentication tokens that are NOT issued by Identity Providers. Examples: REST API keys, GraphQL API keys, Stripe API keys, Twilio API keys, AWS API keys. Key characteristic: These tokens are issued by individual services/platforms, not by Identity Providers."
+            },
             "99": {
               "caption": "Other"
             }
@@ -2958,6 +2998,10 @@
           "requirement": "recommended",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Pass",
               "description": "The compliance check passed for all the evaluated resources."
@@ -2969,6 +3013,10 @@
             "3": {
               "caption": "Fail",
               "description": "The compliance check failed for at least one of the evaluated resources."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         }
@@ -3867,6 +3915,10 @@
           "requirement": "recommended",
           "sibling": "detection_system",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The detection system type is Unknown."
+            },
             "1": {
               "caption": "Endpoint",
               "description": "A dedicated agent or sensor installed on a device, either a dedicated data security tool or an Endpoint Detection \u0026 Response (EDR) tool that can detect sensitive data and/or enforce data security policies. E.g., Forcepoint DLP, Symantec DLP, Microsoft Defender for Endpoint (MDE)."
@@ -3914,6 +3966,10 @@
             "9": {
               "caption": "Database Activity Monitoring",
               "description": "A Database Activity Monitoring (DAM) tool that can detect sensitive data and/or enforce data security policies as part of a dedicated database or warehouse monitoring solution."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The detection system type is not mapped. See the \u003ccode\u003edetection_system\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -4900,6 +4956,10 @@
           "requirement": "required",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Server"
             },
@@ -4944,6 +5004,10 @@
             },
             "9": {
               "caption": "Firewall"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -5372,6 +5436,10 @@
           "requirement": "optional",
           "sibling": "state",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The state is unknown."
+            },
             "1": {
               "caption": "Valid",
               "description": "The digital signature is valid."
@@ -5411,6 +5479,10 @@
             "9": {
               "caption": "Bad",
               "description": "The digital signature is cryptographically invalid, e.g. a mismatched digest. This indicates possible tampering."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The state is not mapped. See the \u003ccode\u003estate\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         }
@@ -5544,6 +5616,10 @@
           "requirement": "recommended",
           "sibling": "flags",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The flag is unknown."
+            },
             "1": {
               "caption": "Authoritative Answer"
             },
@@ -5561,6 +5637,10 @@
             },
             "6": {
               "caption": "Checking Disabled"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The flag is not mapped. See the \u003ccode\u003eflags\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "@deprecated": {
@@ -5849,6 +5929,10 @@
           "requirement": "required",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Registrant",
               "description": "The contact information provided is for the domain registrant."
@@ -5868,6 +5952,10 @@
             "5": {
               "caption": "Abuse",
               "description": "The contact information provided is for the domain abuse contact."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -6382,6 +6470,10 @@
           "requirement": "recommended",
           "sibling": "algorithm",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The algorithm is unknown."
+            },
             "1": {
               "caption": "DES",
               "description": "Data Encryption Standard Algorithm"
@@ -6405,6 +6497,10 @@
             "6": {
               "caption": "SM2",
               "description": "ShangMi Cryptographic Algorithm"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The algorithm is not mapped. See the \u003ccode\u003ealgorithm\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -6567,6 +6663,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Server"
             },
@@ -6611,6 +6711,10 @@
             },
             "9": {
               "caption": "Firewall"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -8405,6 +8509,10 @@
           "requirement": "recommended",
           "sibling": "query_language",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The Query Language is unknown."
+            },
             "1": {
               "caption": "Cypher",
               "description": "A declarative graph query language developed by Neo4j that allows for expressive and efficient querying of graph databases."
@@ -8432,6 +8540,10 @@
             "7": {
               "caption": "SPARQL",
               "description": "A semantic query language for databases that enables querying and manipulating data stored in RDF format."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The Query Language is not mapped. See the \u003ccode\u003equery_language\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -9946,11 +10058,19 @@
           "requirement": "required",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Shared Mutex"
             },
             "2": {
               "caption": "System Call"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         }
@@ -10677,6 +10797,10 @@
           "requirement": "required",
           "sibling": "classifications",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The classification is unknown."
+            },
             "1": {
               "caption": "Adware"
             },
@@ -10739,6 +10863,10 @@
             },
             "9": {
               "caption": "Keylogger"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The classification is not mapped. See the \u003ccode\u003eclassifications\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -11071,6 +11199,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Device",
               "description": "A managed Device entity.  This item corresponds to population of the \u003ccode\u003edevice\u003c/code\u003e attribute."
@@ -11098,6 +11230,10 @@
             "7": {
               "caption": "Network Zone",
               "description": "A managed Network Zone entity. Populate the \u003ccode\u003ename\u003c/code\u003e attribute with the zone name and/or the \u003ccode\u003euid\u003c/code\u003e attribute with the zone ID. Additional zone information can be added to the \u003ccode\u003edata\u003c/code\u003e attribute."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -11640,6 +11776,10 @@
           "requirement": "recommended",
           "sibling": "load_type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The load type is unknown."
+            },
             "1": {
               "caption": "Standard",
               "description": "A normal module loaded by the normal windows loading mechanism i.e. LoadLibrary."
@@ -11659,6 +11799,10 @@
             "5": {
               "caption": "NonStandard Backed",
               "description": "A module loaded in a non standard way. However, GetModuleFileName succeeds on this allocation."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The load type is not mapped. See the \u003ccode\u003eload_type\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -12106,6 +12250,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Server"
             },
@@ -12150,6 +12298,10 @@
             },
             "9": {
               "caption": "Firewall"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -12563,6 +12715,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Server"
             },
@@ -12607,6 +12763,10 @@
             },
             "9": {
               "caption": "Firewall"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "network_endpoint"
@@ -13325,6 +13485,10 @@
           "requirement": "required",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "100": {
               "caption": "Windows"
             },
@@ -13354,6 +13518,10 @@
             },
             "402": {
               "caption": "HP-UX"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -13944,6 +14112,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Application",
               "description": "An application software package."
@@ -13951,6 +14123,10 @@
             "2": {
               "caption": "Operating System",
               "description": "An operating system software package."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -15598,6 +15774,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "REG_BINARY",
               "description": "Arbitrary binary data."
@@ -15644,6 +15824,10 @@
                   "8"
                 ]
               }
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         }
@@ -16278,6 +16462,10 @@
           "requirement": "recommended",
           "sibling": "role",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The role is unknown."
+            },
             "1": {
               "caption": "Target",
               "description": "The resource is the primary target or subject of the event/finding."
@@ -16293,6 +16481,10 @@
             "4": {
               "caption": "Related",
               "description": "The resource is related to or associated with the event/finding."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The role is not mapped. See the role attribute, which contains a data source specific value."
             }
           }
         },
@@ -16589,6 +16781,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "SPDX",
               "description": "System Package Data Exchange (SPDX®) is an open standard capable of representing systems with software components in as SBOMs (Software Bill of Materials) and other AI, data and security references supporting a range of risk management use cases. The SPDX specification is a freely available international open standard (ISO/IEC 5692:2021)."
@@ -16600,6 +16796,10 @@
             "3": {
               "caption": "SWID",
               "description": "The International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC) publishes, ISO/IEC 19770-2, a standard for software identification (SWID) tags that defines a structured metadata format for describing a software product. A SWID tag document is composed of a structured set of data elements that identify the software product"
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -17532,6 +17732,10 @@
           "requirement": "recommended",
           "sibling": "type",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The type is unknown."
+            },
             "1": {
               "caption": "Framework",
               "description": "A software framework."
@@ -17543,6 +17747,10 @@
             "3": {
               "caption": "Operating System",
               "description": "An operating system. Useful for SBOMs of container images."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -17815,6 +18023,10 @@
           "requirement": "optional",
           "sibling": "run_modes",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The run mode is unknown."
+            },
             "1": {
               "caption": "Interactive",
               "description": "The startup item interacts with the desktop."
@@ -17826,6 +18038,10 @@
             "3": {
               "caption": "Shared Process",
               "description": "The startup item runs in a shared process."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The run mode is not mapped. See the \u003ccode\u003erun_modes\u003c/code\u003e attribute, which contains data source specific values."
             }
           }
         },
@@ -17849,6 +18065,10 @@
           "requirement": "recommended",
           "sibling": "run_state",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The run state is unknown."
+            },
             "1": {
               "caption": "Stopped",
               "description": "The service is not running."
@@ -17880,6 +18100,10 @@
             "8": {
               "caption": "Restart Pending",
               "description": "The service is pending restart."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The run state is not mapped. See the \u003ccode\u003erun_state\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -18305,6 +18529,10 @@
           "requirement": "optional",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The ticket is new and yet to be reviewed."
@@ -18336,6 +18564,10 @@
             "8": {
               "caption": "Reopened",
               "description": "The ticket was previously closed, but has been reopened."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -18760,6 +18992,10 @@
             "51": {
               "caption": "key_share",
               "description": "The Key Share extension."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The type is not mapped. See the \u003ccode\u003etype\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         }
@@ -20273,6 +20509,10 @@
           "requirement": "optional",
           "sibling": "fix_coverage",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The fix coverage is unknown."
+            },
             "1": {
               "caption": "Complete",
               "description": "All affected packages and components have available fixes or patches to remediate the vulnerability."
@@ -20284,6 +20524,10 @@
             "3": {
               "caption": "None",
               "description": "No fixes or patches are currently available for any of the affected packages and components."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The fix coverage is not mapped. See the \u003ccode\u003efix_coverage\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -21255,6 +21499,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A user/role was created."
@@ -21302,6 +21549,9 @@
             "9": {
               "caption": "Lock",
               "description": "A user account was locked out."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -21941,6 +22191,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -21948,6 +22202,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -22087,9 +22345,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -22712,6 +22976,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -22719,6 +22987,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -23470,6 +23742,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -23477,6 +23753,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -23631,6 +23911,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "The API call in the event pertains to a 'create' activity."
@@ -23646,6 +23929,9 @@
             "4": {
               "caption": "Delete",
               "description": "The API call in the event pertains to a 'delete' activity."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -24272,6 +24558,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -24279,6 +24569,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -24994,6 +25288,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -25001,6 +25299,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -25113,6 +25415,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "General Error",
               "description": "The application has experienced an error."
@@ -25120,6 +25425,9 @@
             "2": {
               "caption": "Translation Error",
               "description": "The application has experienced an error translating (mapping) a raw event to OCSF. Including the original raw event in the raw_data field is highly recommended."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -25710,6 +26018,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -25717,6 +26029,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -25829,6 +26145,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Install",
               "description": "Install the application."
@@ -25860,6 +26179,9 @@
             "8": {
               "caption": "Update",
               "description": "Update the application."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -26472,6 +26794,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -26479,6 +26805,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -26596,6 +26926,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A finding was created."
@@ -26607,6 +26940,9 @@
             "3": {
               "caption": "Close",
               "description": "A finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "finding"
@@ -27355,6 +27691,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -27378,6 +27718,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "finding"
@@ -27637,6 +27981,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Logon",
               "description": "A new logon session was requested."
@@ -27664,6 +28011,9 @@
             "7": {
               "caption": "Account Switch",
               "description": "A utility or service switched the user account. See the \u003ccode\u003eaccount_switch_type_id\u003c/code\u003e attribute for more details."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -28491,6 +28841,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -28498,6 +28852,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -28622,6 +28980,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Assign Privileges",
               "description": "Assign special privileges to a new logon."
@@ -28633,6 +28994,9 @@
             "3": {
               "caption": "Assign Roles",
               "description": "Assign special roles to a new logon."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -29301,6 +29665,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -29308,6 +29676,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -29973,6 +30345,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -29980,6 +30356,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -30086,6 +30466,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Read",
               "description": "A clipboard was read from. In user-interface terms, this is a 'paste' operation. If present, \u003ccode\u003esource_process\u003c/code\u003e is the process which performed the \u003ccode\u003eWrite\u003c/code\u003e activity or, in other words, the process from which the data was copied."
@@ -30097,6 +30480,9 @@
             "3": {
               "caption": "Clear",
               "description": "A clipboard was cleared."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -30704,6 +31090,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -30711,6 +31101,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -30823,6 +31217,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -30830,6 +31227,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -31432,6 +31832,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -31439,6 +31843,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -31568,6 +31976,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A finding was created."
@@ -31579,6 +31990,9 @@
             "3": {
               "caption": "Close",
               "description": "A finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "finding"
@@ -32342,6 +32756,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -32365,6 +32783,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "finding"
@@ -32576,6 +32998,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -32583,6 +33008,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -33165,6 +33593,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -33172,6 +33604,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -33290,6 +33726,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A new Data Security finding is created."
@@ -33312,6 +33751,9 @@
                   "status_id"
                 ]
               }
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -34068,6 +34510,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -34091,6 +34537,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "finding"
@@ -34309,6 +34759,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Read",
               "description": "The 'Read' activity involves accessing specific data record details."
@@ -34348,6 +34801,9 @@
             "9": {
               "caption": "Encrypt",
               "description": "The 'Encrypt' activity involves securing data by encrypting a specific data record."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -34988,6 +35444,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -34995,6 +35455,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -35152,6 +35616,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A finding was created."
@@ -35163,6 +35630,9 @@
             "3": {
               "caption": "Close",
               "description": "A finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "finding"
@@ -35955,6 +36425,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -35978,6 +36452,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "finding"
@@ -36197,6 +36675,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -36204,6 +36685,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -36877,6 +37361,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -36884,6 +37372,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -36996,6 +37488,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Power On",
               "description": "A power-on activity was reported for the system."
@@ -37019,6 +37514,9 @@
             "6": {
               "caption": "Wake",
               "description": "A wake activity was reported for the system."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -37610,6 +38108,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -37617,6 +38119,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -37729,6 +38235,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Discover",
               "description": "DHCPDISCOVER"
@@ -37764,6 +38273,9 @@
             "9": {
               "caption": "Expire",
               "description": "DHCPEXPIRE: A DHCP lease expired."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -38555,6 +39067,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -38562,6 +39078,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -38701,6 +39221,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -38708,6 +39231,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -39267,6 +39793,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -39274,6 +39804,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -39385,9 +39919,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -39999,6 +40539,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -40006,6 +40550,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -40118,6 +40666,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The DNS query request."
@@ -40129,6 +40680,9 @@
             "6": {
               "caption": "Traffic",
               "description": "Bidirectional DNS request and response traffic."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -40543,6 +41097,10 @@
           "group": "primary",
           "sibling": "flags",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The flag is unknown."
+            },
             "1": {
               "caption": "Authoritative Answer",
               "description": "The responding server is authoritative for the domain. Set by the server in responses only."
@@ -40566,6 +41124,10 @@
             "6": {
               "caption": "Checking Disabled",
               "description": "The client requests that the server disable DNSSEC validation. Set by the client and echoed in the response."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The flag is not mapped. See the \u003ccode\u003eflags\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -41150,6 +41712,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -41157,6 +41723,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -41376,6 +41946,15 @@
             "1": {
               "caption": "None"
             },
+            "10": {
+              "caption": "RADIUS"
+            },
+            "11": {
+              "caption": "Basic Authentication"
+            },
+            "12": {
+              "caption": "LDAP"
+            },
             "2": {
               "caption": "UAS ID Signature"
             },
@@ -41396,6 +41975,9 @@
             },
             "8": {
               "caption": "Private User"
+            },
+            "9": {
+              "caption": "EAP"
             },
             "99": {
               "caption": "Other",
@@ -41970,6 +42552,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Undeclared",
               "description": "The operational status is not reported."
@@ -41993,6 +42579,10 @@
             "6": {
               "caption": "Reserved",
               "description": "An ASTM Reserved status is reported."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -42146,6 +42736,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Send"
             },
@@ -42163,6 +42756,9 @@
             "5": {
               "caption": "MTA Relay",
               "description": "Email processed by an MTA, typically combining send, receive, and scan operations into a single activity."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -42400,6 +42996,10 @@
             "3": {
               "caption": "Internal",
               "description": "Email Internal, from inside the network destined for an entity inside network."
+            },
+            "4": {
+              "caption": "Local",
+              "description": "Local network connection (\u003ccode\u003elocalhost\u003c/code\u003e). The connection is intra-device, originating from and destined for services running on the same device."
             },
             "99": {
               "caption": "Other"
@@ -42874,6 +43474,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -42881,6 +43485,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -43000,6 +43608,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Send"
             },
@@ -43009,6 +43620,9 @@
             "3": {
               "caption": "Scan",
               "description": "Email file being scanned (example: security scanning)."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -43589,6 +44203,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -43596,6 +44214,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -43713,6 +44335,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Send"
             },
@@ -43722,6 +44347,9 @@
             "3": {
               "caption": "Scan",
               "description": "Email URL being scanned (example: security scanning)."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -44295,6 +44923,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -44302,6 +44934,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -44442,6 +45078,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "Create a new managed entity."
@@ -44493,6 +45132,9 @@
             "9": {
               "caption": "Disable",
               "description": "Disable an existing managed entity. Note: This is typically regarded as a semi-permanent, editor visible, syncable change."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -45137,6 +45779,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -45144,6 +45790,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -45263,6 +45913,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Clear",
               "description": "Clear the event log database, file, or cache."
@@ -45302,6 +45955,9 @@
             "9": {
               "caption": "Enable",
               "description": "Enable the event logging service."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -45959,6 +46615,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -45966,6 +46626,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -46086,9 +46750,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -46711,6 +47381,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -46718,6 +47392,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -46837,6 +47515,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A request to create a new file on a file system."
@@ -46892,6 +47573,9 @@
             "9": {
               "caption": "Get Security",
               "description": "A request to get security for a file on a file system."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -47526,6 +48210,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -47533,6 +48221,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -47667,6 +48359,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Upload",
               "description": "Upload a file."
@@ -47734,6 +48429,9 @@
             "9": {
               "caption": "Preview",
               "description": "Preview a file."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -48421,6 +49119,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -48428,6 +49130,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -48540,9 +49246,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -49165,6 +49877,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -49172,6 +49888,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -49290,6 +50010,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Isolate",
               "description": "Creates logical or physical barriers in a system which reduces opportunities for adversaries to create further accesses."
@@ -49313,6 +50036,9 @@
             "6": {
               "caption": "Deceive",
               "description": "Advertise, entice, and allow potential attackers access to an observed or controlled environment."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "remediation_activity"
@@ -49913,6 +50639,18 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
+            "1": {
+              "caption": "Success",
+              "description": "The activity completed successfully."
+            },
+            "2": {
+              "caption": "Failure",
+              "description": "The activity failed."
+            },
             "3": {
               "caption": "Does Not Exist",
               "description": "The target of the remediation does not exist."
@@ -49928,6 +50666,10 @@
             "6": {
               "caption": "Error",
               "description": "There was an error during the remediation process."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "remediation_activity"
@@ -50039,6 +50781,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A finding was created."
@@ -50050,6 +50795,9 @@
             "3": {
               "caption": "Close",
               "description": "A finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -50765,6 +51513,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -50788,6 +51540,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -50996,9 +51752,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -51621,6 +52383,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -51628,6 +52394,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -51746,6 +52516,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Put",
               "description": "File upload to the FTP or SFTP site."
@@ -51769,6 +52542,9 @@
             "6": {
               "caption": "List",
               "description": "List files in a specified directory."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -52585,6 +53361,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -52592,6 +53372,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -52732,6 +53516,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Assign Privileges",
               "description": "Assign privileges to the group. Use \u003ccode\u003eprivileges\u003c/code\u003e as privileges to be assigned."
@@ -52783,6 +53570,9 @@
             "9": {
               "caption": "Update",
               "description": "Update the group. The updated group details should be populated in the \u003ccode\u003eupdated_group\u003c/code\u003e attribute."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -53452,6 +54242,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -53459,6 +54253,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -53607,6 +54405,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Connect",
               "description": "The CONNECT method establishes a tunnel to the server identified by the target resource."
@@ -53766,6 +54567,9 @@
             "9": {
               "caption": "Patch",
               "description": "The PATCH method applies partial modifications to a resource."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -54581,6 +55385,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -54588,6 +55396,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -55345,6 +56157,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -55352,6 +56168,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -55471,6 +56291,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A finding was created."
@@ -55482,6 +56305,9 @@
             "3": {
               "caption": "Close",
               "description": "A finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "finding"
@@ -56239,6 +57065,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -56262,6 +57092,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "finding"
@@ -56486,6 +57320,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "Reports the creation of an Incident."
@@ -56497,6 +57334,9 @@
             "3": {
               "caption": "Close",
               "description": "Reports closure of an Incident ."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -57203,6 +58043,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The service desk has received the incident but has not assigned it to an agent."
@@ -57222,6 +58066,10 @@
             "5": {
               "caption": "Closed",
               "description": "The incident is resolved and no further action is necessary."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -57430,6 +58278,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -57437,6 +58288,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -57997,6 +58851,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -58004,6 +58862,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -58116,9 +58978,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -58741,6 +59609,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -58748,6 +59620,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -58866,6 +59742,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create"
             },
@@ -58877,6 +59756,9 @@
             },
             "4": {
               "caption": "Invoke"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -59477,6 +60359,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -59484,6 +60370,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -59596,6 +60486,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Load",
               "description": "A driver/extension was loaded into the kernel"
@@ -59603,6 +60496,9 @@
             "2": {
               "caption": "Unload",
               "description": "A driver/extension was unloaded (removed) from the kernel"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -60202,6 +61098,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -60209,6 +61109,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -60321,9 +61225,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -60946,6 +61856,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -60953,6 +61867,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -61071,6 +61989,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Allocate Page"
             },
@@ -61102,6 +62023,9 @@
             "9": {
               "caption": "Map View",
               "description": "Map View (Example: \u003ccode\u003eMapViewOfFile2\u003c/code\u003e)"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -61730,6 +62654,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -61737,6 +62665,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -61849,6 +62781,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Load",
               "description": "The target module was loaded."
@@ -61860,6 +62795,9 @@
             "3": {
               "caption": "Invoke",
               "description": "A function exported from the target module was invoked."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -62459,6 +63397,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -62466,6 +63408,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -62578,9 +63524,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -63210,6 +64162,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -63217,6 +64173,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -64100,6 +65060,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -64107,6 +65071,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -64238,6 +65206,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Open",
               "description": "A new network connection was opened."
@@ -64265,6 +65236,9 @@
             "7": {
               "caption": "Listen",
               "description": "A network endpoint began listening for new network connections."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -65080,6 +66054,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -65087,6 +66065,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -65227,9 +66209,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -65889,6 +66877,10 @@
             "9": {
               "caption": "LAST_ACK",
               "description": "The socket connection has been closed by the remote peer, the local application has closed its half of the connection, and the system is waiting for the remote peer to acknowledge the close."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The state is not mapped. See the \u003ccode\u003estate\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -65924,6 +66916,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -65931,6 +66927,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -66049,6 +67049,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Upload",
               "description": "Upload a file."
@@ -66112,6 +67115,9 @@
             "9": {
               "caption": "Preview",
               "description": "Preview a file."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -66895,6 +67901,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -66902,6 +67912,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -67041,6 +68055,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Isolate",
               "description": "Creates logical or physical barriers in a system which reduces opportunities for adversaries to create further accesses."
@@ -67064,6 +68081,9 @@
             "6": {
               "caption": "Deceive",
               "description": "Advertise, entice, and allow potential attackers access to an observed or controlled environment."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "remediation_activity"
@@ -67664,6 +68684,18 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
+            "1": {
+              "caption": "Success",
+              "description": "The activity completed successfully."
+            },
+            "2": {
+              "caption": "Failure",
+              "description": "The activity failed."
+            },
             "3": {
               "caption": "Does Not Exist",
               "description": "The target of the remediation does not exist."
@@ -67679,6 +68711,10 @@
             "6": {
               "caption": "Error",
               "description": "There was an error during the remediation process."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "remediation_activity"
@@ -67791,9 +68827,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -68417,6 +69459,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -68424,6 +69470,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -69370,6 +70420,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -69377,6 +70431,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -69557,6 +70615,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -69564,6 +70625,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -70123,6 +71187,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -70130,6 +71198,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -70242,6 +71314,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -70249,6 +71324,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -70817,6 +71895,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -70824,6 +71906,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -70942,6 +72028,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Connect",
               "description": "A peripheral device was connected to the system."
@@ -70961,6 +72050,9 @@
             "5": {
               "caption": "Eject",
               "description": "A peripheral device was ejected from the system. This is typically used for removable media devices. Note: For \u003ccode\u003eMount\u003c/code\u003e and \u003ccode\u003eUnmount\u003c/code\u003e events, see the \u003ca target='_blank' href='file_activity'\u003eFile System Activity\u003c/a\u003e event class."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -71561,6 +72653,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -71568,6 +72664,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -71680,9 +72780,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -72305,6 +73411,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -72312,6 +73422,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -72430,9 +73544,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -73069,6 +74189,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -73076,6 +74200,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -73194,6 +74322,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Launch",
               "description": "A request by the actor to launch another process. Refer to the \u003ccode\u003elaunch_type_id\u003c/code\u003e attribute for details of the specific launch type."
@@ -73213,6 +74344,9 @@
             "5": {
               "caption": "Set User ID",
               "description": "A request by the actor to change its user identity by invoking the \u003ccode\u003esetuid()\u003c/code\u003e system call. Common programs like \u003ccode\u003esu\u003c/code\u003e and \u003ccode\u003esudo\u003c/code\u003e use this mechanism. Note that the \u003cem\u003eimpersonation\u003c/em\u003e mechanism on Windows is not directly equivalent because it acts at the thread level."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -73911,6 +75045,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -73918,6 +75056,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -74030,9 +75172,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -74655,6 +75803,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -74662,6 +75814,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -74780,6 +75936,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Isolate",
               "description": "Creates logical or physical barriers in a system which reduces opportunities for adversaries to create further accesses."
@@ -74803,6 +75962,9 @@
             "6": {
               "caption": "Deceive",
               "description": "Advertise, entice, and allow potential attackers access to an observed or controlled environment."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "remediation_activity"
@@ -75403,6 +76565,18 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
+            "1": {
+              "caption": "Success",
+              "description": "The activity completed successfully."
+            },
+            "2": {
+              "caption": "Failure",
+              "description": "The activity failed."
+            },
             "3": {
               "caption": "Does Not Exist",
               "description": "The target of the remediation does not exist."
@@ -75418,6 +76592,10 @@
             "6": {
               "caption": "Error",
               "description": "There was an error during the remediation process."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "remediation_activity"
@@ -75530,6 +76708,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Initial Request",
               "description": "The initial RDP request."
@@ -75561,6 +76742,9 @@
             "8": {
               "caption": "Reconnect",
               "description": "An RDP connection reconnect."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -76396,6 +77580,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -76403,6 +77591,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -76550,6 +77742,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create"
             },
@@ -76576,6 +77771,9 @@
             },
             "9": {
               "caption": "Export"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -77196,6 +78394,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -77203,6 +78405,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -77315,9 +78521,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -77940,6 +79152,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -77947,6 +79163,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -78065,6 +79285,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Get"
             },
@@ -78076,6 +79299,9 @@
             },
             "4": {
               "caption": "Delete"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -78680,6 +79906,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -78687,6 +79917,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -78799,9 +80033,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -79424,6 +80664,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -79431,6 +80675,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -79548,6 +80796,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Isolate",
               "description": "Creates logical or physical barriers in a system which reduces opportunities for adversaries to create further accesses."
@@ -79571,6 +80822,9 @@
             "6": {
               "caption": "Deceive",
               "description": "Advertise, entice, and allow potential attackers access to an observed or controlled environment."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -80159,6 +81413,18 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
+            "1": {
+              "caption": "Success",
+              "description": "The activity completed successfully."
+            },
+            "2": {
+              "caption": "Failure",
+              "description": "The activity failed."
+            },
             "3": {
               "caption": "Does Not Exist",
               "description": "The target of the remediation does not exist."
@@ -80174,6 +81440,10 @@
             "6": {
               "caption": "Error",
               "description": "There was an error during the remediation process."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -80285,6 +81555,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "Create a role. Use \u003ccode\u003eiam_role\u003c/code\u003e as the role to be created."
@@ -80328,6 +81601,9 @@
             "9": {
               "caption": "Detach Policies",
               "description": "Detach one or more policies from a role. Use \u003ccode\u003epolicies\u003c/code\u003e to be detached from \u003ccode\u003eiam_role\u003c/code\u003e."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -80982,6 +82258,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -80989,6 +82269,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -81108,6 +82392,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Started",
               "description": "The scan was started."
@@ -81147,6 +82434,9 @@
             "9": {
               "caption": "Restarted",
               "description": "The scan restarted from the beginning of the file enumeration."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -81819,6 +83109,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -81826,6 +83120,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -81945,6 +83243,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create"
             },
@@ -81962,6 +83263,9 @@
             },
             "6": {
               "caption": "Start"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -82561,6 +83865,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -82568,6 +83876,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -82687,8 +83999,14 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Execute"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -83289,6 +84607,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -83296,6 +84618,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -83407,6 +84733,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A security finding was created."
@@ -83418,6 +84747,9 @@
             "3": {
               "caption": "Close",
               "description": "A security finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -84091,6 +85423,10 @@
           "group": "context",
           "sibling": "state",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The state is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The finding is new and yet to be reviewed."
@@ -84106,6 +85442,10 @@
             "4": {
               "caption": "Resolved",
               "description": "The finding was reviewed and remediated and is now considered resolved."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The state is not mapped. See the \u003ccode\u003estate\u003c/code\u003e attribute, which contains a data source specific value."
             }
           }
         },
@@ -84141,6 +85481,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -84148,6 +85492,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -84278,9 +85626,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -84903,6 +86257,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -84910,6 +86268,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -85028,9 +86390,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -85653,6 +87021,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -85660,6 +87032,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -85778,6 +87154,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "File Supersede",
               "description": "The event pertains to file superseded activity (overwritten if it exists and created if not)."
@@ -85801,6 +87180,9 @@
             "6": {
               "caption": "File Overwrite If",
               "description": "The event pertains to file overwrite activity (the file is opened in a truncated form if it exists and created otherwise)"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -86664,6 +88046,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -86671,6 +88057,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -86811,6 +88201,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -86818,6 +88211,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -87406,6 +88802,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -87413,6 +88813,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -87525,6 +88929,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Open",
               "description": "A new network connection was opened."
@@ -87552,6 +88959,9 @@
             "7": {
               "caption": "Listen",
               "description": "A network endpoint began listening for new network connections."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -88399,6 +89809,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -88406,6 +89820,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -88539,9 +89957,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -89164,6 +90588,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -89171,6 +90599,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -89885,6 +91317,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -89892,6 +91328,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -90806,6 +92246,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -90813,6 +92257,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -91584,6 +93032,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -91591,6 +93043,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -91717,6 +93173,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Assign Privileges",
               "description": "Assign privileges to a user."
@@ -91732,6 +93191,9 @@
             "4": {
               "caption": "Remove Role",
               "description": "Remove a role from a user."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -92385,6 +93847,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -92392,6 +93858,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -92517,6 +93987,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Log",
               "description": "The discovered information is via a log."
@@ -92524,6 +93997,9 @@
             "2": {
               "caption": "Collect",
               "description": "The discovered information is via a collection process."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery"
@@ -93084,6 +94560,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -93091,6 +94571,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -93210,6 +94694,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "Create a user. Populate the \u003ccode\u003euser\u003c/code\u003e object with details of the user."
@@ -93285,6 +94772,9 @@
             "9": {
               "caption": "Password Reset",
               "description": "An attempt to reset the user's password."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -93941,6 +95431,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -93948,6 +95442,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -94074,9 +95572,15 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Query",
               "description": "The discovered results are via a query request."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "discovery_result"
@@ -94692,6 +96196,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -94699,6 +96207,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -94824,6 +96336,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A finding was created."
@@ -94835,6 +96350,9 @@
             "3": {
               "caption": "Close",
               "description": "A finding was closed."
+            },
+            "99": {
+              "caption": "Other"
             }
           },
           "_source": "finding"
@@ -95576,6 +97094,10 @@
           "group": "context",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "New",
               "description": "The Finding is new and yet to be reviewed."
@@ -95599,6 +97121,10 @@
             "6": {
               "caption": "Deleted",
               "description": "The Finding was deleted. For example, it might have been created in error."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "finding"
@@ -95818,6 +97344,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Access Grant",
               "description": "The incoming request has permission to the web resource."
@@ -95833,6 +97362,9 @@
             "4": {
               "caption": "Access Error",
               "description": "An error occurred during processing the request."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -96501,6 +98033,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -96508,6 +98044,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -96641,6 +98181,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "One or more web resources were created."
@@ -96672,6 +98215,9 @@
             "8": {
               "caption": "Share",
               "description": "One or more web resources were shared."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -97333,6 +98879,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -97340,6 +98890,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -97490,8 +99044,14 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Access"
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -98085,6 +99645,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -98092,6 +99656,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"
@@ -98211,6 +99779,9 @@
           "group": "classification",
           "sibling": "activity_name",
           "enum": {
+            "0": {
+              "caption": "Unknown"
+            },
             "1": {
               "caption": "Create",
               "description": "A service is created, for example by calling the CreateService API."
@@ -98238,6 +99809,9 @@
             "7": {
               "caption": "Delete",
               "description": "A service is deleted, for example by calling the DeleteService API."
+            },
+            "99": {
+              "caption": "Other"
             }
           }
         },
@@ -98838,6 +100412,10 @@
           "group": "primary",
           "sibling": "status",
           "enum": {
+            "0": {
+              "caption": "Unknown",
+              "description": "The status is unknown."
+            },
             "1": {
               "caption": "Success",
               "description": "The activity completed successfully."
@@ -98845,6 +100423,10 @@
             "2": {
               "caption": "Failure",
               "description": "The activity failed."
+            },
+            "99": {
+              "caption": "Other",
+              "description": "The status is not mapped. See the \u003ccode\u003estatus\u003c/code\u003e attribute, which contains a data source specific value."
             }
           },
           "_source": "base_event"

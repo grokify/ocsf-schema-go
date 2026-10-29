@@ -291,6 +291,7 @@ var AccountChangeActionIDCaptions = map[int]string{
 
 // AccountChangeActivityID values for AccountChange.ActivityID (Activity ID).
 const (
+	AccountChangeActivityIDUnknown = 0
 	// A user/role was created.
 	AccountChangeActivityIDCreate = 1
 	// A user/role was enabled.
@@ -315,10 +316,12 @@ const (
 	AccountChangeActivityIDMFAFactorDisable = 11
 	// A user account was unlocked.
 	AccountChangeActivityIDUnlock = 12
+	AccountChangeActivityIDOther  = 99
 )
 
 // AccountChangeActivityIDCaptions maps AccountChange.ActivityID (Activity ID) values to their captions.
 var AccountChangeActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Create",
 	2:  "Enable",
 	3:  "Password Change",
@@ -331,6 +334,7 @@ var AccountChangeActivityIDCaptions = map[int]string{
 	10: "MFA Factor Enable",
 	11: "MFA Factor Disable",
 	12: "Unlock",
+	99: "Other",
 }
 
 // AccountChangeConfidenceID values for AccountChange.ConfidenceID (Confidence ID).
@@ -517,16 +521,23 @@ var AccountChangeSeverityIDCaptions = map[int]string{
 
 // AccountChangeStatusID values for AccountChange.StatusID (Status ID).
 const (
+	// The status is unknown.
+	AccountChangeStatusIDUnknown = 0
 	// The activity completed successfully.
 	AccountChangeStatusIDSuccess = 1
 	// The activity failed.
 	AccountChangeStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	AccountChangeStatusIDOther = 99
 )
 
 // AccountChangeStatusIDCaptions maps AccountChange.StatusID (Status ID) values to their captions.
 var AccountChangeStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // Authentication is the OCSF "authentication" event class (class_uid 3002). Authentication events
@@ -866,6 +877,7 @@ var AuthenticationActionIDCaptions = map[int]string{
 
 // AuthenticationActivityID values for Authentication.ActivityID (Activity ID).
 const (
+	AuthenticationActivityIDUnknown = 0
 	// A new logon session was requested.
 	AuthenticationActivityIDLogon = 1
 	// A logon session was terminated and no longer exists.
@@ -881,17 +893,20 @@ const (
 	// A utility or service switched the user account. See the account_switch_type_id attribute for
 	// more details.
 	AuthenticationActivityIDAccountSwitch = 7
+	AuthenticationActivityIDOther         = 99
 )
 
 // AuthenticationActivityIDCaptions maps Authentication.ActivityID (Activity ID) values to their captions.
 var AuthenticationActivityIDCaptions = map[int]string{
-	1: "Logon",
-	2: "Logoff",
-	3: "Authentication Ticket",
-	4: "Service Ticket Request",
-	5: "Service Ticket Renew",
-	6: "Preauth",
-	7: "Account Switch",
+	0:  "Unknown",
+	1:  "Logon",
+	2:  "Logoff",
+	3:  "Authentication Ticket",
+	4:  "Service Ticket Request",
+	5:  "Service Ticket Renew",
+	6:  "Preauth",
+	7:  "Account Switch",
+	99: "Other",
 }
 
 // AuthenticationAuthProtocolID values for Authentication.AuthProtocolID (Auth Protocol ID).
@@ -1173,16 +1188,23 @@ var AuthenticationSeverityIDCaptions = map[int]string{
 
 // AuthenticationStatusID values for Authentication.StatusID (Status ID).
 const (
+	// The status is unknown.
+	AuthenticationStatusIDUnknown = 0
 	// The activity completed successfully.
 	AuthenticationStatusIDSuccess = 1
 	// The activity failed.
 	AuthenticationStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	AuthenticationStatusIDOther = 99
 )
 
 // AuthenticationStatusIDCaptions maps Authentication.StatusID (Status ID) values to their captions.
 var AuthenticationStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // AuthorizeSession is the OCSF "authorize_session" event class (class_uid 3003). Authorize Session
@@ -1471,19 +1493,23 @@ var AuthorizeSessionActionIDCaptions = map[int]string{
 
 // AuthorizeSessionActivityID values for AuthorizeSession.ActivityID (Activity ID).
 const (
+	AuthorizeSessionActivityIDUnknown = 0
 	// Assign special privileges to a new logon.
 	AuthorizeSessionActivityIDAssignPrivileges = 1
 	// Assign special groups to a new logon.
 	AuthorizeSessionActivityIDAssignGroups = 2
 	// Assign special roles to a new logon.
 	AuthorizeSessionActivityIDAssignRoles = 3
+	AuthorizeSessionActivityIDOther       = 99
 )
 
 // AuthorizeSessionActivityIDCaptions maps AuthorizeSession.ActivityID (Activity ID) values to their captions.
 var AuthorizeSessionActivityIDCaptions = map[int]string{
-	1: "Assign Privileges",
-	2: "Assign Groups",
-	3: "Assign Roles",
+	0:  "Unknown",
+	1:  "Assign Privileges",
+	2:  "Assign Groups",
+	3:  "Assign Roles",
+	99: "Other",
 }
 
 // AuthorizeSessionConfidenceID values for AuthorizeSession.ConfidenceID (Confidence ID).
@@ -1670,16 +1696,23 @@ var AuthorizeSessionSeverityIDCaptions = map[int]string{
 
 // AuthorizeSessionStatusID values for AuthorizeSession.StatusID (Status ID).
 const (
+	// The status is unknown.
+	AuthorizeSessionStatusIDUnknown = 0
 	// The activity completed successfully.
 	AuthorizeSessionStatusIDSuccess = 1
 	// The activity failed.
 	AuthorizeSessionStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	AuthorizeSessionStatusIDOther = 99
 )
 
 // AuthorizeSessionStatusIDCaptions maps AuthorizeSession.StatusID (Status ID) values to their captions.
 var AuthorizeSessionStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // EntityManagement is the OCSF "entity_management" event class (class_uid 3004). Entity Management
@@ -1968,6 +2001,7 @@ var EntityManagementActionIDCaptions = map[int]string{
 
 // EntityManagementActivityID values for EntityManagement.ActivityID (Activity ID).
 const (
+	EntityManagementActivityIDUnknown = 0
 	// Create a new managed entity.
 	EntityManagementActivityIDCreate = 1
 	// Read an existing managed entity.
@@ -1998,10 +2032,12 @@ const (
 	EntityManagementActivityIDSuspend = 12
 	// Resume (unsuspend) an existing managed entity.
 	EntityManagementActivityIDResume = 13
+	EntityManagementActivityIDOther  = 99
 )
 
 // EntityManagementActivityIDCaptions maps EntityManagement.ActivityID (Activity ID) values to their captions.
 var EntityManagementActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Create",
 	2:  "Read",
 	3:  "Update",
@@ -2015,6 +2051,7 @@ var EntityManagementActivityIDCaptions = map[int]string{
 	11: "Deactivate",
 	12: "Suspend",
 	13: "Resume",
+	99: "Other",
 }
 
 // EntityManagementConfidenceID values for EntityManagement.ConfidenceID (Confidence ID).
@@ -2201,16 +2238,23 @@ var EntityManagementSeverityIDCaptions = map[int]string{
 
 // EntityManagementStatusID values for EntityManagement.StatusID (Status ID).
 const (
+	// The status is unknown.
+	EntityManagementStatusIDUnknown = 0
 	// The activity completed successfully.
 	EntityManagementStatusIDSuccess = 1
 	// The activity failed.
 	EntityManagementStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	EntityManagementStatusIDOther = 99
 )
 
 // EntityManagementStatusIDCaptions maps EntityManagement.StatusID (Status ID) values to their captions.
 var EntityManagementStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // GroupManagement is the OCSF "group_management" event class (class_uid 3006). Group Management
@@ -2511,6 +2555,7 @@ var GroupManagementActionIDCaptions = map[int]string{
 
 // GroupManagementActivityID values for GroupManagement.ActivityID (Activity ID).
 const (
+	GroupManagementActivityIDUnknown = 0
 	// Assign privileges to the group. Use privileges as privileges to be assigned.
 	GroupManagementActivityIDAssignPrivileges = 1
 	// Revoke privileges from the group. Use privileges as privileges to be revoked.
@@ -2538,10 +2583,12 @@ const (
 	GroupManagementActivityIDAssignRoles = 12
 	// Remove one or more roles from the group. Use iam_roles for the specific roles to be removed.
 	GroupManagementActivityIDRemoveRoles = 13
+	GroupManagementActivityIDOther       = 99
 )
 
 // GroupManagementActivityIDCaptions maps GroupManagement.ActivityID (Activity ID) values to their captions.
 var GroupManagementActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Assign Privileges",
 	2:  "Revoke Privileges",
 	3:  "Add User",
@@ -2555,6 +2602,7 @@ var GroupManagementActivityIDCaptions = map[int]string{
 	11: "Detach Policies",
 	12: "Assign Roles",
 	13: "Remove Roles",
+	99: "Other",
 }
 
 // GroupManagementConfidenceID values for GroupManagement.ConfidenceID (Confidence ID).
@@ -2741,16 +2789,23 @@ var GroupManagementSeverityIDCaptions = map[int]string{
 
 // GroupManagementStatusID values for GroupManagement.StatusID (Status ID).
 const (
+	// The status is unknown.
+	GroupManagementStatusIDUnknown = 0
 	// The activity completed successfully.
 	GroupManagementStatusIDSuccess = 1
 	// The activity failed.
 	GroupManagementStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	GroupManagementStatusIDOther = 99
 )
 
 // GroupManagementStatusIDCaptions maps GroupManagement.StatusID (Status ID) values to their captions.
 var GroupManagementStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // IAM is the OCSF "iam" event class (abstract base class). The Identity & Access Management event
@@ -3219,16 +3274,23 @@ var IAMSeverityIDCaptions = map[int]string{
 
 // IAMStatusID values for IAM.StatusID (Status ID).
 const (
+	// The status is unknown.
+	IAMStatusIDUnknown = 0
 	// The activity completed successfully.
 	IAMStatusIDSuccess = 1
 	// The activity failed.
 	IAMStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	IAMStatusIDOther = 99
 )
 
 // IAMStatusIDCaptions maps IAM.StatusID (Status ID) values to their captions.
 var IAMStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // RoleManagement is the OCSF "role_management" event class (class_uid 3008). Role Management
@@ -3521,6 +3583,7 @@ var RoleManagementActionIDCaptions = map[int]string{
 
 // RoleManagementActivityID values for RoleManagement.ActivityID (Activity ID).
 const (
+	RoleManagementActivityIDUnknown = 0
 	// Create a role. Use iam_role as the role to be created.
 	RoleManagementActivityIDCreate = 1
 	// Update a role. The updated role details should be populated in the updated_role attribute.
@@ -3543,10 +3606,12 @@ const (
 	RoleManagementActivityIDAddProgrammaticCredentials = 10
 	// Remove credentials from a role. Use programmatic_credentials to be removed from iam_role .
 	RoleManagementActivityIDRemoveProgrammaticCredentials = 11
+	RoleManagementActivityIDOther                         = 99
 )
 
 // RoleManagementActivityIDCaptions maps RoleManagement.ActivityID (Activity ID) values to their captions.
 var RoleManagementActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Create",
 	2:  "Update",
 	3:  "Delete",
@@ -3558,6 +3623,7 @@ var RoleManagementActivityIDCaptions = map[int]string{
 	9:  "Detach Policies",
 	10: "Add Programmatic Credentials",
 	11: "Remove Programmatic Credentials",
+	99: "Other",
 }
 
 // RoleManagementConfidenceID values for RoleManagement.ConfidenceID (Confidence ID).
@@ -3744,16 +3810,23 @@ var RoleManagementSeverityIDCaptions = map[int]string{
 
 // RoleManagementStatusID values for RoleManagement.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RoleManagementStatusIDUnknown = 0
 	// The activity completed successfully.
 	RoleManagementStatusIDSuccess = 1
 	// The activity failed.
 	RoleManagementStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RoleManagementStatusIDOther = 99
 )
 
 // RoleManagementStatusIDCaptions maps RoleManagement.StatusID (Status ID) values to their captions.
 var RoleManagementStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // UserAccess is the OCSF "user_access" event class (class_uid 3005). User Access Management events
@@ -4040,6 +4113,7 @@ var UserAccessActionIDCaptions = map[int]string{
 
 // UserAccessActivityID values for UserAccess.ActivityID (Activity ID).
 const (
+	UserAccessActivityIDUnknown = 0
 	// Assign privileges to a user.
 	UserAccessActivityIDAssignPrivileges = 1
 	// Revoke privileges from a user.
@@ -4048,14 +4122,17 @@ const (
 	UserAccessActivityIDAssignRole = 3
 	// Remove a role from a user.
 	UserAccessActivityIDRemoveRole = 4
+	UserAccessActivityIDOther      = 99
 )
 
 // UserAccessActivityIDCaptions maps UserAccess.ActivityID (Activity ID) values to their captions.
 var UserAccessActivityIDCaptions = map[int]string{
-	1: "Assign Privileges",
-	2: "Revoke Privileges",
-	3: "Assign Role",
-	4: "Remove Role",
+	0:  "Unknown",
+	1:  "Assign Privileges",
+	2:  "Revoke Privileges",
+	3:  "Assign Role",
+	4:  "Remove Role",
+	99: "Other",
 }
 
 // UserAccessConfidenceID values for UserAccess.ConfidenceID (Confidence ID).
@@ -4242,16 +4319,23 @@ var UserAccessSeverityIDCaptions = map[int]string{
 
 // UserAccessStatusID values for UserAccess.StatusID (Status ID).
 const (
+	// The status is unknown.
+	UserAccessStatusIDUnknown = 0
 	// The activity completed successfully.
 	UserAccessStatusIDSuccess = 1
 	// The activity failed.
 	UserAccessStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	UserAccessStatusIDOther = 99
 )
 
 // UserAccessStatusIDCaptions maps UserAccess.StatusID (Status ID) values to their captions.
 var UserAccessStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // UserManagement is the OCSF "user_management" event class (class_uid 3007). User Management
@@ -4544,6 +4628,7 @@ var UserManagementActionIDCaptions = map[int]string{
 
 // UserManagementActivityID values for UserManagement.ActivityID (Activity ID).
 const (
+	UserManagementActivityIDUnknown = 0
 	// Create a user. Populate the user object with details of the user.
 	UserManagementActivityIDCreate = 1
 	// Update the user. The updated user details should be populated in the updated_user attribute.
@@ -4584,10 +4669,12 @@ const (
 	UserManagementActivityIDAddProgrammaticCredentials = 18
 	// Remove credentials from a role. Use programmatic_credentials as credentials to be removed.
 	UserManagementActivityIDRemoveProgrammaticCredentials = 19
+	UserManagementActivityIDOther                         = 99
 )
 
 // UserManagementActivityIDCaptions maps UserManagement.ActivityID (Activity ID) values to their captions.
 var UserManagementActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Create",
 	2:  "Update",
 	3:  "Delete",
@@ -4607,6 +4694,7 @@ var UserManagementActivityIDCaptions = map[int]string{
 	17: "Remove Roles",
 	18: "Add Programmatic Credentials",
 	19: "Remove Programmatic Credentials",
+	99: "Other",
 }
 
 // UserManagementConfidenceID values for UserManagement.ConfidenceID (Confidence ID).
@@ -4793,14 +4881,21 @@ var UserManagementSeverityIDCaptions = map[int]string{
 
 // UserManagementStatusID values for UserManagement.StatusID (Status ID).
 const (
+	// The status is unknown.
+	UserManagementStatusIDUnknown = 0
 	// The activity completed successfully.
 	UserManagementStatusIDSuccess = 1
 	// The activity failed.
 	UserManagementStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	UserManagementStatusIDOther = 99
 )
 
 // UserManagementStatusIDCaptions maps UserManagement.StatusID (Status ID) values to their captions.
 var UserManagementStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

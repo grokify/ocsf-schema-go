@@ -319,19 +319,23 @@ var ApplicationSecurityPostureFindingActionIDCaptions = map[int]string{
 
 // ApplicationSecurityPostureFindingActivityID values for ApplicationSecurityPostureFinding.ActivityID (Activity ID).
 const (
+	ApplicationSecurityPostureFindingActivityIDUnknown = 0
 	// A finding was created.
 	ApplicationSecurityPostureFindingActivityIDCreate = 1
 	// A finding was updated.
 	ApplicationSecurityPostureFindingActivityIDUpdate = 2
 	// A finding was closed.
 	ApplicationSecurityPostureFindingActivityIDClose = 3
+	ApplicationSecurityPostureFindingActivityIDOther = 99
 )
 
 // ApplicationSecurityPostureFindingActivityIDCaptions maps ApplicationSecurityPostureFinding.ActivityID (Activity ID) values to their captions.
 var ApplicationSecurityPostureFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // ApplicationSecurityPostureFindingConfidenceID values for ApplicationSecurityPostureFinding.ConfidenceID (Confidence ID).
@@ -575,6 +579,8 @@ var ApplicationSecurityPostureFindingSeverityIDCaptions = map[int]string{
 
 // ApplicationSecurityPostureFindingStatusID values for ApplicationSecurityPostureFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ApplicationSecurityPostureFindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	ApplicationSecurityPostureFindingStatusIDNew = 1
 	// The Finding is under review.
@@ -587,16 +593,21 @@ const (
 	ApplicationSecurityPostureFindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	ApplicationSecurityPostureFindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ApplicationSecurityPostureFindingStatusIDOther = 99
 )
 
 // ApplicationSecurityPostureFindingStatusIDCaptions maps ApplicationSecurityPostureFinding.StatusID (Status ID) values to their captions.
 var ApplicationSecurityPostureFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // ApplicationSecurityPostureFindingVerdictID values for ApplicationSecurityPostureFinding.VerdictID (Verdict ID).
@@ -950,19 +961,23 @@ var ComplianceFindingActionIDCaptions = map[int]string{
 
 // ComplianceFindingActivityID values for ComplianceFinding.ActivityID (Activity ID).
 const (
+	ComplianceFindingActivityIDUnknown = 0
 	// A finding was created.
 	ComplianceFindingActivityIDCreate = 1
 	// A finding was updated.
 	ComplianceFindingActivityIDUpdate = 2
 	// A finding was closed.
 	ComplianceFindingActivityIDClose = 3
+	ComplianceFindingActivityIDOther = 99
 )
 
 // ComplianceFindingActivityIDCaptions maps ComplianceFinding.ActivityID (Activity ID) values to their captions.
 var ComplianceFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // ComplianceFindingConfidenceID values for ComplianceFinding.ConfidenceID (Confidence ID).
@@ -1206,6 +1221,8 @@ var ComplianceFindingSeverityIDCaptions = map[int]string{
 
 // ComplianceFindingStatusID values for ComplianceFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ComplianceFindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	ComplianceFindingStatusIDNew = 1
 	// The Finding is under review.
@@ -1218,16 +1235,21 @@ const (
 	ComplianceFindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	ComplianceFindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ComplianceFindingStatusIDOther = 99
 )
 
 // ComplianceFindingStatusIDCaptions maps ComplianceFinding.StatusID (Status ID) values to their captions.
 var ComplianceFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // ComplianceFindingVerdictID values for ComplianceFinding.VerdictID (Verdict ID).
@@ -1595,6 +1617,7 @@ var DataSecurityFindingActionIDCaptions = map[int]string{
 
 // DataSecurityFindingActivityID values for DataSecurityFinding.ActivityID (Activity ID).
 const (
+	DataSecurityFindingActivityIDUnknown = 0
 	// A new Data Security finding is created.
 	DataSecurityFindingActivityIDCreate = 1
 	// An existing Data Security finding is updated with more information.
@@ -1605,14 +1628,17 @@ const (
 	// An existing Data Security finding is suppressed due to inaccurate detection techniques or a
 	// known true negative.
 	DataSecurityFindingActivityIDSuppressed = 4
+	DataSecurityFindingActivityIDOther      = 99
 )
 
 // DataSecurityFindingActivityIDCaptions maps DataSecurityFinding.ActivityID (Activity ID) values to their captions.
 var DataSecurityFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
-	4: "Suppressed",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	4:  "Suppressed",
+	99: "Other",
 }
 
 // DataSecurityFindingConfidenceID values for DataSecurityFinding.ConfidenceID (Confidence ID).
@@ -1856,6 +1882,8 @@ var DataSecurityFindingSeverityIDCaptions = map[int]string{
 
 // DataSecurityFindingStatusID values for DataSecurityFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DataSecurityFindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	DataSecurityFindingStatusIDNew = 1
 	// The Finding is under review.
@@ -1868,16 +1896,21 @@ const (
 	DataSecurityFindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	DataSecurityFindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DataSecurityFindingStatusIDOther = 99
 )
 
 // DataSecurityFindingStatusIDCaptions maps DataSecurityFinding.StatusID (Status ID) values to their captions.
 var DataSecurityFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // DataSecurityFindingVerdictID values for DataSecurityFinding.VerdictID (Verdict ID).
@@ -2240,19 +2273,23 @@ var DetectionFindingActionIDCaptions = map[int]string{
 
 // DetectionFindingActivityID values for DetectionFinding.ActivityID (Activity ID).
 const (
+	DetectionFindingActivityIDUnknown = 0
 	// A finding was created.
 	DetectionFindingActivityIDCreate = 1
 	// A finding was updated.
 	DetectionFindingActivityIDUpdate = 2
 	// A finding was closed.
 	DetectionFindingActivityIDClose = 3
+	DetectionFindingActivityIDOther = 99
 )
 
 // DetectionFindingActivityIDCaptions maps DetectionFinding.ActivityID (Activity ID) values to their captions.
 var DetectionFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // DetectionFindingConfidenceID values for DetectionFinding.ConfidenceID (Confidence ID).
@@ -2526,6 +2563,8 @@ var DetectionFindingSeverityIDCaptions = map[int]string{
 
 // DetectionFindingStatusID values for DetectionFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DetectionFindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	DetectionFindingStatusIDNew = 1
 	// The Finding is under review.
@@ -2538,16 +2577,21 @@ const (
 	DetectionFindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	DetectionFindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DetectionFindingStatusIDOther = 99
 )
 
 // DetectionFindingStatusIDCaptions maps DetectionFinding.StatusID (Status ID) values to their captions.
 var DetectionFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // DetectionFindingVerdictID values for DetectionFinding.VerdictID (Verdict ID).
@@ -2884,19 +2928,23 @@ var FindingActionIDCaptions = map[int]string{
 
 // FindingActivityID values for Finding.ActivityID (Activity ID).
 const (
+	FindingActivityIDUnknown = 0
 	// A finding was created.
 	FindingActivityIDCreate = 1
 	// A finding was updated.
 	FindingActivityIDUpdate = 2
 	// A finding was closed.
 	FindingActivityIDClose = 3
+	FindingActivityIDOther = 99
 )
 
 // FindingActivityIDCaptions maps Finding.ActivityID (Activity ID) values to their captions.
 var FindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // FindingConfidenceID values for Finding.ConfidenceID (Confidence ID).
@@ -3140,6 +3188,8 @@ var FindingSeverityIDCaptions = map[int]string{
 
 // FindingStatusID values for Finding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	FindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	FindingStatusIDNew = 1
 	// The Finding is under review.
@@ -3152,16 +3202,21 @@ const (
 	FindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	FindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	FindingStatusIDOther = 99
 )
 
 // FindingStatusIDCaptions maps Finding.StatusID (Status ID) values to their captions.
 var FindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // FindingVerdictID values for Finding.VerdictID (Verdict ID).
@@ -3533,19 +3588,23 @@ var IAMAnalysisFindingActionIDCaptions = map[int]string{
 
 // IAMAnalysisFindingActivityID values for IAMAnalysisFinding.ActivityID (Activity ID).
 const (
+	IAMAnalysisFindingActivityIDUnknown = 0
 	// A finding was created.
 	IAMAnalysisFindingActivityIDCreate = 1
 	// A finding was updated.
 	IAMAnalysisFindingActivityIDUpdate = 2
 	// A finding was closed.
 	IAMAnalysisFindingActivityIDClose = 3
+	IAMAnalysisFindingActivityIDOther = 99
 )
 
 // IAMAnalysisFindingActivityIDCaptions maps IAMAnalysisFinding.ActivityID (Activity ID) values to their captions.
 var IAMAnalysisFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // IAMAnalysisFindingConfidenceID values for IAMAnalysisFinding.ConfidenceID (Confidence ID).
@@ -3789,6 +3848,8 @@ var IAMAnalysisFindingSeverityIDCaptions = map[int]string{
 
 // IAMAnalysisFindingStatusID values for IAMAnalysisFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	IAMAnalysisFindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	IAMAnalysisFindingStatusIDNew = 1
 	// The Finding is under review.
@@ -3801,16 +3862,21 @@ const (
 	IAMAnalysisFindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	IAMAnalysisFindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	IAMAnalysisFindingStatusIDOther = 99
 )
 
 // IAMAnalysisFindingStatusIDCaptions maps IAMAnalysisFinding.StatusID (Status ID) values to their captions.
 var IAMAnalysisFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // IAMAnalysisFindingVerdictID values for IAMAnalysisFinding.VerdictID (Verdict ID).
@@ -4145,19 +4211,23 @@ var IncidentFindingActionIDCaptions = map[int]string{
 
 // IncidentFindingActivityID values for IncidentFinding.ActivityID (Activity ID).
 const (
+	IncidentFindingActivityIDUnknown = 0
 	// Reports the creation of an Incident.
 	IncidentFindingActivityIDCreate = 1
 	// Reports updates to an Incident.
 	IncidentFindingActivityIDUpdate = 2
 	// Reports closure of an Incident .
 	IncidentFindingActivityIDClose = 3
+	IncidentFindingActivityIDOther = 99
 )
 
 // IncidentFindingActivityIDCaptions maps IncidentFinding.ActivityID (Activity ID) values to their captions.
 var IncidentFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // IncidentFindingConfidenceID values for IncidentFinding.ConfidenceID (Confidence ID).
@@ -4401,6 +4471,8 @@ var IncidentFindingSeverityIDCaptions = map[int]string{
 
 // IncidentFindingStatusID values for IncidentFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	IncidentFindingStatusIDUnknown = 0
 	// The service desk has received the incident but has not assigned it to an agent.
 	IncidentFindingStatusIDNew = 1
 	// The incident has been assigned to an agent but has not been resolved. The agent is actively
@@ -4412,15 +4484,20 @@ const (
 	IncidentFindingStatusIDResolved = 4
 	// The incident is resolved and no further action is necessary.
 	IncidentFindingStatusIDClosed = 5
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	IncidentFindingStatusIDOther = 99
 )
 
 // IncidentFindingStatusIDCaptions maps IncidentFinding.StatusID (Status ID) values to their captions.
 var IncidentFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "On Hold",
-	4: "Resolved",
-	5: "Closed",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "On Hold",
+	4:  "Resolved",
+	5:  "Closed",
+	99: "Other",
 }
 
 // IncidentFindingVerdictID values for IncidentFinding.VerdictID (Verdict ID).
@@ -4764,19 +4841,23 @@ var SecurityFindingActionIDCaptions = map[int]string{
 
 // SecurityFindingActivityID values for SecurityFinding.ActivityID (Activity ID).
 const (
+	SecurityFindingActivityIDUnknown = 0
 	// A security finding was created.
 	SecurityFindingActivityIDCreate = 1
 	// A security finding was updated.
 	SecurityFindingActivityIDUpdate = 2
 	// A security finding was closed.
 	SecurityFindingActivityIDClose = 3
+	SecurityFindingActivityIDOther = 99
 )
 
 // SecurityFindingActivityIDCaptions maps SecurityFinding.ActivityID (Activity ID) values to their captions.
 var SecurityFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // SecurityFindingConfidenceID values for SecurityFinding.ConfidenceID (Confidence ID).
@@ -4990,6 +5071,8 @@ var SecurityFindingSeverityIDCaptions = map[int]string{
 
 // SecurityFindingStateID values for SecurityFinding.StateID (State ID).
 const (
+	// The state is unknown.
+	SecurityFindingStateIDUnknown = 0
 	// The finding is new and yet to be reviewed.
 	SecurityFindingStateIDNew = 1
 	// The finding is under review.
@@ -4998,28 +5081,40 @@ const (
 	SecurityFindingStateIDSuppressed = 3
 	// The finding was reviewed and remediated and is now considered resolved.
 	SecurityFindingStateIDResolved = 4
+	// The state is not mapped. See the state attribute, which contains a data source specific
+	// value.
+	SecurityFindingStateIDOther = 99
 )
 
 // SecurityFindingStateIDCaptions maps SecurityFinding.StateID (State ID) values to their captions.
 var SecurityFindingStateIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	99: "Other",
 }
 
 // SecurityFindingStatusID values for SecurityFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	SecurityFindingStatusIDUnknown = 0
 	// The activity completed successfully.
 	SecurityFindingStatusIDSuccess = 1
 	// The activity failed.
 	SecurityFindingStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	SecurityFindingStatusIDOther = 99
 )
 
 // SecurityFindingStatusIDCaptions maps SecurityFinding.StatusID (Status ID) values to their captions.
 var SecurityFindingStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // VulnerabilityFinding is the OCSF "vulnerability_finding" event class (class_uid 2002). The
@@ -5323,19 +5418,23 @@ var VulnerabilityFindingActionIDCaptions = map[int]string{
 
 // VulnerabilityFindingActivityID values for VulnerabilityFinding.ActivityID (Activity ID).
 const (
+	VulnerabilityFindingActivityIDUnknown = 0
 	// A finding was created.
 	VulnerabilityFindingActivityIDCreate = 1
 	// A finding was updated.
 	VulnerabilityFindingActivityIDUpdate = 2
 	// A finding was closed.
 	VulnerabilityFindingActivityIDClose = 3
+	VulnerabilityFindingActivityIDOther = 99
 )
 
 // VulnerabilityFindingActivityIDCaptions maps VulnerabilityFinding.ActivityID (Activity ID) values to their captions.
 var VulnerabilityFindingActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Close",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Close",
+	99: "Other",
 }
 
 // VulnerabilityFindingConfidenceID values for VulnerabilityFinding.ConfidenceID (Confidence ID).
@@ -5579,6 +5678,8 @@ var VulnerabilityFindingSeverityIDCaptions = map[int]string{
 
 // VulnerabilityFindingStatusID values for VulnerabilityFinding.StatusID (Status ID).
 const (
+	// The status is unknown.
+	VulnerabilityFindingStatusIDUnknown = 0
 	// The Finding is new and yet to be reviewed.
 	VulnerabilityFindingStatusIDNew = 1
 	// The Finding is under review.
@@ -5591,16 +5692,21 @@ const (
 	VulnerabilityFindingStatusIDArchived = 5
 	// The Finding was deleted. For example, it might have been created in error.
 	VulnerabilityFindingStatusIDDeleted = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	VulnerabilityFindingStatusIDOther = 99
 )
 
 // VulnerabilityFindingStatusIDCaptions maps VulnerabilityFinding.StatusID (Status ID) values to their captions.
 var VulnerabilityFindingStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Suppressed",
-	4: "Resolved",
-	5: "Archived",
-	6: "Deleted",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Suppressed",
+	4:  "Resolved",
+	5:  "Archived",
+	6:  "Deleted",
+	99: "Other",
 }
 
 // VulnerabilityFindingVerdictID values for VulnerabilityFinding.VerdictID (Verdict ID).

@@ -450,14 +450,21 @@ var BaseEventSeverityIDCaptions = map[int]string{
 
 // BaseEventStatusID values for BaseEvent.StatusID (Status ID).
 const (
+	// The status is unknown.
+	BaseEventStatusIDUnknown = 0
 	// The activity completed successfully.
 	BaseEventStatusIDSuccess = 1
 	// The activity failed.
 	BaseEventStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	BaseEventStatusIDOther = 99
 )
 
 // BaseEventStatusIDCaptions maps BaseEvent.StatusID (Status ID) values to their captions.
 var BaseEventStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

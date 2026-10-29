@@ -190,19 +190,26 @@ type AdditionalRestriction struct {
 
 // AdditionalRestrictionStatusID values for AdditionalRestriction.StatusID (Status ID).
 const (
+	// The status is unknown.
+	AdditionalRestrictionStatusIDUnknown = 0
 	// This restriction is currently applicable and being enforced.
 	AdditionalRestrictionStatusIDApplicable = 1
 	// This restriction is not applicable.
 	AdditionalRestrictionStatusIDInapplicable = 2
 	// This restriction could not be properly evaluated due to an error.
 	AdditionalRestrictionStatusIDEvaluationError = 3
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	AdditionalRestrictionStatusIDOther = 99
 )
 
 // AdditionalRestrictionStatusIDCaptions maps AdditionalRestriction.StatusID (Status ID) values to their captions.
 var AdditionalRestrictionStatusIDCaptions = map[int]string{
-	1: "Applicable",
-	2: "Inapplicable",
-	3: "Evaluation Error",
+	0:  "Unknown",
+	1:  "Applicable",
+	2:  "Inapplicable",
+	3:  "Evaluation Error",
+	99: "Other",
 }
 
 // Advisory is the OCSF "advisory" object. The Advisory object represents publicly disclosed
@@ -355,16 +362,22 @@ type AffectedPackage struct {
 
 // AffectedPackageTypeID values for AffectedPackage.TypeID (Type ID).
 const (
+	// The type is unknown.
+	AffectedPackageTypeIDUnknown = 0
 	// An application software package.
 	AffectedPackageTypeIDApplication = 1
 	// An operating system software package.
 	AffectedPackageTypeIDOperatingSystem = 2
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	AffectedPackageTypeIDOther = 99
 )
 
 // AffectedPackageTypeIDCaptions maps AffectedPackage.TypeID (Type ID) values to their captions.
 var AffectedPackageTypeIDCaptions = map[int]string{
-	1: "Application",
-	2: "Operating System",
+	0:  "Unknown",
+	1:  "Application",
+	2:  "Operating System",
+	99: "Other",
 }
 
 // Agent is the OCSF "agent" object. An Agent (also known as a Sensor) is typically installed on an
@@ -399,6 +412,8 @@ type Agent struct {
 
 // AgentTypeID values for Agent.TypeID (Type ID).
 const (
+	// The type is unknown.
+	AgentTypeIDUnknown = 0
 	// Any EDR sensor or agent. Or any tool that provides similar threat detection, anti-malware,
 	// anti-ransomware, or similar capabilities. E.g., Crowdstrike Falcon, Microsoft Defender for
 	// Endpoint, Wazuh.
@@ -432,19 +447,23 @@ const (
 	// Any agent or sensor that provides remote access capabilities to a device. E.g., BeyondTrust,
 	// Amazon Systems Manager Agent, Verkada Agent.
 	AgentTypeIDRemoteAccess = 9
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	AgentTypeIDOther = 99
 )
 
 // AgentTypeIDCaptions maps Agent.TypeID (Type ID) values to their captions.
 var AgentTypeIDCaptions = map[int]string{
-	1: "Endpoint Detection and Response",
-	2: "Data Loss Prevention",
-	3: "Backup & Recovery",
-	4: "Performance Monitoring & Observability",
-	5: "Vulnerability Management",
-	6: "Log Forwarding",
-	7: "Mobile Device Management",
-	8: "Configuration Management",
-	9: "Remote Access",
+	0:  "Unknown",
+	1:  "Endpoint Detection and Response",
+	2:  "Data Loss Prevention",
+	3:  "Backup & Recovery",
+	4:  "Performance Monitoring & Observability",
+	5:  "Vulnerability Management",
+	6:  "Log Forwarding",
+	7:  "Mobile Device Management",
+	8:  "Configuration Management",
+	9:  "Remote Access",
+	99: "Other",
 }
 
 // AIAgent is the OCSF "ai_agent" object. An autonomous AI agent that performs tasks under
@@ -634,6 +653,8 @@ type Analytic struct {
 
 // AnalyticStateID values for Analytic.StateID (State ID).
 const (
+	// The state is unknown.
+	AnalyticStateIDUnknown = 0
 	// The Analytic is active.
 	AnalyticStateIDActive = 1
 	// The Analytic is suppressed. For example, a user/customer has suppressed a particular
@@ -641,13 +662,18 @@ const (
 	AnalyticStateIDSuppressed = 2
 	// The Analytic is still under development and considered experimental.
 	AnalyticStateIDExperimental = 3
+	// The state is not mapped. See the state attribute, which contains a data source specific
+	// value.
+	AnalyticStateIDOther = 99
 )
 
 // AnalyticStateIDCaptions maps Analytic.StateID (State ID) values to their captions.
 var AnalyticStateIDCaptions = map[int]string{
-	1: "Active",
-	2: "Suppressed",
-	3: "Experimental",
+	0:  "Unknown",
+	1:  "Active",
+	2:  "Suppressed",
+	3:  "Experimental",
+	99: "Other",
 }
 
 // AnalyticTypeID values for Analytic.TypeID (Type ID).
@@ -1106,7 +1132,19 @@ const (
 	AuthenticationTokenTypeIDRefreshToken = 4
 	// Authentication Assertion for SAML.
 	AuthenticationTokenTypeIDSAMLAssertion = 5
-	AuthenticationTokenTypeIDOther         = 99
+	// Client Token issued by an Identity Provider (IdP) for application authentication. Use this
+	// value for IdP-issued tokens used for service-to-service authentication. Examples: Microsoft
+	// Entra ID Application Registration client secrets, Okta API tokens, Auth0 Machine-to-Machine
+	// tokens. Key characteristic: These tokens are issued by Identity Providers, not by individual
+	// services.
+	AuthenticationTokenTypeIDClientToken = 6
+	// A generic API token or API key used for authenticating API requests. Use this value for
+	// service-specific API authentication tokens that are NOT issued by Identity Providers.
+	// Examples: REST API keys, GraphQL API keys, Stripe API keys, Twilio API keys, AWS API keys.
+	// Key characteristic: These tokens are issued by individual services/platforms, not by
+	// Identity Providers.
+	AuthenticationTokenTypeIDAPIToken = 7
+	AuthenticationTokenTypeIDOther    = 99
 )
 
 // AuthenticationTokenTypeIDCaptions maps AuthenticationToken.TypeID (Type ID) values to their captions.
@@ -1117,6 +1155,8 @@ var AuthenticationTokenTypeIDCaptions = map[int]string{
 	3:  "Identity Token",
 	4:  "Refresh Token",
 	5:  "SAML Assertion",
+	6:  "Client Token",
+	7:  "API Token",
 	99: "Other",
 }
 
@@ -1518,19 +1558,26 @@ type Compliance struct {
 
 // ComplianceStatusID values for Compliance.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ComplianceStatusIDUnknown = 0
 	// The compliance check passed for all the evaluated resources.
 	ComplianceStatusIDPass = 1
 	// The compliance check did not yield a result due to missing information.
 	ComplianceStatusIDWarning = 2
 	// The compliance check failed for at least one of the evaluated resources.
 	ComplianceStatusIDFail = 3
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ComplianceStatusIDOther = 99
 )
 
 // ComplianceStatusIDCaptions maps Compliance.StatusID (Status ID) values to their captions.
 var ComplianceStatusIDCaptions = map[int]string{
-	1: "Pass",
-	2: "Warning",
-	3: "Fail",
+	0:  "Unknown",
+	1:  "Pass",
+	2:  "Warning",
+	3:  "Fail",
+	99: "Other",
 }
 
 // Container is the OCSF "container" object. The Container object describes an instance of a
@@ -2062,6 +2109,8 @@ var DataSecurityDataLifecycleStateIDCaptions = map[int]string{
 
 // DataSecurityDetectionSystemID values for DataSecurity.DetectionSystemID (Detection System ID).
 const (
+	// The detection system type is Unknown.
+	DataSecurityDetectionSystemIDUnknown = 0
 	// A dedicated agent or sensor installed on a device, either a dedicated data security tool or
 	// an Endpoint Detection & Response (EDR) tool that can detect sensitive data and/or enforce
 	// data security policies. E.g., Forcepoint DLP, Symantec DLP, Microsoft Defender for Endpoint
@@ -2110,10 +2159,14 @@ const (
 	// solution that can detect sensitive data and/or enforce data security policies for local and
 	// cloud environments. E.g., Cyera, Sentra, IBM Polar Security.
 	DataSecurityDetectionSystemIDDataSecurityPostureManagement = 12
+	// The detection system type is not mapped. See the detection_system attribute, which contains
+	// a data source specific value.
+	DataSecurityDetectionSystemIDOther = 99
 )
 
 // DataSecurityDetectionSystemIDCaptions maps DataSecurity.DetectionSystemID (Detection System ID) values to their captions.
 var DataSecurityDetectionSystemIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Endpoint",
 	2:  "DLP Gateway",
 	3:  "Mobile Device Management",
@@ -2126,6 +2179,7 @@ var DataSecurityDetectionSystemIDCaptions = map[int]string{
 	10: "Application-Level DLP",
 	11: "Developer Security",
 	12: "Data Security Posture Management",
+	99: "Other",
 }
 
 // DataSecurityStatusID values for DataSecurity.StatusID (Status ID).
@@ -2552,6 +2606,8 @@ var DeviceRiskLevelIDCaptions = map[int]string{
 
 // DeviceTypeID values for Device.TypeID (Type ID).
 const (
+	// The type is unknown.
+	DeviceTypeIDUnknown      = 0
 	DeviceTypeIDServer       = 1
 	DeviceTypeIDDesktop      = 2
 	DeviceTypeIDLaptop       = 3
@@ -2567,10 +2623,13 @@ const (
 	DeviceTypeIDIDS          = 13
 	DeviceTypeIDIPS          = 14
 	DeviceTypeIDLoadBalancer = 15
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	DeviceTypeIDOther = 99
 )
 
 // DeviceTypeIDCaptions maps Device.TypeID (Type ID) values to their captions.
 var DeviceTypeIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Server",
 	2:  "Desktop",
 	3:  "Laptop",
@@ -2586,6 +2645,7 @@ var DeviceTypeIDCaptions = map[int]string{
 	13: "IDS",
 	14: "IPS",
 	15: "Load Balancer",
+	99: "Other",
 }
 
 // DeviceHWInfo is the OCSF "device_hw_info" object. The Device Hardware Information object
@@ -2802,6 +2862,8 @@ var DigitalSignatureSerializationIDCaptions = map[int]string{
 
 // DigitalSignatureStateID values for DigitalSignature.StateID (State ID).
 const (
+	// The state is unknown.
+	DigitalSignatureStateIDUnknown = 0
 	// The digital signature is valid.
 	DigitalSignatureStateIDValid = 1
 	// The digital signature is invalid because its timestamp does not fall within the
@@ -2827,10 +2889,14 @@ const (
 	DigitalSignatureStateIDBad = 9
 	// The digital signature is malformed and could not be processed.
 	DigitalSignatureStateIDBroken = 10
+	// The state is not mapped. See the state attribute, which contains a data source specific
+	// value.
+	DigitalSignatureStateIDOther = 99
 )
 
 // DigitalSignatureStateIDCaptions maps DigitalSignature.StateID (State ID) values to their captions.
 var DigitalSignatureStateIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Valid",
 	2:  "Expired",
 	3:  "Revoked",
@@ -2841,6 +2907,7 @@ var DigitalSignatureStateIDCaptions = map[int]string{
 	8:  "WrongUsage",
 	9:  "Bad",
 	10: "Broken",
+	99: "Other",
 }
 
 // DiscoveryDetails is the OCSF "discovery_details" object. The Discovery Details object describes
@@ -2915,22 +2982,29 @@ type DNSAnswer struct {
 
 // DNSAnswerFlagIds values for DNSAnswer.FlagIds (DNS Header Flags).
 const (
+	// The flag is unknown.
+	DNSAnswerFlagIdsUnknown             = 0
 	DNSAnswerFlagIdsAuthoritativeAnswer = 1
 	DNSAnswerFlagIdsTruncatedResponse   = 2
 	DNSAnswerFlagIdsRecursionDesired    = 3
 	DNSAnswerFlagIdsRecursionAvailable  = 4
 	DNSAnswerFlagIdsAuthenticData       = 5
 	DNSAnswerFlagIdsCheckingDisabled    = 6
+	// The flag is not mapped. See the flags attribute, which contains a data source specific
+	// value.
+	DNSAnswerFlagIdsOther = 99
 )
 
 // DNSAnswerFlagIdsCaptions maps DNSAnswer.FlagIds (DNS Header Flags) values to their captions.
 var DNSAnswerFlagIdsCaptions = map[int]string{
-	1: "Authoritative Answer",
-	2: "Truncated Response",
-	3: "Recursion Desired",
-	4: "Recursion Available",
-	5: "Authentic Data",
-	6: "Checking Disabled",
+	0:  "Unknown",
+	1:  "Authoritative Answer",
+	2:  "Truncated Response",
+	3:  "Recursion Desired",
+	4:  "Recursion Available",
+	5:  "Authentic Data",
+	6:  "Checking Disabled",
+	99: "Other",
 }
 
 // DNSQuery is the OCSF "dns_query" object. The DNS Query object represents a specific request made
@@ -3045,6 +3119,8 @@ type DomainContact struct {
 
 // DomainContactTypeID values for DomainContact.TypeID (Domain Contact Type ID).
 const (
+	// The type is unknown.
+	DomainContactTypeIDUnknown = 0
 	// The contact information provided is for the domain registrant.
 	DomainContactTypeIDRegistrant = 1
 	// The contact information provided is for the domain administrator.
@@ -3055,15 +3131,19 @@ const (
 	DomainContactTypeIDBilling = 4
 	// The contact information provided is for the domain abuse contact.
 	DomainContactTypeIDAbuse = 5
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	DomainContactTypeIDOther = 99
 )
 
 // DomainContactTypeIDCaptions maps DomainContact.TypeID (Domain Contact Type ID) values to their captions.
 var DomainContactTypeIDCaptions = map[int]string{
-	1: "Registrant",
-	2: "Administrative",
-	3: "Technical",
-	4: "Billing",
-	5: "Abuse",
+	0:  "Unknown",
+	1:  "Registrant",
+	2:  "Administrative",
+	3:  "Technical",
+	4:  "Billing",
+	5:  "Abuse",
+	99: "Other",
 }
 
 // DownloadInfo is the OCSF "download_info" object. The Download Info object contains metadata
@@ -3285,6 +3365,8 @@ type EncryptionDetails struct {
 
 // EncryptionDetailsAlgorithmID values for EncryptionDetails.AlgorithmID (Encryption Algorithm ID).
 const (
+	// The algorithm is unknown.
+	EncryptionDetailsAlgorithmIDUnknown = 0
 	// Data Encryption Standard Algorithm
 	EncryptionDetailsAlgorithmIDDES = 1
 	// Triple Data Encryption Standard Algorithm
@@ -3297,16 +3379,21 @@ const (
 	EncryptionDetailsAlgorithmIDECC = 5
 	// ShangMi Cryptographic Algorithm
 	EncryptionDetailsAlgorithmIDSM2 = 6
+	// The algorithm is not mapped. See the algorithm attribute, which contains a data source
+	// specific value.
+	EncryptionDetailsAlgorithmIDOther = 99
 )
 
 // EncryptionDetailsAlgorithmIDCaptions maps EncryptionDetails.AlgorithmID (Encryption Algorithm ID) values to their captions.
 var EncryptionDetailsAlgorithmIDCaptions = map[int]string{
-	1: "DES",
-	2: "TripleDES",
-	3: "AES",
-	4: "RSA",
-	5: "ECC",
-	6: "SM2",
+	0:  "Unknown",
+	1:  "DES",
+	2:  "TripleDES",
+	3:  "AES",
+	4:  "RSA",
+	5:  "ECC",
+	6:  "SM2",
+	99: "Other",
 }
 
 // Endpoint is the OCSF "endpoint" object. The Endpoint object describes a physical or virtual
@@ -3376,6 +3463,8 @@ type Endpoint struct {
 
 // EndpointTypeID values for Endpoint.TypeID (Type ID).
 const (
+	// The type is unknown.
+	EndpointTypeIDUnknown      = 0
 	EndpointTypeIDServer       = 1
 	EndpointTypeIDDesktop      = 2
 	EndpointTypeIDLaptop       = 3
@@ -3391,10 +3480,13 @@ const (
 	EndpointTypeIDIDS          = 13
 	EndpointTypeIDIPS          = 14
 	EndpointTypeIDLoadBalancer = 15
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	EndpointTypeIDOther = 99
 )
 
 // EndpointTypeIDCaptions maps Endpoint.TypeID (Type ID) values to their captions.
 var EndpointTypeIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Server",
 	2:  "Desktop",
 	3:  "Laptop",
@@ -3410,6 +3502,7 @@ var EndpointTypeIDCaptions = map[int]string{
 	13: "IDS",
 	14: "IPS",
 	15: "Load Balancer",
+	99: "Other",
 }
 
 // EndpointConnection is the OCSF "endpoint_connection" object. The Endpoint Connection object
@@ -4282,6 +4375,8 @@ type Graph struct {
 
 // GraphQueryLanguageID values for Graph.QueryLanguageID (Query Language ID).
 const (
+	// The Query Language is unknown.
+	GraphQueryLanguageIDUnknown = 0
 	// A declarative graph query language developed by Neo4j that allows for expressive and
 	// efficient querying of graph databases.
 	GraphQueryLanguageIDCypher = 1
@@ -4303,17 +4398,22 @@ const (
 	// A semantic query language for databases that enables querying and manipulating data stored
 	// in RDF format.
 	GraphQueryLanguageIDSPARQL = 7
+	// The Query Language is not mapped. See the query_language attribute, which contains a data
+	// source specific value.
+	GraphQueryLanguageIDOther = 99
 )
 
 // GraphQueryLanguageIDCaptions maps Graph.QueryLanguageID (Query Language ID) values to their captions.
 var GraphQueryLanguageIDCaptions = map[int]string{
-	1: "Cypher",
-	2: "GraphQL",
-	3: "Gremlin",
-	4: "GQL",
-	5: "G-CORE",
-	6: "PGQL",
-	7: "SPARQL",
+	0:  "Unknown",
+	1:  "Cypher",
+	2:  "GraphQL",
+	3:  "Gremlin",
+	4:  "GQL",
+	5:  "G-CORE",
+	6:  "PGQL",
+	7:  "SPARQL",
+	99: "Other",
 }
 
 // Group is the OCSF "group" object. The Group object represents a collection or association of
@@ -5088,14 +5188,20 @@ type Kernel struct {
 
 // KernelTypeID values for Kernel.TypeID (Type ID).
 const (
+	// The type is unknown.
+	KernelTypeIDUnknown     = 0
 	KernelTypeIDSharedMutex = 1
 	KernelTypeIDSystemCall  = 2
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	KernelTypeIDOther = 99
 )
 
 // KernelTypeIDCaptions maps Kernel.TypeID (Type ID) values to their captions.
 var KernelTypeIDCaptions = map[int]string{
-	1: "Shared Mutex",
-	2: "System Call",
+	0:  "Unknown",
+	1:  "Shared Mutex",
+	2:  "System Call",
+	99: "Other",
 }
 
 // KernelDriver is the OCSF "kernel_driver" object. The Kernel Extension object describes a kernel
@@ -5440,6 +5546,8 @@ type Malware struct {
 
 // MalwareClassificationIds values for Malware.ClassificationIds (Classification IDs).
 const (
+	// The classification is unknown.
+	MalwareClassificationIdsUnknown               = 0
 	MalwareClassificationIdsAdware                = 1
 	MalwareClassificationIdsBackdoor              = 2
 	MalwareClassificationIdsBot                   = 3
@@ -5461,10 +5569,14 @@ const (
 	MalwareClassificationIdsWebshell              = 20
 	MalwareClassificationIdsWiper                 = 21
 	MalwareClassificationIdsWorm                  = 22
+	// The classification is not mapped. See the classifications attribute, which contains a data
+	// source specific value.
+	MalwareClassificationIdsOther = 99
 )
 
 // MalwareClassificationIdsCaptions maps Malware.ClassificationIds (Classification IDs) values to their captions.
 var MalwareClassificationIdsCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Adware",
 	2:  "Backdoor",
 	3:  "Bot",
@@ -5486,6 +5598,7 @@ var MalwareClassificationIdsCaptions = map[int]string{
 	20: "Webshell",
 	21: "Wiper",
 	22: "Worm",
+	99: "Other",
 }
 
 // MalwareSeverityID values for Malware.SeverityID (Severity ID).
@@ -5632,6 +5745,8 @@ type ManagedEntity struct {
 
 // ManagedEntityTypeID values for ManagedEntity.TypeID (Type ID).
 const (
+	// The type is unknown.
+	ManagedEntityTypeIDUnknown = 0
 	// A managed Device entity. This item corresponds to population of the device attribute.
 	ManagedEntityTypeIDDevice = 1
 	// A managed User entity. This item corresponds to population of the user attribute.
@@ -5647,17 +5762,21 @@ const (
 	// A managed Network Zone entity. Populate the name attribute with the zone name and/or the uid
 	// attribute with the zone ID. Additional zone information can be added to the data attribute.
 	ManagedEntityTypeIDNetworkZone = 7
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	ManagedEntityTypeIDOther = 99
 )
 
 // ManagedEntityTypeIDCaptions maps ManagedEntity.TypeID (Type ID) values to their captions.
 var ManagedEntityTypeIDCaptions = map[int]string{
-	1: "Device",
-	2: "User",
-	3: "Group",
-	4: "Organization",
-	5: "Policy",
-	6: "Email",
-	7: "Network Zone",
+	0:  "Unknown",
+	1:  "Device",
+	2:  "User",
+	3:  "Group",
+	4:  "Organization",
+	5:  "Policy",
+	6:  "Email",
+	7:  "Network Zone",
+	99: "Other",
 }
 
 // MessageContext is the OCSF "message_context" object. Communication context for AI system
@@ -5912,6 +6031,8 @@ type Module struct {
 
 // ModuleLoadTypeID values for Module.LoadTypeID (Load Type ID).
 const (
+	// The load type is unknown.
+	ModuleLoadTypeIDUnknown = 0
 	// A normal module loaded by the normal windows loading mechanism i.e. LoadLibrary.
 	ModuleLoadTypeIDStandard = 1
 	// A module loaded in a way avoidant of normal windows procedures. i.e. Bootstrapped
@@ -5925,15 +6046,20 @@ const (
 	// A module loaded in a non standard way. However, GetModuleFileName succeeds on this
 	// allocation.
 	ModuleLoadTypeIDNonStandardBacked = 5
+	// The load type is not mapped. See the load_type attribute, which contains a data source
+	// specific value.
+	ModuleLoadTypeIDOther = 99
 )
 
 // ModuleLoadTypeIDCaptions maps Module.LoadTypeID (Load Type ID) values to their captions.
 var ModuleLoadTypeIDCaptions = map[int]string{
-	1: "Standard",
-	2: "Non Standard",
-	3: "ShellCode",
-	4: "Mapped",
-	5: "NonStandard Backed",
+	0:  "Unknown",
+	1:  "Standard",
+	2:  "Non Standard",
+	3:  "ShellCode",
+	4:  "Mapped",
+	5:  "NonStandard Backed",
+	99: "Other",
 }
 
 // NetworkConnectionInfo is the OCSF "network_connection_info" object. The Network Connection
@@ -6191,6 +6317,8 @@ var NetworkEndpointNetworkScopeIDCaptions = map[int]string{
 
 // NetworkEndpointTypeID values for NetworkEndpoint.TypeID (Type ID).
 const (
+	// The type is unknown.
+	NetworkEndpointTypeIDUnknown      = 0
 	NetworkEndpointTypeIDServer       = 1
 	NetworkEndpointTypeIDDesktop      = 2
 	NetworkEndpointTypeIDLaptop       = 3
@@ -6206,10 +6334,13 @@ const (
 	NetworkEndpointTypeIDIDS          = 13
 	NetworkEndpointTypeIDIPS          = 14
 	NetworkEndpointTypeIDLoadBalancer = 15
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	NetworkEndpointTypeIDOther = 99
 )
 
 // NetworkEndpointTypeIDCaptions maps NetworkEndpoint.TypeID (Type ID) values to their captions.
 var NetworkEndpointTypeIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Server",
 	2:  "Desktop",
 	3:  "Laptop",
@@ -6225,6 +6356,7 @@ var NetworkEndpointTypeIDCaptions = map[int]string{
 	13: "IDS",
 	14: "IPS",
 	15: "Load Balancer",
+	99: "Other",
 }
 
 // NetworkInterface is the OCSF "network_interface" object. The Network Interface object describes
@@ -6398,6 +6530,8 @@ var NetworkProxyNetworkScopeIDCaptions = map[int]string{
 
 // NetworkProxyTypeID values for NetworkProxy.TypeID (Type ID).
 const (
+	// The type is unknown.
+	NetworkProxyTypeIDUnknown      = 0
 	NetworkProxyTypeIDServer       = 1
 	NetworkProxyTypeIDDesktop      = 2
 	NetworkProxyTypeIDLaptop       = 3
@@ -6413,10 +6547,13 @@ const (
 	NetworkProxyTypeIDIDS          = 13
 	NetworkProxyTypeIDIPS          = 14
 	NetworkProxyTypeIDLoadBalancer = 15
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	NetworkProxyTypeIDOther = 99
 )
 
 // NetworkProxyTypeIDCaptions maps NetworkProxy.TypeID (Type ID) values to their captions.
 var NetworkProxyTypeIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Server",
 	2:  "Desktop",
 	3:  "Laptop",
@@ -6432,6 +6569,7 @@ var NetworkProxyTypeIDCaptions = map[int]string{
 	13: "IDS",
 	14: "IPS",
 	15: "Load Balancer",
+	99: "Other",
 }
 
 // NetworkTraffic is the OCSF "network_traffic" object. The Network Traffic object describes
@@ -6757,6 +6895,10 @@ type OS struct {
 
 // OSTypeID values for OS.TypeID (Type ID).
 const (
+	// The type is unknown.
+	OSTypeIDUnknown = 0
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	OSTypeIDOther         = 99
 	OSTypeIDWindows       = 100
 	OSTypeIDWindowsMobile = 101
 	OSTypeIDLinux         = 200
@@ -6771,6 +6913,8 @@ const (
 
 // OSTypeIDCaptions maps OS.TypeID (Type ID) values to their captions.
 var OSTypeIDCaptions = map[int]string{
+	0:   "Unknown",
+	99:  "Other",
 	100: "Windows",
 	101: "Windows Mobile",
 	200: "Linux",
@@ -7150,16 +7294,22 @@ type Package struct {
 
 // PackageTypeID values for Package.TypeID (Type ID).
 const (
+	// The type is unknown.
+	PackageTypeIDUnknown = 0
 	// An application software package.
 	PackageTypeIDApplication = 1
 	// An operating system software package.
 	PackageTypeIDOperatingSystem = 2
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	PackageTypeIDOther = 99
 )
 
 // PackageTypeIDCaptions maps Package.TypeID (Type ID) values to their captions.
 var PackageTypeIDCaptions = map[int]string{
-	1: "Application",
-	2: "Operating System",
+	0:  "Unknown",
+	1:  "Application",
+	2:  "Operating System",
+	99: "Other",
 }
 
 // Packet is the OCSF "packet" object. The Packet object represents a single captured network
@@ -7988,6 +8138,8 @@ type RegValue struct {
 
 // RegValueTypeID values for RegValue.TypeID (Type ID).
 const (
+	// The type is unknown.
+	RegValueTypeIDUnknown = 0
 	// Arbitrary binary data.
 	RegValueTypeIDREGBINARY = 1
 	// A 32-bit integer.
@@ -8009,10 +8161,13 @@ const (
 	RegValueTypeIDREGQWORDLITTLEENDIAN = 9
 	// A string.
 	RegValueTypeIDREGSZ = 10
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	RegValueTypeIDOther = 99
 )
 
 // RegValueTypeIDCaptions maps RegValue.TypeID (Type ID) values to their captions.
 var RegValueTypeIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "REG_BINARY",
 	2:  "REG_DWORD",
 	3:  "REG_DWORD_BIG_ENDIAN",
@@ -8023,6 +8178,7 @@ var RegValueTypeIDCaptions = map[int]string{
 	8:  "REG_QWORD",
 	9:  "REG_QWORD_LITTLE_ENDIAN",
 	10: "REG_SZ",
+	99: "Other",
 }
 
 // RelatedEvent is the OCSF "related_event" object. The Related Event object describes an event or
@@ -8388,6 +8544,8 @@ var ResourceDetailsCriticalityIDCaptions = map[int]string{
 
 // ResourceDetailsRoleID values for ResourceDetails.RoleID (Role ID).
 const (
+	// The role is unknown.
+	ResourceDetailsRoleIDUnknown = 0
 	// The resource is the primary target or subject of the event/finding.
 	ResourceDetailsRoleIDTarget = 1
 	// The resource is acting as the initiator or performer in the context of the event/finding.
@@ -8396,14 +8554,18 @@ const (
 	ResourceDetailsRoleIDAffected = 3
 	// The resource is related to or associated with the event/finding.
 	ResourceDetailsRoleIDRelated = 4
+	// The role is not mapped. See the role attribute, which contains a data source specific value.
+	ResourceDetailsRoleIDOther = 99
 )
 
 // ResourceDetailsRoleIDCaptions maps ResourceDetails.RoleID (Role ID) values to their captions.
 var ResourceDetailsRoleIDCaptions = map[int]string{
-	1: "Target",
-	2: "Actor",
-	3: "Affected",
-	4: "Related",
+	0:  "Unknown",
+	1:  "Target",
+	2:  "Actor",
+	3:  "Affected",
+	4:  "Related",
+	99: "Other",
 }
 
 // Response is the OCSF "response" object. The Response Elements object describes characteristics
@@ -8495,6 +8657,8 @@ type SBOM struct {
 
 // SBOMTypeID values for SBOM.TypeID (Type ID).
 const (
+	// The type is unknown.
+	SBOMTypeIDUnknown = 0
 	// System Package Data Exchange (SPDX®) is an open standard capable of representing systems
 	// with software components in as SBOMs (Software Bill of Materials) and other AI, data and
 	// security references supporting a range of risk management use cases. The SPDX specification
@@ -8508,13 +8672,17 @@ const (
 	// software product. A SWID tag document is composed of a structured set of data elements that
 	// identify the software product
 	SBOMTypeIDSWID = 3
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	SBOMTypeIDOther = 99
 )
 
 // SBOMTypeIDCaptions maps SBOM.TypeID (Type ID) values to their captions.
 var SBOMTypeIDCaptions = map[int]string{
-	1: "SPDX",
-	2: "CycloneDX",
-	3: "SWID",
+	0:  "Unknown",
+	1:  "SPDX",
+	2:  "CycloneDX",
+	3:  "SWID",
+	99: "Other",
 }
 
 // Scan is the OCSF "scan" object. The Scan object describes characteristics of a proactive scan.
@@ -9050,19 +9218,25 @@ var SoftwareComponentRelationshipIDCaptions = map[int]string{
 
 // SoftwareComponentTypeID values for SoftwareComponent.TypeID (Type ID).
 const (
+	// The type is unknown.
+	SoftwareComponentTypeIDUnknown = 0
 	// A software framework.
 	SoftwareComponentTypeIDFramework = 1
 	// A software library.
 	SoftwareComponentTypeIDLibrary = 2
 	// An operating system. Useful for SBOMs of container images.
 	SoftwareComponentTypeIDOperatingSystem = 3
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	SoftwareComponentTypeIDOther = 99
 )
 
 // SoftwareComponentTypeIDCaptions maps SoftwareComponent.TypeID (Type ID) values to their captions.
 var SoftwareComponentTypeIDCaptions = map[int]string{
-	1: "Framework",
-	2: "Library",
-	3: "Operating System",
+	0:  "Unknown",
+	1:  "Framework",
+	2:  "Library",
+	3:  "Operating System",
+	99: "Other",
 }
 
 // Span is the OCSF "span" object. Represents a single unit of work or operation within a
@@ -9232,23 +9406,32 @@ type StartupItem struct {
 
 // StartupItemRunModeIds values for StartupItem.RunModeIds (Run Mode IDs).
 const (
+	// The run mode is unknown.
+	StartupItemRunModeIdsUnknown = 0
 	// The startup item interacts with the desktop.
 	StartupItemRunModeIdsInteractive = 1
 	// The startup item runs in its own process.
 	StartupItemRunModeIdsOwnProcess = 2
 	// The startup item runs in a shared process.
 	StartupItemRunModeIdsSharedProcess = 3
+	// The run mode is not mapped. See the run_modes attribute, which contains data source specific
+	// values.
+	StartupItemRunModeIdsOther = 99
 )
 
 // StartupItemRunModeIdsCaptions maps StartupItem.RunModeIds (Run Mode IDs) values to their captions.
 var StartupItemRunModeIdsCaptions = map[int]string{
-	1: "Interactive",
-	2: "Own Process",
-	3: "Shared Process",
+	0:  "Unknown",
+	1:  "Interactive",
+	2:  "Own Process",
+	3:  "Shared Process",
+	99: "Other",
 }
 
 // StartupItemRunStateID values for StartupItem.RunStateID (Run State ID).
 const (
+	// The run state is unknown.
+	StartupItemRunStateIDUnknown = 0
 	// The service is not running.
 	StartupItemRunStateIDStopped = 1
 	// The service is starting.
@@ -9265,18 +9448,23 @@ const (
 	StartupItemRunStateIDPaused = 7
 	// The service is pending restart.
 	StartupItemRunStateIDRestartPending = 8
+	// The run state is not mapped. See the run_state attribute, which contains a data source
+	// specific value.
+	StartupItemRunStateIDOther = 99
 )
 
 // StartupItemRunStateIDCaptions maps StartupItem.RunStateID (Run State ID) values to their captions.
 var StartupItemRunStateIDCaptions = map[int]string{
-	1: "Stopped",
-	2: "Start Pending",
-	3: "Stop Pending",
-	4: "Running",
-	5: "Continue Pending",
-	6: "Pause Pending",
-	7: "Paused",
-	8: "Restart Pending",
+	0:  "Unknown",
+	1:  "Stopped",
+	2:  "Start Pending",
+	3:  "Stop Pending",
+	4:  "Running",
+	5:  "Continue Pending",
+	6:  "Pause Pending",
+	7:  "Paused",
+	8:  "Restart Pending",
+	99: "Other",
 }
 
 // StartupItemStartTypeID values for StartupItem.StartTypeID (Start Type ID).
@@ -9492,6 +9680,8 @@ type Ticket struct {
 
 // TicketStatusID values for Ticket.StatusID (Ticket Status ID).
 const (
+	// The status is unknown.
+	TicketStatusIDUnknown = 0
 	// The ticket is new and yet to be reviewed.
 	TicketStatusIDNew = 1
 	// The ticket is actively being worked on.
@@ -9509,18 +9699,23 @@ const (
 	TicketStatusIDCanceled = 7
 	// The ticket was previously closed, but has been reopened.
 	TicketStatusIDReopened = 8
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	TicketStatusIDOther = 99
 )
 
 // TicketStatusIDCaptions maps Ticket.StatusID (Ticket Status ID) values to their captions.
 var TicketStatusIDCaptions = map[int]string{
-	1: "New",
-	2: "In Progress",
-	3: "Notified",
-	4: "On Hold",
-	5: "Resolved",
-	6: "Closed",
-	7: "Canceled",
-	8: "Reopened",
+	0:  "Unknown",
+	1:  "New",
+	2:  "In Progress",
+	3:  "Notified",
+	4:  "On Hold",
+	5:  "Resolved",
+	6:  "Closed",
+	7:  "Canceled",
+	8:  "Reopened",
+	99: "Other",
 }
 
 // TicketTypeID values for Ticket.TypeID (Ticket Type ID).
@@ -9700,6 +9895,8 @@ const (
 	TLSExtensionTypeIDSignatureAlgorithmsCert = 50
 	// The Key Share extension.
 	TLSExtensionTypeIDKeyShare = 51
+	// The type is not mapped. See the type attribute, which contains a data source specific value.
+	TLSExtensionTypeIDOther = 99
 )
 
 // TLSExtensionTypeIDCaptions maps TLSExtension.TypeID (Type ID) values to their captions.
@@ -9726,6 +9923,7 @@ var TLSExtensionTypeIDCaptions = map[int]string{
 	49: "post_handshake_auth",
 	50: "signature_algorithms_cert",
 	51: "key_share",
+	99: "Other",
 }
 
 // Token is the OCSF "token" object. The Token object is the base object for representing tokens,
@@ -10598,6 +10796,8 @@ type Vulnerability struct {
 
 // VulnerabilityFixCoverageID values for Vulnerability.FixCoverageID (Fix Coverage ID).
 const (
+	// The fix coverage is unknown.
+	VulnerabilityFixCoverageIDUnknown = 0
 	// All affected packages and components have available fixes or patches to remediate the
 	// vulnerability.
 	VulnerabilityFixCoverageIDComplete = 1
@@ -10606,13 +10806,18 @@ const (
 	VulnerabilityFixCoverageIDPartial = 2
 	// No fixes or patches are currently available for any of the affected packages and components.
 	VulnerabilityFixCoverageIDNone = 3
+	// The fix coverage is not mapped. See the fix_coverage attribute, which contains a data source
+	// specific value.
+	VulnerabilityFixCoverageIDOther = 99
 )
 
 // VulnerabilityFixCoverageIDCaptions maps Vulnerability.FixCoverageID (Fix Coverage ID) values to their captions.
 var VulnerabilityFixCoverageIDCaptions = map[int]string{
-	1: "Complete",
-	2: "Partial",
-	3: "None",
+	0:  "Unknown",
+	1:  "Complete",
+	2:  "Partial",
+	3:  "None",
+	99: "Other",
 }
 
 // WebResource is the OCSF "web_resource" object. The Web Resource object describes characteristics

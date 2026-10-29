@@ -317,9 +317,7 @@ func (s *Schema) flattenAttributes(c *CompiledSchema, chain []*Definition) (map[
 		if attr.Description == "" {
 			attr.Description = dict.Description
 		}
-		if attr.Enum == nil {
-			attr.Enum = dict.Enum
-		}
+		attr.Enum = mergeEnum(dict.Enum, attr.Enum)
 		if attr.Sibling == "" {
 			attr.Sibling = dict.Sibling
 		}
@@ -331,7 +329,8 @@ func (s *Schema) flattenAttributes(c *CompiledSchema, chain []*Definition) (map[
 }
 
 // mergeAttribute overlays src onto dst[name] property-by-property: non-zero
-// src fields win, and a src enum replaces the existing enum wholesale.
+// src fields win, and a src enum is merged into the existing enum, its
+// members winning on the same value (see mergeEnum).
 func mergeAttribute(dst map[string]*Attribute, name string, src *Attribute, source string) {
 	// An attribute that already carries provenance (an extension patch
 	// stamped onto a raw definition) keeps it through flattening.
@@ -370,7 +369,7 @@ func mergeAttribute(dst map[string]*Attribute, name string, src *Attribute, sour
 		cur.Sibling = src.Sibling
 	}
 	if src.Enum != nil {
-		cur.Enum = src.Enum
+		cur.Enum = mergeEnum(cur.Enum, src.Enum)
 	}
 	if src.Profile != nil {
 		cur.Profile = src.Profile
@@ -380,4 +379,24 @@ func mergeAttribute(dst map[string]*Attribute, name string, src *Attribute, sour
 	}
 	// A direct redeclaration takes over ownership of the attribute.
 	cur.Source = source
+}
+
+// mergeEnum returns the members of base and over together, over's member
+// winning where both define a value. An OCSF enum is refined, not replaced,
+// down the chain dictionary -> base class -> class: a class that lists its
+// own activities keeps the dictionary's 0 (Unknown) and 99 (Other), as the
+// OCSF schema server presents them. The result is a new map, so the source
+// definitions are never modified; it is nil when both are.
+func mergeEnum(base, over map[string]EnumMember) map[string]EnumMember {
+	if base == nil && over == nil {
+		return nil
+	}
+	out := make(map[string]EnumMember, len(base)+len(over))
+	for k, v := range base {
+		out[k] = v
+	}
+	for k, v := range over {
+		out[k] = v
+	}
+	return out
 }
