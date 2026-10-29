@@ -342,6 +342,16 @@ var classificationAttrs = map[string]bool{"class_uid": true, "category_uid": tru
 
 // checkElement validates a single non-array JSON value against an attribute.
 func (v *Validator) checkElement(path, name string, attr *schema.Attribute, val any, profiles map[string]bool, r *Result) {
+	// The generic object (unmapped, xattributes) holds any keys: it must
+	// be a JSON object, and its contents are not checked. It is checked
+	// before the object lookup because the schema also defines "object" as
+	// an object with no attributes, against which every key is unknown.
+	if attr.Type == "object" || attr.Type == "" {
+		if _, ok := val.(map[string]any); !ok && attr.Type == "object" {
+			r.add(Issue{Code: CodeWrongType, Path: path, Message: "expected a JSON object"})
+		}
+		return
+	}
 	// Object-typed attribute: recurse.
 	if obj, ok := v.c.Objects[attr.Type]; ok {
 		m, ok2 := val.(map[string]any)
@@ -351,12 +361,6 @@ func (v *Validator) checkElement(path, name string, attr *schema.Attribute, val 
 			return
 		}
 		v.validateAttributes(path, obj.Attributes, obj.Constraints, m, profiles, r)
-		return
-	}
-	if attr.Type == "object" || attr.Type == "" {
-		if _, ok := val.(map[string]any); !ok && attr.Type == "object" {
-			r.add(Issue{Code: CodeWrongType, Path: path, Message: "expected a JSON object"})
-		}
 		return
 	}
 

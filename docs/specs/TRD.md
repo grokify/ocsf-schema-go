@@ -28,9 +28,10 @@ An OCSF schema checkout contains:
   (abstract): they exist only to be extended.
 - `events/**/*.json` — event class definitions. `extends` chains terminate at
   `base_event`. A class with a top-level `uid` is concrete:
-  `class_uid = category_uid × 1000 + uid`; classes without `uid` (category bases,
-  `base_event`) are abstract but still usable as generic events per OCSF docs, with
-  `class_uid` unset. `type_uid = class_uid × 100 + activity_id`.
+  `class_uid = category_uid × 1000 + uid`; category bases without `uid` are
+  abstract. `base_event` has no `uid` either but is concrete: the OCSF schema server
+  lists it as Base Event, `class_uid` 0 in category `other` (`category_uid` 0), for
+  events that fit no other class. `type_uid = class_uid × 100 + activity_id`.
 - `profiles/*.json` — attribute mixins pulled in via `"$include": [paths]` inside an
   `attributes` map (the only `$include` shape used in the repo).
 
@@ -44,8 +45,9 @@ supplies `type`/`is_array`/caption, the local entry supplies/overrides `requirem
 - `(*Schema).Compile() (*CompiledSchema, error)` — produces flattened definitions:
   - Resolve `$include` profiles into the including entity's attribute map.
   - Walk `extends` chains (child overrides parent attribute-by-attribute; property-level
-    merge: non-zero child fields win, child enum replaces parent enum wholesale, matching
-    upstream server behavior).
+    merge: non-zero child fields win; a child enum is merged into the parent enum, the
+    child winning on the same value, from the dictionary through each ancestor to the
+    class, matching upstream server behavior, so classes keep `0` Unknown and `99` Other).
   - Join each attribute against the dictionary for `type`, `is_array`, default caption
     and description.
   - Compute `ClassUID` for concrete classes.
@@ -60,8 +62,9 @@ supplies `type`/`is_array`/caption, the local entry supplies/overrides `requirem
   `long_t`/`timestamp_t` → `int64`; `float_t → float64`; `json_t → any`;
   string family → `string`; object types → `*T` (or `[]T` when `is_array`); the generic
   `object` type → `map[string]any`. Scalar arrays → `[]elem`.
-- **Optionality**: attributes with `requirement: required` marshal always; all others get
-  `,omitempty`. Booleans are `*bool` so `false` survives marshaling.
+- **Optionality**: attributes with `requirement: required` marshal always, except
+  attributes a profile mixes in (required only when the event declares the profile);
+  all others get `,omitempty`. Booleans are `*bool` so `false` survives marshaling.
 - **Naming**: snake_case → PascalCase with an initialism table (ID, UID, URL, IP, OS, TLS,
   DNS, HTTP, API, CVE, CVSS, …). Hidden-object names never surface. Enum constant names:
   `<Type><Field><Caption>` with caption sanitized to a Go identifier; collisions get the

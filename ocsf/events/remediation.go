@@ -56,7 +56,7 @@ type FileRemediationActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The unique identifier of the remediation command that pertains to this event.
 	CommandUID string `json:"command_uid"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
@@ -132,7 +132,7 @@ type FileRemediationActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -263,6 +263,7 @@ var FileRemediationActivityActionIDCaptions = map[int]string{
 
 // FileRemediationActivityActivityID values for FileRemediationActivity.ActivityID (Activity ID).
 const (
+	FileRemediationActivityActivityIDUnknown = 0
 	// Creates logical or physical barriers in a system which reduces opportunities for adversaries
 	// to create further accesses.
 	FileRemediationActivityActivityIDIsolate = 1
@@ -277,16 +278,19 @@ const (
 	// Advertise, entice, and allow potential attackers access to an observed or controlled
 	// environment.
 	FileRemediationActivityActivityIDDeceive = 6
+	FileRemediationActivityActivityIDOther   = 99
 )
 
 // FileRemediationActivityActivityIDCaptions maps FileRemediationActivity.ActivityID (Activity ID) values to their captions.
 var FileRemediationActivityActivityIDCaptions = map[int]string{
-	1: "Isolate",
-	2: "Evict",
-	3: "Restore",
-	4: "Harden",
-	5: "Detect",
-	6: "Deceive",
+	0:  "Unknown",
+	1:  "Isolate",
+	2:  "Evict",
+	3:  "Restore",
+	4:  "Harden",
+	5:  "Detect",
+	6:  "Deceive",
+	99: "Other",
 }
 
 // FileRemediationActivityConfidenceID values for FileRemediationActivity.ConfidenceID (Confidence ID).
@@ -473,6 +477,12 @@ var FileRemediationActivitySeverityIDCaptions = map[int]string{
 
 // FileRemediationActivityStatusID values for FileRemediationActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	FileRemediationActivityStatusIDUnknown = 0
+	// The activity completed successfully.
+	FileRemediationActivityStatusIDSuccess = 1
+	// The activity failed.
+	FileRemediationActivityStatusIDFailure = 2
 	// The target of the remediation does not exist.
 	FileRemediationActivityStatusIDDoesNotExist = 3
 	// The remediation was partially completed.
@@ -481,14 +491,21 @@ const (
 	FileRemediationActivityStatusIDUnsupported = 5
 	// There was an error during the remediation process.
 	FileRemediationActivityStatusIDError = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	FileRemediationActivityStatusIDOther = 99
 )
 
 // FileRemediationActivityStatusIDCaptions maps FileRemediationActivity.StatusID (Status ID) values to their captions.
 var FileRemediationActivityStatusIDCaptions = map[int]string{
-	3: "Does Not Exist",
-	4: "Partial",
-	5: "Unsupported",
-	6: "Error",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	3:  "Does Not Exist",
+	4:  "Partial",
+	5:  "Unsupported",
+	6:  "Error",
+	99: "Other",
 }
 
 // NetworkRemediationActivity is the OCSF "network_remediation_activity" event class (class_uid
@@ -543,7 +560,7 @@ type NetworkRemediationActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The unique identifier of the remediation command that pertains to this event.
 	CommandUID string `json:"command_uid"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
@@ -619,7 +636,7 @@ type NetworkRemediationActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -750,6 +767,7 @@ var NetworkRemediationActivityActionIDCaptions = map[int]string{
 
 // NetworkRemediationActivityActivityID values for NetworkRemediationActivity.ActivityID (Activity ID).
 const (
+	NetworkRemediationActivityActivityIDUnknown = 0
 	// Creates logical or physical barriers in a system which reduces opportunities for adversaries
 	// to create further accesses.
 	NetworkRemediationActivityActivityIDIsolate = 1
@@ -764,16 +782,19 @@ const (
 	// Advertise, entice, and allow potential attackers access to an observed or controlled
 	// environment.
 	NetworkRemediationActivityActivityIDDeceive = 6
+	NetworkRemediationActivityActivityIDOther   = 99
 )
 
 // NetworkRemediationActivityActivityIDCaptions maps NetworkRemediationActivity.ActivityID (Activity ID) values to their captions.
 var NetworkRemediationActivityActivityIDCaptions = map[int]string{
-	1: "Isolate",
-	2: "Evict",
-	3: "Restore",
-	4: "Harden",
-	5: "Detect",
-	6: "Deceive",
+	0:  "Unknown",
+	1:  "Isolate",
+	2:  "Evict",
+	3:  "Restore",
+	4:  "Harden",
+	5:  "Detect",
+	6:  "Deceive",
+	99: "Other",
 }
 
 // NetworkRemediationActivityConfidenceID values for NetworkRemediationActivity.ConfidenceID (Confidence ID).
@@ -960,6 +981,12 @@ var NetworkRemediationActivitySeverityIDCaptions = map[int]string{
 
 // NetworkRemediationActivityStatusID values for NetworkRemediationActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NetworkRemediationActivityStatusIDUnknown = 0
+	// The activity completed successfully.
+	NetworkRemediationActivityStatusIDSuccess = 1
+	// The activity failed.
+	NetworkRemediationActivityStatusIDFailure = 2
 	// The target of the remediation does not exist.
 	NetworkRemediationActivityStatusIDDoesNotExist = 3
 	// The remediation was partially completed.
@@ -968,14 +995,21 @@ const (
 	NetworkRemediationActivityStatusIDUnsupported = 5
 	// There was an error during the remediation process.
 	NetworkRemediationActivityStatusIDError = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NetworkRemediationActivityStatusIDOther = 99
 )
 
 // NetworkRemediationActivityStatusIDCaptions maps NetworkRemediationActivity.StatusID (Status ID) values to their captions.
 var NetworkRemediationActivityStatusIDCaptions = map[int]string{
-	3: "Does Not Exist",
-	4: "Partial",
-	5: "Unsupported",
-	6: "Error",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	3:  "Does Not Exist",
+	4:  "Partial",
+	5:  "Unsupported",
+	6:  "Error",
+	99: "Other",
 }
 
 // ProcessRemediationActivity is the OCSF "process_remediation_activity" event class (class_uid
@@ -1030,7 +1064,7 @@ type ProcessRemediationActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The unique identifier of the remediation command that pertains to this event.
 	CommandUID string `json:"command_uid"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
@@ -1104,7 +1138,7 @@ type ProcessRemediationActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1237,6 +1271,7 @@ var ProcessRemediationActivityActionIDCaptions = map[int]string{
 
 // ProcessRemediationActivityActivityID values for ProcessRemediationActivity.ActivityID (Activity ID).
 const (
+	ProcessRemediationActivityActivityIDUnknown = 0
 	// Creates logical or physical barriers in a system which reduces opportunities for adversaries
 	// to create further accesses.
 	ProcessRemediationActivityActivityIDIsolate = 1
@@ -1251,16 +1286,19 @@ const (
 	// Advertise, entice, and allow potential attackers access to an observed or controlled
 	// environment.
 	ProcessRemediationActivityActivityIDDeceive = 6
+	ProcessRemediationActivityActivityIDOther   = 99
 )
 
 // ProcessRemediationActivityActivityIDCaptions maps ProcessRemediationActivity.ActivityID (Activity ID) values to their captions.
 var ProcessRemediationActivityActivityIDCaptions = map[int]string{
-	1: "Isolate",
-	2: "Evict",
-	3: "Restore",
-	4: "Harden",
-	5: "Detect",
-	6: "Deceive",
+	0:  "Unknown",
+	1:  "Isolate",
+	2:  "Evict",
+	3:  "Restore",
+	4:  "Harden",
+	5:  "Detect",
+	6:  "Deceive",
+	99: "Other",
 }
 
 // ProcessRemediationActivityConfidenceID values for ProcessRemediationActivity.ConfidenceID (Confidence ID).
@@ -1447,6 +1485,12 @@ var ProcessRemediationActivitySeverityIDCaptions = map[int]string{
 
 // ProcessRemediationActivityStatusID values for ProcessRemediationActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ProcessRemediationActivityStatusIDUnknown = 0
+	// The activity completed successfully.
+	ProcessRemediationActivityStatusIDSuccess = 1
+	// The activity failed.
+	ProcessRemediationActivityStatusIDFailure = 2
 	// The target of the remediation does not exist.
 	ProcessRemediationActivityStatusIDDoesNotExist = 3
 	// The remediation was partially completed.
@@ -1455,14 +1499,21 @@ const (
 	ProcessRemediationActivityStatusIDUnsupported = 5
 	// There was an error during the remediation process.
 	ProcessRemediationActivityStatusIDError = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ProcessRemediationActivityStatusIDOther = 99
 )
 
 // ProcessRemediationActivityStatusIDCaptions maps ProcessRemediationActivity.StatusID (Status ID) values to their captions.
 var ProcessRemediationActivityStatusIDCaptions = map[int]string{
-	3: "Does Not Exist",
-	4: "Partial",
-	5: "Unsupported",
-	6: "Error",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	3:  "Does Not Exist",
+	4:  "Partial",
+	5:  "Unsupported",
+	6:  "Error",
+	99: "Other",
 }
 
 // RemediationActivity is the OCSF "remediation_activity" event class (class_uid 7001). Remediation
@@ -1515,7 +1566,7 @@ type RemediationActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The unique identifier of the remediation command that pertains to this event.
 	CommandUID string `json:"command_uid"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
@@ -1589,7 +1640,7 @@ type RemediationActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1720,6 +1771,7 @@ var RemediationActivityActionIDCaptions = map[int]string{
 
 // RemediationActivityActivityID values for RemediationActivity.ActivityID (Activity ID).
 const (
+	RemediationActivityActivityIDUnknown = 0
 	// Creates logical or physical barriers in a system which reduces opportunities for adversaries
 	// to create further accesses.
 	RemediationActivityActivityIDIsolate = 1
@@ -1734,16 +1786,19 @@ const (
 	// Advertise, entice, and allow potential attackers access to an observed or controlled
 	// environment.
 	RemediationActivityActivityIDDeceive = 6
+	RemediationActivityActivityIDOther   = 99
 )
 
 // RemediationActivityActivityIDCaptions maps RemediationActivity.ActivityID (Activity ID) values to their captions.
 var RemediationActivityActivityIDCaptions = map[int]string{
-	1: "Isolate",
-	2: "Evict",
-	3: "Restore",
-	4: "Harden",
-	5: "Detect",
-	6: "Deceive",
+	0:  "Unknown",
+	1:  "Isolate",
+	2:  "Evict",
+	3:  "Restore",
+	4:  "Harden",
+	5:  "Detect",
+	6:  "Deceive",
+	99: "Other",
 }
 
 // RemediationActivityConfidenceID values for RemediationActivity.ConfidenceID (Confidence ID).
@@ -1930,6 +1985,12 @@ var RemediationActivitySeverityIDCaptions = map[int]string{
 
 // RemediationActivityStatusID values for RemediationActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RemediationActivityStatusIDUnknown = 0
+	// The activity completed successfully.
+	RemediationActivityStatusIDSuccess = 1
+	// The activity failed.
+	RemediationActivityStatusIDFailure = 2
 	// The target of the remediation does not exist.
 	RemediationActivityStatusIDDoesNotExist = 3
 	// The remediation was partially completed.
@@ -1938,12 +1999,19 @@ const (
 	RemediationActivityStatusIDUnsupported = 5
 	// There was an error during the remediation process.
 	RemediationActivityStatusIDError = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RemediationActivityStatusIDOther = 99
 )
 
 // RemediationActivityStatusIDCaptions maps RemediationActivity.StatusID (Status ID) values to their captions.
 var RemediationActivityStatusIDCaptions = map[int]string{
-	3: "Does Not Exist",
-	4: "Partial",
-	5: "Unsupported",
-	6: "Error",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	3:  "Does Not Exist",
+	4:  "Partial",
+	5:  "Unsupported",
+	6:  "Error",
+	99: "Other",
 }

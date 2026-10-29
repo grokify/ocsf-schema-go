@@ -59,7 +59,7 @@ type AdminGroupQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -131,7 +131,7 @@ type AdminGroupQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -266,13 +266,17 @@ var AdminGroupQueryActionIDCaptions = map[int]string{
 
 // AdminGroupQueryActivityID values for AdminGroupQuery.ActivityID (Activity ID).
 const (
+	AdminGroupQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	AdminGroupQueryActivityIDQuery = 1
+	AdminGroupQueryActivityIDOther = 99
 )
 
 // AdminGroupQueryActivityIDCaptions maps AdminGroupQuery.ActivityID (Activity ID) values to their captions.
 var AdminGroupQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // AdminGroupQueryConfidenceID values for AdminGroupQuery.ConfidenceID (Confidence ID).
@@ -489,16 +493,23 @@ var AdminGroupQuerySeverityIDCaptions = map[int]string{
 
 // AdminGroupQueryStatusID values for AdminGroupQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	AdminGroupQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	AdminGroupQueryStatusIDSuccess = 1
 	// The activity failed.
 	AdminGroupQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	AdminGroupQueryStatusIDOther = 99
 )
 
 // AdminGroupQueryStatusIDCaptions maps AdminGroupQuery.StatusID (Status ID) values to their captions.
 var AdminGroupQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // CloudResourcesInventoryInfo is the OCSF "cloud_resources_inventory_info" event class (class_uid
@@ -637,7 +648,7 @@ type CloudResourcesInventoryInfo struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -772,16 +783,20 @@ var CloudResourcesInventoryInfoActionIDCaptions = map[int]string{
 
 // CloudResourcesInventoryInfoActivityID values for CloudResourcesInventoryInfo.ActivityID (Activity ID).
 const (
+	CloudResourcesInventoryInfoActivityIDUnknown = 0
 	// The discovered information is via a log.
 	CloudResourcesInventoryInfoActivityIDLog = 1
 	// The discovered information is via a collection process.
 	CloudResourcesInventoryInfoActivityIDCollect = 2
+	CloudResourcesInventoryInfoActivityIDOther   = 99
 )
 
 // CloudResourcesInventoryInfoActivityIDCaptions maps CloudResourcesInventoryInfo.ActivityID (Activity ID) values to their captions.
 var CloudResourcesInventoryInfoActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // CloudResourcesInventoryInfoConfidenceID values for CloudResourcesInventoryInfo.ConfidenceID (Confidence ID).
@@ -968,16 +983,23 @@ var CloudResourcesInventoryInfoSeverityIDCaptions = map[int]string{
 
 // CloudResourcesInventoryInfoStatusID values for CloudResourcesInventoryInfo.StatusID (Status ID).
 const (
+	// The status is unknown.
+	CloudResourcesInventoryInfoStatusIDUnknown = 0
 	// The activity completed successfully.
 	CloudResourcesInventoryInfoStatusIDSuccess = 1
 	// The activity failed.
 	CloudResourcesInventoryInfoStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	CloudResourcesInventoryInfoStatusIDOther = 99
 )
 
 // CloudResourcesInventoryInfoStatusIDCaptions maps CloudResourcesInventoryInfo.StatusID (Status ID) values to their captions.
 var CloudResourcesInventoryInfoStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ConfigState is the OCSF "config_state" event class (class_uid 5002). Device Config State events
@@ -1041,7 +1063,7 @@ type ConfigState struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -1110,7 +1132,7 @@ type ConfigState struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1237,16 +1259,20 @@ var ConfigStateActionIDCaptions = map[int]string{
 
 // ConfigStateActivityID values for ConfigState.ActivityID (Activity ID).
 const (
+	ConfigStateActivityIDUnknown = 0
 	// The discovered information is via a log.
 	ConfigStateActivityIDLog = 1
 	// The discovered information is via a collection process.
 	ConfigStateActivityIDCollect = 2
+	ConfigStateActivityIDOther   = 99
 )
 
 // ConfigStateActivityIDCaptions maps ConfigState.ActivityID (Activity ID) values to their captions.
 var ConfigStateActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // ConfigStateConfidenceID values for ConfigState.ConfidenceID (Confidence ID).
@@ -1433,16 +1459,23 @@ var ConfigStateSeverityIDCaptions = map[int]string{
 
 // ConfigStateStatusID values for ConfigState.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ConfigStateStatusIDUnknown = 0
 	// The activity completed successfully.
 	ConfigStateStatusIDSuccess = 1
 	// The activity failed.
 	ConfigStateStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ConfigStateStatusIDOther = 99
 )
 
 // ConfigStateStatusIDCaptions maps ConfigState.StatusID (Status ID) values to their captions.
 var ConfigStateStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // DeviceConfigStateChange is the OCSF "device_config_state_change" event class (class_uid 5019).
@@ -1497,7 +1530,7 @@ type DeviceConfigStateChange struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -1566,7 +1599,7 @@ type DeviceConfigStateChange struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1710,16 +1743,20 @@ var DeviceConfigStateChangeActionIDCaptions = map[int]string{
 
 // DeviceConfigStateChangeActivityID values for DeviceConfigStateChange.ActivityID (Activity ID).
 const (
+	DeviceConfigStateChangeActivityIDUnknown = 0
 	// The discovered information is via a log.
 	DeviceConfigStateChangeActivityIDLog = 1
 	// The discovered information is via a collection process.
 	DeviceConfigStateChangeActivityIDCollect = 2
+	DeviceConfigStateChangeActivityIDOther   = 99
 )
 
 // DeviceConfigStateChangeActivityIDCaptions maps DeviceConfigStateChange.ActivityID (Activity ID) values to their captions.
 var DeviceConfigStateChangeActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // DeviceConfigStateChangeConfidenceID values for DeviceConfigStateChange.ConfidenceID (Confidence ID).
@@ -1967,16 +2004,23 @@ var DeviceConfigStateChangeStateIDCaptions = map[int]string{
 
 // DeviceConfigStateChangeStatusID values for DeviceConfigStateChange.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DeviceConfigStateChangeStatusIDUnknown = 0
 	// The activity completed successfully.
 	DeviceConfigStateChangeStatusIDSuccess = 1
 	// The activity failed.
 	DeviceConfigStateChangeStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DeviceConfigStateChangeStatusIDOther = 99
 )
 
 // DeviceConfigStateChangeStatusIDCaptions maps DeviceConfigStateChange.StatusID (Status ID) values to their captions.
 var DeviceConfigStateChangeStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // Discovery is the OCSF "discovery" event class (abstract base class). The Discovery event is a
@@ -2033,7 +2077,7 @@ type Discovery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -2103,7 +2147,7 @@ type Discovery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -2230,16 +2274,20 @@ var DiscoveryActionIDCaptions = map[int]string{
 
 // DiscoveryActivityID values for Discovery.ActivityID (Activity ID).
 const (
+	DiscoveryActivityIDUnknown = 0
 	// The discovered information is via a log.
 	DiscoveryActivityIDLog = 1
 	// The discovered information is via a collection process.
 	DiscoveryActivityIDCollect = 2
+	DiscoveryActivityIDOther   = 99
 )
 
 // DiscoveryActivityIDCaptions maps Discovery.ActivityID (Activity ID) values to their captions.
 var DiscoveryActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // DiscoveryConfidenceID values for Discovery.ConfidenceID (Confidence ID).
@@ -2426,16 +2474,23 @@ var DiscoverySeverityIDCaptions = map[int]string{
 
 // DiscoveryStatusID values for Discovery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DiscoveryStatusIDUnknown = 0
 	// The activity completed successfully.
 	DiscoveryStatusIDSuccess = 1
 	// The activity failed.
 	DiscoveryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DiscoveryStatusIDOther = 99
 )
 
 // DiscoveryStatusIDCaptions maps Discovery.StatusID (Status ID) values to their captions.
 var DiscoveryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // DiscoveryResult is the OCSF "discovery_result" event class (abstract base class). Discovery
@@ -2490,7 +2545,7 @@ type DiscoveryResult struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -2560,7 +2615,7 @@ type DiscoveryResult struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -2693,13 +2748,17 @@ var DiscoveryResultActionIDCaptions = map[int]string{
 
 // DiscoveryResultActivityID values for DiscoveryResult.ActivityID (Activity ID).
 const (
+	DiscoveryResultActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	DiscoveryResultActivityIDQuery = 1
+	DiscoveryResultActivityIDOther = 99
 )
 
 // DiscoveryResultActivityIDCaptions maps DiscoveryResult.ActivityID (Activity ID) values to their captions.
 var DiscoveryResultActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // DiscoveryResultConfidenceID values for DiscoveryResult.ConfidenceID (Confidence ID).
@@ -2916,16 +2975,23 @@ var DiscoveryResultSeverityIDCaptions = map[int]string{
 
 // DiscoveryResultStatusID values for DiscoveryResult.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DiscoveryResultStatusIDUnknown = 0
 	// The activity completed successfully.
 	DiscoveryResultStatusIDSuccess = 1
 	// The activity failed.
 	DiscoveryResultStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DiscoveryResultStatusIDOther = 99
 )
 
 // DiscoveryResultStatusIDCaptions maps DiscoveryResult.StatusID (Status ID) values to their captions.
 var DiscoveryResultStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // EvidenceInfo is the OCSF "evidence_info" event class (class_uid 5040). Data collected directly
@@ -2984,7 +3050,7 @@ type EvidenceInfo struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -3053,7 +3119,7 @@ type EvidenceInfo struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -3189,13 +3255,17 @@ var EvidenceInfoActionIDCaptions = map[int]string{
 
 // EvidenceInfoActivityID values for EvidenceInfo.ActivityID (Activity ID).
 const (
+	EvidenceInfoActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	EvidenceInfoActivityIDQuery = 1
+	EvidenceInfoActivityIDOther = 99
 )
 
 // EvidenceInfoActivityIDCaptions maps EvidenceInfo.ActivityID (Activity ID) values to their captions.
 var EvidenceInfoActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // EvidenceInfoConfidenceID values for EvidenceInfo.ConfidenceID (Confidence ID).
@@ -3412,16 +3482,23 @@ var EvidenceInfoSeverityIDCaptions = map[int]string{
 
 // EvidenceInfoStatusID values for EvidenceInfo.StatusID (Status ID).
 const (
+	// The status is unknown.
+	EvidenceInfoStatusIDUnknown = 0
 	// The activity completed successfully.
 	EvidenceInfoStatusIDSuccess = 1
 	// The activity failed.
 	EvidenceInfoStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	EvidenceInfoStatusIDOther = 99
 )
 
 // EvidenceInfoStatusIDCaptions maps EvidenceInfo.StatusID (Status ID) values to their captions.
 var EvidenceInfoStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // FileQuery is the OCSF "file_query" event class (class_uid 5007). File Query events report
@@ -3478,7 +3555,7 @@ type FileQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -3550,7 +3627,7 @@ type FileQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -3683,13 +3760,17 @@ var FileQueryActionIDCaptions = map[int]string{
 
 // FileQueryActivityID values for FileQuery.ActivityID (Activity ID).
 const (
+	FileQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	FileQueryActivityIDQuery = 1
+	FileQueryActivityIDOther = 99
 )
 
 // FileQueryActivityIDCaptions maps FileQuery.ActivityID (Activity ID) values to their captions.
 var FileQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // FileQueryConfidenceID values for FileQuery.ConfidenceID (Confidence ID).
@@ -3906,16 +3987,23 @@ var FileQuerySeverityIDCaptions = map[int]string{
 
 // FileQueryStatusID values for FileQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	FileQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	FileQueryStatusIDSuccess = 1
 	// The activity failed.
 	FileQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	FileQueryStatusIDOther = 99
 )
 
 // FileQueryStatusIDCaptions maps FileQuery.StatusID (Status ID) values to their captions.
 var FileQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // FolderQuery is the OCSF "folder_query" event class (class_uid 5008). Folder Query events report
@@ -3972,7 +4060,7 @@ type FolderQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4044,7 +4132,7 @@ type FolderQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -4177,13 +4265,17 @@ var FolderQueryActionIDCaptions = map[int]string{
 
 // FolderQueryActivityID values for FolderQuery.ActivityID (Activity ID).
 const (
+	FolderQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	FolderQueryActivityIDQuery = 1
+	FolderQueryActivityIDOther = 99
 )
 
 // FolderQueryActivityIDCaptions maps FolderQuery.ActivityID (Activity ID) values to their captions.
 var FolderQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // FolderQueryConfidenceID values for FolderQuery.ConfidenceID (Confidence ID).
@@ -4400,16 +4492,23 @@ var FolderQuerySeverityIDCaptions = map[int]string{
 
 // FolderQueryStatusID values for FolderQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	FolderQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	FolderQueryStatusIDSuccess = 1
 	// The activity failed.
 	FolderQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	FolderQueryStatusIDOther = 99
 )
 
 // FolderQueryStatusIDCaptions maps FolderQuery.StatusID (Status ID) values to their captions.
 var FolderQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // InventoryInfo is the OCSF "inventory_info" event class (class_uid 5001). Device Inventory Info
@@ -4465,7 +4564,7 @@ type InventoryInfo struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4534,7 +4633,7 @@ type InventoryInfo struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -4661,16 +4760,20 @@ var InventoryInfoActionIDCaptions = map[int]string{
 
 // InventoryInfoActivityID values for InventoryInfo.ActivityID (Activity ID).
 const (
+	InventoryInfoActivityIDUnknown = 0
 	// The discovered information is via a log.
 	InventoryInfoActivityIDLog = 1
 	// The discovered information is via a collection process.
 	InventoryInfoActivityIDCollect = 2
+	InventoryInfoActivityIDOther   = 99
 )
 
 // InventoryInfoActivityIDCaptions maps InventoryInfo.ActivityID (Activity ID) values to their captions.
 var InventoryInfoActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // InventoryInfoConfidenceID values for InventoryInfo.ConfidenceID (Confidence ID).
@@ -4857,16 +4960,23 @@ var InventoryInfoSeverityIDCaptions = map[int]string{
 
 // InventoryInfoStatusID values for InventoryInfo.StatusID (Status ID).
 const (
+	// The status is unknown.
+	InventoryInfoStatusIDUnknown = 0
 	// The activity completed successfully.
 	InventoryInfoStatusIDSuccess = 1
 	// The activity failed.
 	InventoryInfoStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	InventoryInfoStatusIDOther = 99
 )
 
 // InventoryInfoStatusIDCaptions maps InventoryInfo.StatusID (Status ID) values to their captions.
 var InventoryInfoStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // JobQuery is the OCSF "job_query" event class (class_uid 5010). Job Query events report
@@ -4923,7 +5033,7 @@ type JobQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4995,7 +5105,7 @@ type JobQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -5128,13 +5238,17 @@ var JobQueryActionIDCaptions = map[int]string{
 
 // JobQueryActivityID values for JobQuery.ActivityID (Activity ID).
 const (
+	JobQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	JobQueryActivityIDQuery = 1
+	JobQueryActivityIDOther = 99
 )
 
 // JobQueryActivityIDCaptions maps JobQuery.ActivityID (Activity ID) values to their captions.
 var JobQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // JobQueryConfidenceID values for JobQuery.ConfidenceID (Confidence ID).
@@ -5351,16 +5465,23 @@ var JobQuerySeverityIDCaptions = map[int]string{
 
 // JobQueryStatusID values for JobQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	JobQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	JobQueryStatusIDSuccess = 1
 	// The activity failed.
 	JobQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	JobQueryStatusIDOther = 99
 )
 
 // JobQueryStatusIDCaptions maps JobQuery.StatusID (Status ID) values to their captions.
 var JobQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // KernelObjectQuery is the OCSF "kernel_object_query" event class (class_uid 5006). Kernel Object
@@ -5417,7 +5538,7 @@ type KernelObjectQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -5489,7 +5610,7 @@ type KernelObjectQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -5622,13 +5743,17 @@ var KernelObjectQueryActionIDCaptions = map[int]string{
 
 // KernelObjectQueryActivityID values for KernelObjectQuery.ActivityID (Activity ID).
 const (
+	KernelObjectQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	KernelObjectQueryActivityIDQuery = 1
+	KernelObjectQueryActivityIDOther = 99
 )
 
 // KernelObjectQueryActivityIDCaptions maps KernelObjectQuery.ActivityID (Activity ID) values to their captions.
 var KernelObjectQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // KernelObjectQueryConfidenceID values for KernelObjectQuery.ConfidenceID (Confidence ID).
@@ -5845,16 +5970,23 @@ var KernelObjectQuerySeverityIDCaptions = map[int]string{
 
 // KernelObjectQueryStatusID values for KernelObjectQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	KernelObjectQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	KernelObjectQueryStatusIDSuccess = 1
 	// The activity failed.
 	KernelObjectQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	KernelObjectQueryStatusIDOther = 99
 )
 
 // KernelObjectQueryStatusIDCaptions maps KernelObjectQuery.StatusID (Status ID) values to their captions.
 var KernelObjectQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ModuleQuery is the OCSF "module_query" event class (class_uid 5011). Module Query events report
@@ -5911,7 +6043,7 @@ type ModuleQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -5983,7 +6115,7 @@ type ModuleQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -6118,13 +6250,17 @@ var ModuleQueryActionIDCaptions = map[int]string{
 
 // ModuleQueryActivityID values for ModuleQuery.ActivityID (Activity ID).
 const (
+	ModuleQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	ModuleQueryActivityIDQuery = 1
+	ModuleQueryActivityIDOther = 99
 )
 
 // ModuleQueryActivityIDCaptions maps ModuleQuery.ActivityID (Activity ID) values to their captions.
 var ModuleQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // ModuleQueryConfidenceID values for ModuleQuery.ConfidenceID (Confidence ID).
@@ -6341,16 +6477,23 @@ var ModuleQuerySeverityIDCaptions = map[int]string{
 
 // ModuleQueryStatusID values for ModuleQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ModuleQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	ModuleQueryStatusIDSuccess = 1
 	// The activity failed.
 	ModuleQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ModuleQueryStatusIDOther = 99
 )
 
 // ModuleQueryStatusIDCaptions maps ModuleQuery.StatusID (Status ID) values to their captions.
 var ModuleQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // NetworkConnectionQuery is the OCSF "network_connection_query" event class (class_uid 5012).
@@ -6407,7 +6550,7 @@ type NetworkConnectionQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -6479,7 +6622,7 @@ type NetworkConnectionQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -6619,13 +6762,17 @@ var NetworkConnectionQueryActionIDCaptions = map[int]string{
 
 // NetworkConnectionQueryActivityID values for NetworkConnectionQuery.ActivityID (Activity ID).
 const (
+	NetworkConnectionQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	NetworkConnectionQueryActivityIDQuery = 1
+	NetworkConnectionQueryActivityIDOther = 99
 )
 
 // NetworkConnectionQueryActivityIDCaptions maps NetworkConnectionQuery.ActivityID (Activity ID) values to their captions.
 var NetworkConnectionQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // NetworkConnectionQueryConfidenceID values for NetworkConnectionQuery.ConfidenceID (Confidence ID).
@@ -6877,6 +7024,9 @@ const (
 	// simultaneously, and the remote peer has not yet acknowledged the close attempt of the local
 	// application.
 	NetworkConnectionQueryStateIDCLOSING = 11
+	// The state is not mapped. See the state attribute, which contains a data source specific
+	// value.
+	NetworkConnectionQueryStateIDOther = 99
 )
 
 // NetworkConnectionQueryStateIDCaptions maps NetworkConnectionQuery.StateID (State ID) values to their captions.
@@ -6893,20 +7043,28 @@ var NetworkConnectionQueryStateIDCaptions = map[int]string{
 	9:  "LAST_ACK",
 	10: "LISTEN",
 	11: "CLOSING",
+	99: "Other",
 }
 
 // NetworkConnectionQueryStatusID values for NetworkConnectionQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NetworkConnectionQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	NetworkConnectionQueryStatusIDSuccess = 1
 	// The activity failed.
 	NetworkConnectionQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NetworkConnectionQueryStatusIDOther = 99
 )
 
 // NetworkConnectionQueryStatusIDCaptions maps NetworkConnectionQuery.StatusID (Status ID) values to their captions.
 var NetworkConnectionQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // NetworksQuery is the OCSF "networks_query" event class (class_uid 5013). Networks Query events
@@ -6963,7 +7121,7 @@ type NetworksQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -7037,7 +7195,7 @@ type NetworksQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -7170,13 +7328,17 @@ var NetworksQueryActionIDCaptions = map[int]string{
 
 // NetworksQueryActivityID values for NetworksQuery.ActivityID (Activity ID).
 const (
+	NetworksQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	NetworksQueryActivityIDQuery = 1
+	NetworksQueryActivityIDOther = 99
 )
 
 // NetworksQueryActivityIDCaptions maps NetworksQuery.ActivityID (Activity ID) values to their captions.
 var NetworksQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // NetworksQueryConfidenceID values for NetworksQuery.ConfidenceID (Confidence ID).
@@ -7393,16 +7555,23 @@ var NetworksQuerySeverityIDCaptions = map[int]string{
 
 // NetworksQueryStatusID values for NetworksQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NetworksQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	NetworksQueryStatusIDSuccess = 1
 	// The activity failed.
 	NetworksQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NetworksQueryStatusIDOther = 99
 )
 
 // NetworksQueryStatusIDCaptions maps NetworksQuery.StatusID (Status ID) values to their captions.
 var NetworksQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // OSINTInventoryInfo is the OCSF "osint_inventory_info" event class (class_uid 5021). OSINT
@@ -7463,7 +7632,7 @@ type OSINTInventoryInfo struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -7656,16 +7825,20 @@ var OSINTInventoryInfoActionIDCaptions = map[int]string{
 
 // OSINTInventoryInfoActivityID values for OSINTInventoryInfo.ActivityID (Activity ID).
 const (
+	OSINTInventoryInfoActivityIDUnknown = 0
 	// The discovered information is via a log.
 	OSINTInventoryInfoActivityIDLog = 1
 	// The discovered information is via a collection process.
 	OSINTInventoryInfoActivityIDCollect = 2
+	OSINTInventoryInfoActivityIDOther   = 99
 )
 
 // OSINTInventoryInfoActivityIDCaptions maps OSINTInventoryInfo.ActivityID (Activity ID) values to their captions.
 var OSINTInventoryInfoActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // OSINTInventoryInfoConfidenceID values for OSINTInventoryInfo.ConfidenceID (Confidence ID).
@@ -7852,16 +8025,23 @@ var OSINTInventoryInfoSeverityIDCaptions = map[int]string{
 
 // OSINTInventoryInfoStatusID values for OSINTInventoryInfo.StatusID (Status ID).
 const (
+	// The status is unknown.
+	OSINTInventoryInfoStatusIDUnknown = 0
 	// The activity completed successfully.
 	OSINTInventoryInfoStatusIDSuccess = 1
 	// The activity failed.
 	OSINTInventoryInfoStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	OSINTInventoryInfoStatusIDOther = 99
 )
 
 // OSINTInventoryInfoStatusIDCaptions maps OSINTInventoryInfo.StatusID (Status ID) values to their captions.
 var OSINTInventoryInfoStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // PatchState is the OCSF "patch_state" event class (class_uid 5004). Operating System Patch State
@@ -7916,7 +8096,7 @@ type PatchState struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -7989,7 +8169,7 @@ type PatchState struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -8116,16 +8296,20 @@ var PatchStateActionIDCaptions = map[int]string{
 
 // PatchStateActivityID values for PatchState.ActivityID (Activity ID).
 const (
+	PatchStateActivityIDUnknown = 0
 	// The discovered information is via a log.
 	PatchStateActivityIDLog = 1
 	// The discovered information is via a collection process.
 	PatchStateActivityIDCollect = 2
+	PatchStateActivityIDOther   = 99
 )
 
 // PatchStateActivityIDCaptions maps PatchState.ActivityID (Activity ID) values to their captions.
 var PatchStateActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // PatchStateConfidenceID values for PatchState.ConfidenceID (Confidence ID).
@@ -8312,16 +8496,23 @@ var PatchStateSeverityIDCaptions = map[int]string{
 
 // PatchStateStatusID values for PatchState.StatusID (Status ID).
 const (
+	// The status is unknown.
+	PatchStateStatusIDUnknown = 0
 	// The activity completed successfully.
 	PatchStateStatusIDSuccess = 1
 	// The activity failed.
 	PatchStateStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	PatchStateStatusIDOther = 99
 )
 
 // PatchStateStatusIDCaptions maps PatchState.StatusID (Status ID) values to their captions.
 var PatchStateStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // PeripheralDeviceQuery is the OCSF "peripheral_device_query" event class (class_uid 5014).
@@ -8378,7 +8569,7 @@ type PeripheralDeviceQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -8448,7 +8639,7 @@ type PeripheralDeviceQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The peripheral device that triggered the event.
 	PeripheralDevice *objects.PeripheralDevice `json:"peripheral_device"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -8583,13 +8774,17 @@ var PeripheralDeviceQueryActionIDCaptions = map[int]string{
 
 // PeripheralDeviceQueryActivityID values for PeripheralDeviceQuery.ActivityID (Activity ID).
 const (
+	PeripheralDeviceQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	PeripheralDeviceQueryActivityIDQuery = 1
+	PeripheralDeviceQueryActivityIDOther = 99
 )
 
 // PeripheralDeviceQueryActivityIDCaptions maps PeripheralDeviceQuery.ActivityID (Activity ID) values to their captions.
 var PeripheralDeviceQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // PeripheralDeviceQueryConfidenceID values for PeripheralDeviceQuery.ConfidenceID (Confidence ID).
@@ -8806,16 +9001,23 @@ var PeripheralDeviceQuerySeverityIDCaptions = map[int]string{
 
 // PeripheralDeviceQueryStatusID values for PeripheralDeviceQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	PeripheralDeviceQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	PeripheralDeviceQueryStatusIDSuccess = 1
 	// The activity failed.
 	PeripheralDeviceQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	PeripheralDeviceQueryStatusIDOther = 99
 )
 
 // PeripheralDeviceQueryStatusIDCaptions maps PeripheralDeviceQuery.StatusID (Status ID) values to their captions.
 var PeripheralDeviceQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // PrefetchQuery is the OCSF "prefetch_query" event class (class_uid 205019). Prefetch Query events
@@ -8873,7 +9075,7 @@ type PrefetchQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -8947,7 +9149,7 @@ type PrefetchQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -9082,13 +9284,17 @@ var PrefetchQueryActionIDCaptions = map[int]string{
 
 // PrefetchQueryActivityID values for PrefetchQuery.ActivityID (Activity ID).
 const (
+	PrefetchQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	PrefetchQueryActivityIDQuery = 1
+	PrefetchQueryActivityIDOther = 99
 )
 
 // PrefetchQueryActivityIDCaptions maps PrefetchQuery.ActivityID (Activity ID) values to their captions.
 var PrefetchQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // PrefetchQueryConfidenceID values for PrefetchQuery.ConfidenceID (Confidence ID).
@@ -9305,16 +9511,23 @@ var PrefetchQuerySeverityIDCaptions = map[int]string{
 
 // PrefetchQueryStatusID values for PrefetchQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	PrefetchQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	PrefetchQueryStatusIDSuccess = 1
 	// The activity failed.
 	PrefetchQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	PrefetchQueryStatusIDOther = 99
 )
 
 // PrefetchQueryStatusIDCaptions maps PrefetchQuery.StatusID (Status ID) values to their captions.
 var PrefetchQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ProcessQuery is the OCSF "process_query" event class (class_uid 5015). Process Query events
@@ -9371,7 +9584,7 @@ type ProcessQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -9441,7 +9654,7 @@ type ProcessQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -9576,13 +9789,17 @@ var ProcessQueryActionIDCaptions = map[int]string{
 
 // ProcessQueryActivityID values for ProcessQuery.ActivityID (Activity ID).
 const (
+	ProcessQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	ProcessQueryActivityIDQuery = 1
+	ProcessQueryActivityIDOther = 99
 )
 
 // ProcessQueryActivityIDCaptions maps ProcessQuery.ActivityID (Activity ID) values to their captions.
 var ProcessQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // ProcessQueryConfidenceID values for ProcessQuery.ConfidenceID (Confidence ID).
@@ -9799,16 +10016,23 @@ var ProcessQuerySeverityIDCaptions = map[int]string{
 
 // ProcessQueryStatusID values for ProcessQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ProcessQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	ProcessQueryStatusIDSuccess = 1
 	// The activity failed.
 	ProcessQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ProcessQueryStatusIDOther = 99
 )
 
 // ProcessQueryStatusIDCaptions maps ProcessQuery.StatusID (Status ID) values to their captions.
 var ProcessQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // RegistryKeyQuery is the OCSF "registry_key_query" event class (class_uid 205004). Registry Key
@@ -9866,7 +10090,7 @@ type RegistryKeyQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -9936,7 +10160,7 @@ type RegistryKeyQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -10071,13 +10295,17 @@ var RegistryKeyQueryActionIDCaptions = map[int]string{
 
 // RegistryKeyQueryActivityID values for RegistryKeyQuery.ActivityID (Activity ID).
 const (
+	RegistryKeyQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	RegistryKeyQueryActivityIDQuery = 1
+	RegistryKeyQueryActivityIDOther = 99
 )
 
 // RegistryKeyQueryActivityIDCaptions maps RegistryKeyQuery.ActivityID (Activity ID) values to their captions.
 var RegistryKeyQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // RegistryKeyQueryConfidenceID values for RegistryKeyQuery.ConfidenceID (Confidence ID).
@@ -10294,16 +10522,23 @@ var RegistryKeyQuerySeverityIDCaptions = map[int]string{
 
 // RegistryKeyQueryStatusID values for RegistryKeyQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RegistryKeyQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	RegistryKeyQueryStatusIDSuccess = 1
 	// The activity failed.
 	RegistryKeyQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RegistryKeyQueryStatusIDOther = 99
 )
 
 // RegistryKeyQueryStatusIDCaptions maps RegistryKeyQuery.StatusID (Status ID) values to their captions.
 var RegistryKeyQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // RegistryValueQuery is the OCSF "registry_value_query" event class (class_uid 205005). Registry
@@ -10361,7 +10596,7 @@ type RegistryValueQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -10431,7 +10666,7 @@ type RegistryValueQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -10566,13 +10801,17 @@ var RegistryValueQueryActionIDCaptions = map[int]string{
 
 // RegistryValueQueryActivityID values for RegistryValueQuery.ActivityID (Activity ID).
 const (
+	RegistryValueQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	RegistryValueQueryActivityIDQuery = 1
+	RegistryValueQueryActivityIDOther = 99
 )
 
 // RegistryValueQueryActivityIDCaptions maps RegistryValueQuery.ActivityID (Activity ID) values to their captions.
 var RegistryValueQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // RegistryValueQueryConfidenceID values for RegistryValueQuery.ConfidenceID (Confidence ID).
@@ -10789,16 +11028,23 @@ var RegistryValueQuerySeverityIDCaptions = map[int]string{
 
 // RegistryValueQueryStatusID values for RegistryValueQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RegistryValueQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	RegistryValueQueryStatusIDSuccess = 1
 	// The activity failed.
 	RegistryValueQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RegistryValueQueryStatusIDOther = 99
 )
 
 // RegistryValueQueryStatusIDCaptions maps RegistryValueQuery.StatusID (Status ID) values to their captions.
 var RegistryValueQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ServiceQuery is the OCSF "service_query" event class (class_uid 5016). Service Query events
@@ -10855,7 +11101,7 @@ type ServiceQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -10925,7 +11171,7 @@ type ServiceQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -11060,13 +11306,17 @@ var ServiceQueryActionIDCaptions = map[int]string{
 
 // ServiceQueryActivityID values for ServiceQuery.ActivityID (Activity ID).
 const (
+	ServiceQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	ServiceQueryActivityIDQuery = 1
+	ServiceQueryActivityIDOther = 99
 )
 
 // ServiceQueryActivityIDCaptions maps ServiceQuery.ActivityID (Activity ID) values to their captions.
 var ServiceQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // ServiceQueryConfidenceID values for ServiceQuery.ConfidenceID (Confidence ID).
@@ -11283,16 +11533,23 @@ var ServiceQuerySeverityIDCaptions = map[int]string{
 
 // ServiceQueryStatusID values for ServiceQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ServiceQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	ServiceQueryStatusIDSuccess = 1
 	// The activity failed.
 	ServiceQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ServiceQueryStatusIDOther = 99
 )
 
 // ServiceQueryStatusIDCaptions maps ServiceQuery.StatusID (Status ID) values to their captions.
 var ServiceQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // SessionQuery is the OCSF "session_query" event class (class_uid 5017). User Session Query events
@@ -11349,7 +11606,7 @@ type SessionQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -11419,7 +11676,7 @@ type SessionQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -11554,13 +11811,17 @@ var SessionQueryActionIDCaptions = map[int]string{
 
 // SessionQueryActivityID values for SessionQuery.ActivityID (Activity ID).
 const (
+	SessionQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	SessionQueryActivityIDQuery = 1
+	SessionQueryActivityIDOther = 99
 )
 
 // SessionQueryActivityIDCaptions maps SessionQuery.ActivityID (Activity ID) values to their captions.
 var SessionQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // SessionQueryConfidenceID values for SessionQuery.ConfidenceID (Confidence ID).
@@ -11777,16 +12038,23 @@ var SessionQuerySeverityIDCaptions = map[int]string{
 
 // SessionQueryStatusID values for SessionQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	SessionQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	SessionQueryStatusIDSuccess = 1
 	// The activity failed.
 	SessionQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	SessionQueryStatusIDOther = 99
 )
 
 // SessionQueryStatusIDCaptions maps SessionQuery.StatusID (Status ID) values to their captions.
 var SessionQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // SoftwareInfo is the OCSF "software_info" event class (class_uid 5020). Software Inventory Info
@@ -11843,7 +12111,7 @@ type SoftwareInfo struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -11912,7 +12180,7 @@ type SoftwareInfo struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The device software that is being discovered by an inventory process.
 	//
 	// Deprecated: Use the sbom attribute instead.
@@ -12049,16 +12317,20 @@ var SoftwareInfoActionIDCaptions = map[int]string{
 
 // SoftwareInfoActivityID values for SoftwareInfo.ActivityID (Activity ID).
 const (
+	SoftwareInfoActivityIDUnknown = 0
 	// The discovered information is via a log.
 	SoftwareInfoActivityIDLog = 1
 	// The discovered information is via a collection process.
 	SoftwareInfoActivityIDCollect = 2
+	SoftwareInfoActivityIDOther   = 99
 )
 
 // SoftwareInfoActivityIDCaptions maps SoftwareInfo.ActivityID (Activity ID) values to their captions.
 var SoftwareInfoActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // SoftwareInfoConfidenceID values for SoftwareInfo.ConfidenceID (Confidence ID).
@@ -12245,16 +12517,23 @@ var SoftwareInfoSeverityIDCaptions = map[int]string{
 
 // SoftwareInfoStatusID values for SoftwareInfo.StatusID (Status ID).
 const (
+	// The status is unknown.
+	SoftwareInfoStatusIDUnknown = 0
 	// The activity completed successfully.
 	SoftwareInfoStatusIDSuccess = 1
 	// The activity failed.
 	SoftwareInfoStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	SoftwareInfoStatusIDOther = 99
 )
 
 // SoftwareInfoStatusIDCaptions maps SoftwareInfo.StatusID (Status ID) values to their captions.
 var SoftwareInfoStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // StartupItemQuery is the OCSF "startup_item_query" event class (class_uid 5022). Startup Item
@@ -12312,7 +12591,7 @@ type StartupItemQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -12382,7 +12661,7 @@ type StartupItemQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -12518,13 +12797,17 @@ var StartupItemQueryActionIDCaptions = map[int]string{
 
 // StartupItemQueryActivityID values for StartupItemQuery.ActivityID (Activity ID).
 const (
+	StartupItemQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	StartupItemQueryActivityIDQuery = 1
+	StartupItemQueryActivityIDOther = 99
 )
 
 // StartupItemQueryActivityIDCaptions maps StartupItemQuery.ActivityID (Activity ID) values to their captions.
 var StartupItemQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // StartupItemQueryConfidenceID values for StartupItemQuery.ConfidenceID (Confidence ID).
@@ -12741,16 +13024,23 @@ var StartupItemQuerySeverityIDCaptions = map[int]string{
 
 // StartupItemQueryStatusID values for StartupItemQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	StartupItemQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	StartupItemQueryStatusIDSuccess = 1
 	// The activity failed.
 	StartupItemQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	StartupItemQueryStatusIDOther = 99
 )
 
 // StartupItemQueryStatusIDCaptions maps StartupItemQuery.StatusID (Status ID) values to their captions.
 var StartupItemQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // UserInventory is the OCSF "user_inventory" event class (class_uid 5003). User Inventory Info
@@ -12808,7 +13098,7 @@ type UserInventory struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -12878,7 +13168,7 @@ type UserInventory struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -13007,16 +13297,20 @@ var UserInventoryActionIDCaptions = map[int]string{
 
 // UserInventoryActivityID values for UserInventory.ActivityID (Activity ID).
 const (
+	UserInventoryActivityIDUnknown = 0
 	// The discovered information is via a log.
 	UserInventoryActivityIDLog = 1
 	// The discovered information is via a collection process.
 	UserInventoryActivityIDCollect = 2
+	UserInventoryActivityIDOther   = 99
 )
 
 // UserInventoryActivityIDCaptions maps UserInventory.ActivityID (Activity ID) values to their captions.
 var UserInventoryActivityIDCaptions = map[int]string{
-	1: "Log",
-	2: "Collect",
+	0:  "Unknown",
+	1:  "Log",
+	2:  "Collect",
+	99: "Other",
 }
 
 // UserInventoryConfidenceID values for UserInventory.ConfidenceID (Confidence ID).
@@ -13203,16 +13497,23 @@ var UserInventorySeverityIDCaptions = map[int]string{
 
 // UserInventoryStatusID values for UserInventory.StatusID (Status ID).
 const (
+	// The status is unknown.
+	UserInventoryStatusIDUnknown = 0
 	// The activity completed successfully.
 	UserInventoryStatusIDSuccess = 1
 	// The activity failed.
 	UserInventoryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	UserInventoryStatusIDOther = 99
 )
 
 // UserInventoryStatusIDCaptions maps UserInventory.StatusID (Status ID) values to their captions.
 var UserInventoryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // UserQuery is the OCSF "user_query" event class (class_uid 5018). User Query events report user
@@ -13271,7 +13572,7 @@ type UserQuery struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -13341,7 +13642,7 @@ type UserQuery struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -13476,13 +13777,17 @@ var UserQueryActionIDCaptions = map[int]string{
 
 // UserQueryActivityID values for UserQuery.ActivityID (Activity ID).
 const (
+	UserQueryActivityIDUnknown = 0
 	// The discovered results are via a query request.
 	UserQueryActivityIDQuery = 1
+	UserQueryActivityIDOther = 99
 )
 
 // UserQueryActivityIDCaptions maps UserQuery.ActivityID (Activity ID) values to their captions.
 var UserQueryActivityIDCaptions = map[int]string{
-	1: "Query",
+	0:  "Unknown",
+	1:  "Query",
+	99: "Other",
 }
 
 // UserQueryConfidenceID values for UserQuery.ConfidenceID (Confidence ID).
@@ -13699,14 +14004,21 @@ var UserQuerySeverityIDCaptions = map[int]string{
 
 // UserQueryStatusID values for UserQuery.StatusID (Status ID).
 const (
+	// The status is unknown.
+	UserQueryStatusIDUnknown = 0
 	// The activity completed successfully.
 	UserQueryStatusIDSuccess = 1
 	// The activity failed.
 	UserQueryStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	UserQueryStatusIDOther = 99
 )
 
 // UserQueryStatusIDCaptions maps UserQuery.StatusID (Status ID) values to their captions.
 var UserQueryStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

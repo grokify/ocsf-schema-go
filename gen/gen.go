@@ -494,7 +494,7 @@ func (g *generator) writeStruct(b *strings.Builder, goName, docFirst, descriptio
 			writeIndentedComment(b, "Deprecated: "+cleanText(attr.Deprecated.Message))
 		}
 		tag := name
-		if attr.Requirement != schema.RequirementRequired {
+		if !alwaysPresent(attr) {
 			tag += ",omitempty"
 		}
 		fmt.Fprintf(b, "\t%s %s `json:%q`\n", fieldName, goType, tag)
@@ -681,4 +681,16 @@ func formatSource(src string) ([]byte, error) {
 		return nil, fmt.Errorf("formatting generated source: %w", err)
 	}
 	return out, nil
+}
+
+// alwaysPresent reports whether an attribute must appear in every event or
+// object, so its JSON tag omits omitempty. An attribute mixed in by a
+// profile is required only when the event declares that profile in
+// metadata.profiles, so it stays omitempty: otherwise an event without the
+// profile would carry it as null.
+func alwaysPresent(attr *schema.Attribute) bool {
+	if attr.Requirement != schema.RequirementRequired {
+		return false
+	}
+	return attr.Profile == nil && !strings.HasPrefix(attr.Source, "profile:")
 }

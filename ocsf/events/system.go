@@ -67,7 +67,7 @@ type ClipboardActivity struct {
 	// The clipboard that is the target of the activity.
 	Clipboard *objects.Clipboard `json:"clipboard"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -144,7 +144,7 @@ type ClipboardActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -275,6 +275,7 @@ var ClipboardActivityActionIDCaptions = map[int]string{
 
 // ClipboardActivityActivityID values for ClipboardActivity.ActivityID (Activity ID).
 const (
+	ClipboardActivityActivityIDUnknown = 0
 	// A clipboard was read from. In user-interface terms, this is a 'paste' operation. If present,
 	// source_process is the process which performed the Write activity or, in other words, the
 	// process from which the data was copied.
@@ -283,13 +284,16 @@ const (
 	ClipboardActivityActivityIDWrite = 2
 	// A clipboard was cleared.
 	ClipboardActivityActivityIDClear = 3
+	ClipboardActivityActivityIDOther = 99
 )
 
 // ClipboardActivityActivityIDCaptions maps ClipboardActivity.ActivityID (Activity ID) values to their captions.
 var ClipboardActivityActivityIDCaptions = map[int]string{
-	1: "Read",
-	2: "Write",
-	3: "Clear",
+	0:  "Unknown",
+	1:  "Read",
+	2:  "Write",
+	3:  "Clear",
+	99: "Other",
 }
 
 // ClipboardActivityConfidenceID values for ClipboardActivity.ConfidenceID (Confidence ID).
@@ -476,16 +480,23 @@ var ClipboardActivitySeverityIDCaptions = map[int]string{
 
 // ClipboardActivityStatusID values for ClipboardActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ClipboardActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	ClipboardActivityStatusIDSuccess = 1
 	// The activity failed.
 	ClipboardActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ClipboardActivityStatusIDOther = 99
 )
 
 // ClipboardActivityStatusIDCaptions maps ClipboardActivity.StatusID (Status ID) values to their captions.
 var ClipboardActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // DevicePowerStateActivity is the OCSF "device_power_state_activity" event class (class_uid 1011).
@@ -547,7 +558,7 @@ type DevicePowerStateActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -623,7 +634,7 @@ type DevicePowerStateActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -750,6 +761,7 @@ var DevicePowerStateActivityActionIDCaptions = map[int]string{
 
 // DevicePowerStateActivityActivityID values for DevicePowerStateActivity.ActivityID (Activity ID).
 const (
+	DevicePowerStateActivityActivityIDUnknown = 0
 	// A power-on activity was reported for the system.
 	DevicePowerStateActivityActivityIDPowerOn = 1
 	// A power-off activity was reported for the system, including graceful shutdowns and hard
@@ -763,17 +775,20 @@ const (
 	// A reboot activity was reported for the system.
 	DevicePowerStateActivityActivityIDReboot = 5
 	// A wake activity was reported for the system.
-	DevicePowerStateActivityActivityIDWake = 6
+	DevicePowerStateActivityActivityIDWake  = 6
+	DevicePowerStateActivityActivityIDOther = 99
 )
 
 // DevicePowerStateActivityActivityIDCaptions maps DevicePowerStateActivity.ActivityID (Activity ID) values to their captions.
 var DevicePowerStateActivityActivityIDCaptions = map[int]string{
-	1: "Power On",
-	2: "Power Off",
-	3: "Sleep",
-	4: "Hibernate",
-	5: "Reboot",
-	6: "Wake",
+	0:  "Unknown",
+	1:  "Power On",
+	2:  "Power Off",
+	3:  "Sleep",
+	4:  "Hibernate",
+	5:  "Reboot",
+	6:  "Wake",
+	99: "Other",
 }
 
 // DevicePowerStateActivityConfidenceID values for DevicePowerStateActivity.ConfidenceID (Confidence ID).
@@ -960,16 +975,23 @@ var DevicePowerStateActivitySeverityIDCaptions = map[int]string{
 
 // DevicePowerStateActivityStatusID values for DevicePowerStateActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DevicePowerStateActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	DevicePowerStateActivityStatusIDSuccess = 1
 	// The activity failed.
 	DevicePowerStateActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DevicePowerStateActivityStatusIDOther = 99
 )
 
 // DevicePowerStateActivityStatusIDCaptions maps DevicePowerStateActivity.StatusID (Status ID) values to their captions.
 var DevicePowerStateActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // EventLogActvity is the OCSF "event_log_actvity" event class (class_uid 1008). Event Log Activity
@@ -1032,7 +1054,7 @@ type EventLogActvity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -1122,7 +1144,7 @@ type EventLogActvity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1247,6 +1269,7 @@ var EventLogActvityActionIDCaptions = map[int]string{
 
 // EventLogActvityActivityID values for EventLogActvity.ActivityID (Activity ID).
 const (
+	EventLogActvityActivityIDUnknown = 0
 	// Clear the event log database, file, or cache.
 	EventLogActvityActivityIDClear = 1
 	// Delete the event log database, file, or cache.
@@ -1267,10 +1290,12 @@ const (
 	EventLogActvityActivityIDEnable = 9
 	// Disable the event logging service.
 	EventLogActvityActivityIDDisable = 10
+	EventLogActvityActivityIDOther   = 99
 )
 
 // EventLogActvityActivityIDCaptions maps EventLogActvity.ActivityID (Activity ID) values to their captions.
 var EventLogActvityActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Clear",
 	2:  "Delete",
 	3:  "Export",
@@ -1281,6 +1306,7 @@ var EventLogActvityActivityIDCaptions = map[int]string{
 	8:  "Restart",
 	9:  "Enable",
 	10: "Disable",
+	99: "Other",
 }
 
 // EventLogActvityConfidenceID values for EventLogActvity.ConfidenceID (Confidence ID).
@@ -1488,16 +1514,23 @@ var EventLogActvitySeverityIDCaptions = map[int]string{
 
 // EventLogActvityStatusID values for EventLogActvity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	EventLogActvityStatusIDUnknown = 0
 	// The activity completed successfully.
 	EventLogActvityStatusIDSuccess = 1
 	// The activity failed.
 	EventLogActvityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	EventLogActvityStatusIDOther = 99
 )
 
 // EventLogActvityStatusIDCaptions maps EventLogActvity.StatusID (Status ID) values to their captions.
 var EventLogActvityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // FileActivity is the OCSF "file_activity" event class (class_uid 1001). File System Activity
@@ -1561,7 +1594,7 @@ type FileActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The name or relative pathname of a sub-component of the data object, if applicable. For
 	// example: attachment.doc , attachment.zip/bad.doc , or part.mime/part.cab/part.uue/part.doc .
 	Component string `json:"component,omitempty"`
@@ -1652,7 +1685,7 @@ type FileActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1779,6 +1812,7 @@ var FileActivityActionIDCaptions = map[int]string{
 
 // FileActivityActivityID values for FileActivity.ActivityID (Activity ID).
 const (
+	FileActivityActivityIDUnknown = 0
 	// A request to create a new file on a file system.
 	FileActivityActivityIDCreate = 1
 	// A request to read data from a file on a file system.
@@ -1806,11 +1840,13 @@ const (
 	// A request to unmount a file from a file system.
 	FileActivityActivityIDUnmount = 13
 	// A request to create a file handle.
-	FileActivityActivityIDOpen = 14
+	FileActivityActivityIDOpen  = 14
+	FileActivityActivityIDOther = 99
 )
 
 // FileActivityActivityIDCaptions maps FileActivity.ActivityID (Activity ID) values to their captions.
 var FileActivityActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Create",
 	2:  "Read",
 	3:  "Update",
@@ -1825,6 +1861,7 @@ var FileActivityActivityIDCaptions = map[int]string{
 	12: "Mount",
 	13: "Unmount",
 	14: "Open",
+	99: "Other",
 }
 
 // FileActivityConfidenceID values for FileActivity.ConfidenceID (Confidence ID).
@@ -2011,16 +2048,23 @@ var FileActivitySeverityIDCaptions = map[int]string{
 
 // FileActivityStatusID values for FileActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	FileActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	FileActivityStatusIDSuccess = 1
 	// The activity failed.
 	FileActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	FileActivityStatusIDOther = 99
 )
 
 // FileActivityStatusIDCaptions maps FileActivity.StatusID (Status ID) values to their captions.
 var FileActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // KernelActivity is the OCSF "kernel_activity" event class (class_uid 1003). Kernel Activity
@@ -2083,7 +2127,7 @@ type KernelActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -2162,7 +2206,7 @@ type KernelActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -2289,18 +2333,22 @@ var KernelActivityActionIDCaptions = map[int]string{
 
 // KernelActivityActivityID values for KernelActivity.ActivityID (Activity ID).
 const (
-	KernelActivityActivityIDCreate = 1
-	KernelActivityActivityIDRead   = 2
-	KernelActivityActivityIDDelete = 3
-	KernelActivityActivityIDInvoke = 4
+	KernelActivityActivityIDUnknown = 0
+	KernelActivityActivityIDCreate  = 1
+	KernelActivityActivityIDRead    = 2
+	KernelActivityActivityIDDelete  = 3
+	KernelActivityActivityIDInvoke  = 4
+	KernelActivityActivityIDOther   = 99
 )
 
 // KernelActivityActivityIDCaptions maps KernelActivity.ActivityID (Activity ID) values to their captions.
 var KernelActivityActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Read",
-	3: "Delete",
-	4: "Invoke",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Read",
+	3:  "Delete",
+	4:  "Invoke",
+	99: "Other",
 }
 
 // KernelActivityConfidenceID values for KernelActivity.ConfidenceID (Confidence ID).
@@ -2487,16 +2535,23 @@ var KernelActivitySeverityIDCaptions = map[int]string{
 
 // KernelActivityStatusID values for KernelActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	KernelActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	KernelActivityStatusIDSuccess = 1
 	// The activity failed.
 	KernelActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	KernelActivityStatusIDOther = 99
 )
 
 // KernelActivityStatusIDCaptions maps KernelActivity.StatusID (Status ID) values to their captions.
 var KernelActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // KernelExtensionActivity is the OCSF "kernel_extension_activity" event class (class_uid 1002).
@@ -2558,7 +2613,7 @@ type KernelExtensionActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -2637,7 +2692,7 @@ type KernelExtensionActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -2764,16 +2819,20 @@ var KernelExtensionActivityActionIDCaptions = map[int]string{
 
 // KernelExtensionActivityActivityID values for KernelExtensionActivity.ActivityID (Activity ID).
 const (
+	KernelExtensionActivityActivityIDUnknown = 0
 	// A driver/extension was loaded into the kernel
 	KernelExtensionActivityActivityIDLoad = 1
 	// A driver/extension was unloaded (removed) from the kernel
 	KernelExtensionActivityActivityIDUnload = 2
+	KernelExtensionActivityActivityIDOther  = 99
 )
 
 // KernelExtensionActivityActivityIDCaptions maps KernelExtensionActivity.ActivityID (Activity ID) values to their captions.
 var KernelExtensionActivityActivityIDCaptions = map[int]string{
-	1: "Load",
-	2: "Unload",
+	0:  "Unknown",
+	1:  "Load",
+	2:  "Unload",
+	99: "Other",
 }
 
 // KernelExtensionActivityConfidenceID values for KernelExtensionActivity.ConfidenceID (Confidence ID).
@@ -2960,16 +3019,23 @@ var KernelExtensionActivitySeverityIDCaptions = map[int]string{
 
 // KernelExtensionActivityStatusID values for KernelExtensionActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	KernelExtensionActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	KernelExtensionActivityStatusIDSuccess = 1
 	// The activity failed.
 	KernelExtensionActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	KernelExtensionActivityStatusIDOther = 99
 )
 
 // KernelExtensionActivityStatusIDCaptions maps KernelExtensionActivity.StatusID (Status ID) values to their captions.
 var KernelExtensionActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // MemoryActivity is the OCSF "memory_activity" event class (class_uid 1004). Memory Activity
@@ -3037,7 +3103,7 @@ type MemoryActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -3114,7 +3180,7 @@ type MemoryActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -3248,6 +3314,7 @@ var MemoryActivityActionIDCaptions = map[int]string{
 
 // MemoryActivityActivityID values for MemoryActivity.ActivityID (Activity ID).
 const (
+	MemoryActivityActivityIDUnknown        = 0
 	MemoryActivityActivityIDAllocatePage   = 1
 	MemoryActivityActivityIDModifyPage     = 2
 	MemoryActivityActivityIDDeletePage     = 3
@@ -3262,19 +3329,22 @@ const (
 	MemoryActivityActivityIDWrite = 8
 	// Map View (Example: MapViewOfFile2 )
 	MemoryActivityActivityIDMapView = 9
+	MemoryActivityActivityIDOther   = 99
 )
 
 // MemoryActivityActivityIDCaptions maps MemoryActivity.ActivityID (Activity ID) values to their captions.
 var MemoryActivityActivityIDCaptions = map[int]string{
-	1: "Allocate Page",
-	2: "Modify Page",
-	3: "Delete Page",
-	4: "Buffer Overflow",
-	5: "Disable DEP",
-	6: "Enable DEP",
-	7: "Read",
-	8: "Write",
-	9: "Map View",
+	0:  "Unknown",
+	1:  "Allocate Page",
+	2:  "Modify Page",
+	3:  "Delete Page",
+	4:  "Buffer Overflow",
+	5:  "Disable DEP",
+	6:  "Enable DEP",
+	7:  "Read",
+	8:  "Write",
+	9:  "Map View",
+	99: "Other",
 }
 
 // MemoryActivityConfidenceID values for MemoryActivity.ConfidenceID (Confidence ID).
@@ -3461,16 +3531,23 @@ var MemoryActivitySeverityIDCaptions = map[int]string{
 
 // MemoryActivityStatusID values for MemoryActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	MemoryActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	MemoryActivityStatusIDSuccess = 1
 	// The activity failed.
 	MemoryActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	MemoryActivityStatusIDOther = 99
 )
 
 // MemoryActivityStatusIDCaptions maps MemoryActivity.StatusID (Status ID) values to their captions.
 var MemoryActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ModuleActivity is the OCSF "module_activity" event class (class_uid 1005). Module Activity
@@ -3533,7 +3610,7 @@ type ModuleActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -3612,7 +3689,7 @@ type ModuleActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -3739,19 +3816,23 @@ var ModuleActivityActionIDCaptions = map[int]string{
 
 // ModuleActivityActivityID values for ModuleActivity.ActivityID (Activity ID).
 const (
+	ModuleActivityActivityIDUnknown = 0
 	// The target module was loaded.
 	ModuleActivityActivityIDLoad = 1
 	// The target module was unloaded.
 	ModuleActivityActivityIDUnload = 2
 	// A function exported from the target module was invoked.
 	ModuleActivityActivityIDInvoke = 3
+	ModuleActivityActivityIDOther  = 99
 )
 
 // ModuleActivityActivityIDCaptions maps ModuleActivity.ActivityID (Activity ID) values to their captions.
 var ModuleActivityActivityIDCaptions = map[int]string{
-	1: "Load",
-	2: "Unload",
-	3: "Invoke",
+	0:  "Unknown",
+	1:  "Load",
+	2:  "Unload",
+	3:  "Invoke",
+	99: "Other",
 }
 
 // ModuleActivityConfidenceID values for ModuleActivity.ConfidenceID (Confidence ID).
@@ -3938,16 +4019,23 @@ var ModuleActivitySeverityIDCaptions = map[int]string{
 
 // ModuleActivityStatusID values for ModuleActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ModuleActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	ModuleActivityStatusIDSuccess = 1
 	// The activity failed.
 	ModuleActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ModuleActivityStatusIDOther = 99
 )
 
 // ModuleActivityStatusIDCaptions maps ModuleActivity.StatusID (Status ID) values to their captions.
 var ModuleActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // PeripheralActivity is the OCSF "peripheral_activity" event class (class_uid 1010). Peripheral
@@ -4011,7 +4099,7 @@ type PeripheralActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4088,7 +4176,7 @@ type PeripheralActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The peripheral device that is the subject of the activity.
 	PeripheralDevice *objects.PeripheralDevice `json:"peripheral_device"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -4217,6 +4305,7 @@ var PeripheralActivityActionIDCaptions = map[int]string{
 
 // PeripheralActivityActivityID values for PeripheralActivity.ActivityID (Activity ID).
 const (
+	PeripheralActivityActivityIDUnknown = 0
 	// A peripheral device was connected to the system.
 	PeripheralActivityActivityIDConnect = 1
 	// A peripheral device was disconnected from the system.
@@ -4228,15 +4317,18 @@ const (
 	// A peripheral device was ejected from the system. This is typically used for removable media
 	// devices. Note: For Mount and Unmount events, see the File System Activity event class.
 	PeripheralActivityActivityIDEject = 5
+	PeripheralActivityActivityIDOther = 99
 )
 
 // PeripheralActivityActivityIDCaptions maps PeripheralActivity.ActivityID (Activity ID) values to their captions.
 var PeripheralActivityActivityIDCaptions = map[int]string{
-	1: "Connect",
-	2: "Disconnect",
-	3: "Enable",
-	4: "Disable",
-	5: "Eject",
+	0:  "Unknown",
+	1:  "Connect",
+	2:  "Disconnect",
+	3:  "Enable",
+	4:  "Disable",
+	5:  "Eject",
+	99: "Other",
 }
 
 // PeripheralActivityConfidenceID values for PeripheralActivity.ConfidenceID (Confidence ID).
@@ -4423,16 +4515,23 @@ var PeripheralActivitySeverityIDCaptions = map[int]string{
 
 // PeripheralActivityStatusID values for PeripheralActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	PeripheralActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	PeripheralActivityStatusIDSuccess = 1
 	// The activity failed.
 	PeripheralActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	PeripheralActivityStatusIDOther = 99
 )
 
 // PeripheralActivityStatusIDCaptions maps PeripheralActivity.StatusID (Status ID) values to their captions.
 var PeripheralActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ProcessActivity is the OCSF "process_activity" event class (class_uid 1007). Process Activity
@@ -4498,7 +4597,7 @@ type ProcessActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4590,7 +4689,7 @@ type ProcessActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -4721,6 +4820,7 @@ var ProcessActivityActionIDCaptions = map[int]string{
 
 // ProcessActivityActivityID values for ProcessActivity.ActivityID (Activity ID).
 const (
+	ProcessActivityActivityIDUnknown = 0
 	// A request by the actor to launch another process. Refer to the launch_type_id attribute for
 	// details of the specific launch type.
 	ProcessActivityActivityIDLaunch = 1
@@ -4742,15 +4842,18 @@ const (
 	// Common programs like su and sudo use this mechanism. Note that the impersonation mechanism
 	// on Windows is not directly equivalent because it acts at the thread level.
 	ProcessActivityActivityIDSetUserID = 5
+	ProcessActivityActivityIDOther     = 99
 )
 
 // ProcessActivityActivityIDCaptions maps ProcessActivity.ActivityID (Activity ID) values to their captions.
 var ProcessActivityActivityIDCaptions = map[int]string{
-	1: "Launch",
-	2: "Terminate",
-	3: "Open",
-	4: "Inject",
-	5: "Set User ID",
+	0:  "Unknown",
+	1:  "Launch",
+	2:  "Terminate",
+	3:  "Open",
+	4:  "Inject",
+	5:  "Set User ID",
+	99: "Other",
 }
 
 // ProcessActivityConfidenceID values for ProcessActivity.ConfidenceID (Confidence ID).
@@ -4988,16 +5091,23 @@ var ProcessActivitySeverityIDCaptions = map[int]string{
 
 // ProcessActivityStatusID values for ProcessActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ProcessActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	ProcessActivityStatusIDSuccess = 1
 	// The activity failed.
 	ProcessActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ProcessActivityStatusIDOther = 99
 )
 
 // ProcessActivityStatusIDCaptions maps ProcessActivity.StatusID (Status ID) values to their captions.
 var ProcessActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // RegistryKeyActivity is the OCSF "registry_key_activity" event class (class_uid 201001). Registry
@@ -5061,7 +5171,7 @@ type RegistryKeyActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -5142,7 +5252,7 @@ type RegistryKeyActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -5273,6 +5383,7 @@ var RegistryKeyActivityActionIDCaptions = map[int]string{
 
 // RegistryKeyActivityActivityID values for RegistryKeyActivity.ActivityID (Activity ID).
 const (
+	RegistryKeyActivityActivityIDUnknown     = 0
 	RegistryKeyActivityActivityIDCreate      = 1
 	RegistryKeyActivityActivityIDRead        = 2
 	RegistryKeyActivityActivityIDModify      = 3
@@ -5282,19 +5393,22 @@ const (
 	RegistryKeyActivityActivityIDRestore     = 7
 	RegistryKeyActivityActivityIDImport      = 8
 	RegistryKeyActivityActivityIDExport      = 9
+	RegistryKeyActivityActivityIDOther       = 99
 )
 
 // RegistryKeyActivityActivityIDCaptions maps RegistryKeyActivity.ActivityID (Activity ID) values to their captions.
 var RegistryKeyActivityActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Read",
-	3: "Modify",
-	4: "Delete",
-	5: "Rename",
-	6: "Set Security",
-	7: "Restore",
-	8: "Import",
-	9: "Export",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Read",
+	3:  "Modify",
+	4:  "Delete",
+	5:  "Rename",
+	6:  "Set Security",
+	7:  "Restore",
+	8:  "Import",
+	9:  "Export",
+	99: "Other",
 }
 
 // RegistryKeyActivityConfidenceID values for RegistryKeyActivity.ConfidenceID (Confidence ID).
@@ -5481,16 +5595,23 @@ var RegistryKeyActivitySeverityIDCaptions = map[int]string{
 
 // RegistryKeyActivityStatusID values for RegistryKeyActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RegistryKeyActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	RegistryKeyActivityStatusIDSuccess = 1
 	// The activity failed.
 	RegistryKeyActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RegistryKeyActivityStatusIDOther = 99
 )
 
 // RegistryKeyActivityStatusIDCaptions maps RegistryKeyActivity.StatusID (Status ID) values to their captions.
 var RegistryKeyActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // RegistryValueActivity is the OCSF "registry_value_activity" event class (class_uid 201002).
@@ -5553,7 +5674,7 @@ type RegistryValueActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -5630,7 +5751,7 @@ type RegistryValueActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -5761,18 +5882,22 @@ var RegistryValueActivityActionIDCaptions = map[int]string{
 
 // RegistryValueActivityActivityID values for RegistryValueActivity.ActivityID (Activity ID).
 const (
-	RegistryValueActivityActivityIDGet    = 1
-	RegistryValueActivityActivityIDSet    = 2
-	RegistryValueActivityActivityIDModify = 3
-	RegistryValueActivityActivityIDDelete = 4
+	RegistryValueActivityActivityIDUnknown = 0
+	RegistryValueActivityActivityIDGet     = 1
+	RegistryValueActivityActivityIDSet     = 2
+	RegistryValueActivityActivityIDModify  = 3
+	RegistryValueActivityActivityIDDelete  = 4
+	RegistryValueActivityActivityIDOther   = 99
 )
 
 // RegistryValueActivityActivityIDCaptions maps RegistryValueActivity.ActivityID (Activity ID) values to their captions.
 var RegistryValueActivityActivityIDCaptions = map[int]string{
-	1: "Get",
-	2: "Set",
-	3: "Modify",
-	4: "Delete",
+	0:  "Unknown",
+	1:  "Get",
+	2:  "Set",
+	3:  "Modify",
+	4:  "Delete",
+	99: "Other",
 }
 
 // RegistryValueActivityConfidenceID values for RegistryValueActivity.ConfidenceID (Confidence ID).
@@ -5959,16 +6084,23 @@ var RegistryValueActivitySeverityIDCaptions = map[int]string{
 
 // RegistryValueActivityStatusID values for RegistryValueActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RegistryValueActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	RegistryValueActivityStatusIDSuccess = 1
 	// The activity failed.
 	RegistryValueActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RegistryValueActivityStatusIDOther = 99
 )
 
 // RegistryValueActivityStatusIDCaptions maps RegistryValueActivity.StatusID (Status ID) values to their captions.
 var RegistryValueActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ScheduledJobActivity is the OCSF "scheduled_job_activity" event class (class_uid 1006).
@@ -6030,7 +6162,7 @@ type ScheduledJobActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -6109,7 +6241,7 @@ type ScheduledJobActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -6239,22 +6371,26 @@ var ScheduledJobActivityActionIDCaptions = map[int]string{
 
 // ScheduledJobActivityActivityID values for ScheduledJobActivity.ActivityID (Activity ID).
 const (
+	ScheduledJobActivityActivityIDUnknown = 0
 	ScheduledJobActivityActivityIDCreate  = 1
 	ScheduledJobActivityActivityIDUpdate  = 2
 	ScheduledJobActivityActivityIDDelete  = 3
 	ScheduledJobActivityActivityIDEnable  = 4
 	ScheduledJobActivityActivityIDDisable = 5
 	ScheduledJobActivityActivityIDStart   = 6
+	ScheduledJobActivityActivityIDOther   = 99
 )
 
 // ScheduledJobActivityActivityIDCaptions maps ScheduledJobActivity.ActivityID (Activity ID) values to their captions.
 var ScheduledJobActivityActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Update",
-	3: "Delete",
-	4: "Enable",
-	5: "Disable",
-	6: "Start",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Update",
+	3:  "Delete",
+	4:  "Enable",
+	5:  "Disable",
+	6:  "Start",
+	99: "Other",
 }
 
 // ScheduledJobActivityConfidenceID values for ScheduledJobActivity.ConfidenceID (Confidence ID).
@@ -6441,16 +6577,23 @@ var ScheduledJobActivitySeverityIDCaptions = map[int]string{
 
 // ScheduledJobActivityStatusID values for ScheduledJobActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ScheduledJobActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	ScheduledJobActivityStatusIDSuccess = 1
 	// The activity failed.
 	ScheduledJobActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ScheduledJobActivityStatusIDOther = 99
 )
 
 // ScheduledJobActivityStatusIDCaptions maps ScheduledJobActivity.StatusID (Status ID) values to their captions.
 var ScheduledJobActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // ScriptActivity is the OCSF "script_activity" event class (class_uid 1009). Script Activity
@@ -6513,7 +6656,7 @@ type ScriptActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -6590,7 +6733,7 @@ type ScriptActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -6719,12 +6862,16 @@ var ScriptActivityActionIDCaptions = map[int]string{
 
 // ScriptActivityActivityID values for ScriptActivity.ActivityID (Activity ID).
 const (
+	ScriptActivityActivityIDUnknown = 0
 	ScriptActivityActivityIDExecute = 1
+	ScriptActivityActivityIDOther   = 99
 )
 
 // ScriptActivityActivityIDCaptions maps ScriptActivity.ActivityID (Activity ID) values to their captions.
 var ScriptActivityActivityIDCaptions = map[int]string{
-	1: "Execute",
+	0:  "Unknown",
+	1:  "Execute",
+	99: "Other",
 }
 
 // ScriptActivityConfidenceID values for ScriptActivity.ConfidenceID (Confidence ID).
@@ -6911,16 +7058,23 @@ var ScriptActivitySeverityIDCaptions = map[int]string{
 
 // ScriptActivityStatusID values for ScriptActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	ScriptActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	ScriptActivityStatusIDSuccess = 1
 	// The activity failed.
 	ScriptActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	ScriptActivityStatusIDOther = 99
 )
 
 // ScriptActivityStatusIDCaptions maps ScriptActivity.StatusID (Status ID) values to their captions.
 var ScriptActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // System is the OCSF "system" event class (abstract base class). The System Activity event is a
@@ -6985,7 +7139,7 @@ type System struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -7062,7 +7216,7 @@ type System struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -7383,16 +7537,23 @@ var SystemSeverityIDCaptions = map[int]string{
 
 // SystemStatusID values for System.StatusID (Status ID).
 const (
+	// The status is unknown.
+	SystemStatusIDUnknown = 0
 	// The activity completed successfully.
 	SystemStatusIDSuccess = 1
 	// The activity failed.
 	SystemStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	SystemStatusIDOther = 99
 )
 
 // SystemStatusIDCaptions maps System.StatusID (Status ID) values to their captions.
 var SystemStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // WindowsResourceActivity is the OCSF "windows_resource_activity" event class (class_uid 201003).
@@ -7456,7 +7617,7 @@ type WindowsResourceActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -7533,7 +7694,7 @@ type WindowsResourceActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -7662,12 +7823,16 @@ var WindowsResourceActivityActionIDCaptions = map[int]string{
 
 // WindowsResourceActivityActivityID values for WindowsResourceActivity.ActivityID (Activity ID).
 const (
-	WindowsResourceActivityActivityIDAccess = 1
+	WindowsResourceActivityActivityIDUnknown = 0
+	WindowsResourceActivityActivityIDAccess  = 1
+	WindowsResourceActivityActivityIDOther   = 99
 )
 
 // WindowsResourceActivityActivityIDCaptions maps WindowsResourceActivity.ActivityID (Activity ID) values to their captions.
 var WindowsResourceActivityActivityIDCaptions = map[int]string{
-	1: "Access",
+	0:  "Unknown",
+	1:  "Access",
+	99: "Other",
 }
 
 // WindowsResourceActivityConfidenceID values for WindowsResourceActivity.ConfidenceID (Confidence ID).
@@ -7854,16 +8019,23 @@ var WindowsResourceActivitySeverityIDCaptions = map[int]string{
 
 // WindowsResourceActivityStatusID values for WindowsResourceActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	WindowsResourceActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	WindowsResourceActivityStatusIDSuccess = 1
 	// The activity failed.
 	WindowsResourceActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	WindowsResourceActivityStatusIDOther = 99
 )
 
 // WindowsResourceActivityStatusIDCaptions maps WindowsResourceActivity.StatusID (Status ID) values to their captions.
 var WindowsResourceActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // WindowsServiceActivity is the OCSF "windows_service_activity" event class (class_uid 201004).
@@ -7928,7 +8100,7 @@ type WindowsServiceActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -8005,7 +8177,7 @@ type WindowsServiceActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -8137,6 +8309,7 @@ var WindowsServiceActivityActionIDCaptions = map[int]string{
 
 // WindowsServiceActivityActivityID values for WindowsServiceActivity.ActivityID (Activity ID).
 const (
+	WindowsServiceActivityActivityIDUnknown = 0
 	// A service is created, for example by calling the CreateService API.
 	WindowsServiceActivityActivityIDCreate = 1
 	// A service is reconfigured, for example by calling the ChangeServiceConfig or
@@ -8155,17 +8328,20 @@ const (
 	WindowsServiceActivityActivityIDContinue = 6
 	// A service is deleted, for example by calling the DeleteService API.
 	WindowsServiceActivityActivityIDDelete = 7
+	WindowsServiceActivityActivityIDOther  = 99
 )
 
 // WindowsServiceActivityActivityIDCaptions maps WindowsServiceActivity.ActivityID (Activity ID) values to their captions.
 var WindowsServiceActivityActivityIDCaptions = map[int]string{
-	1: "Create",
-	2: "Reconfigure",
-	3: "Start",
-	4: "Stop",
-	5: "Pause",
-	6: "Continue",
-	7: "Delete",
+	0:  "Unknown",
+	1:  "Create",
+	2:  "Reconfigure",
+	3:  "Start",
+	4:  "Stop",
+	5:  "Pause",
+	6:  "Continue",
+	7:  "Delete",
+	99: "Other",
 }
 
 // WindowsServiceActivityConfidenceID values for WindowsServiceActivity.ConfidenceID (Confidence ID).
@@ -8352,14 +8528,21 @@ var WindowsServiceActivitySeverityIDCaptions = map[int]string{
 
 // WindowsServiceActivityStatusID values for WindowsServiceActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	WindowsServiceActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	WindowsServiceActivityStatusIDSuccess = 1
 	// The activity failed.
 	WindowsServiceActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	WindowsServiceActivityStatusIDOther = 99
 )
 
 // WindowsServiceActivityStatusIDCaptions maps WindowsServiceActivity.StatusID (Status ID) values to their captions.
 var WindowsServiceActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

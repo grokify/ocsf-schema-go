@@ -67,7 +67,7 @@ type AirborneBroadcastActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -142,7 +142,7 @@ type AirborneBroadcastActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -496,16 +496,23 @@ var AirborneBroadcastActivitySeverityIDCaptions = map[int]string{
 
 // AirborneBroadcastActivityStatusID values for AirborneBroadcastActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	AirborneBroadcastActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	AirborneBroadcastActivityStatusIDSuccess = 1
 	// The activity failed.
 	AirborneBroadcastActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	AirborneBroadcastActivityStatusIDOther = 99
 )
 
 // AirborneBroadcastActivityStatusIDCaptions maps AirborneBroadcastActivity.StatusID (Status ID) values to their captions.
 var AirborneBroadcastActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // DroneFlightsActivity is the OCSF "drone_flights_activity" event class (class_uid 8001). Drone
@@ -573,7 +580,7 @@ type DroneFlightsActivity struct {
 	// format may differ from region to region.
 	Classification string `json:"classification,omitempty"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// This optional, free-text field enables the operator to describe the purpose of a flight, if
 	// so desired.
 	Comment string `json:"comment,omitempty"`
@@ -652,7 +659,7 @@ type DroneFlightsActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -829,6 +836,10 @@ const (
 	DroneFlightsActivityAuthProtocolIDSpecificAuthenticationMethod            = 6
 	DroneFlightsActivityAuthProtocolIDReserved                                = 7
 	DroneFlightsActivityAuthProtocolIDPrivateUser                             = 8
+	DroneFlightsActivityAuthProtocolIDEAP                                     = 9
+	DroneFlightsActivityAuthProtocolIDRADIUS                                  = 10
+	DroneFlightsActivityAuthProtocolIDBasicAuthentication                     = 11
+	DroneFlightsActivityAuthProtocolIDLDAP                                    = 12
 	// The authentication type is not mapped. See the auth_protocol attribute, which contains a
 	// data source specific value.
 	DroneFlightsActivityAuthProtocolIDOther = 99
@@ -845,6 +856,10 @@ var DroneFlightsActivityAuthProtocolIDCaptions = map[int]string{
 	6:  "Specific Authentication Method",
 	7:  "Reserved",
 	8:  "Private User",
+	9:  "EAP",
+	10: "RADIUS",
+	11: "Basic Authentication",
+	12: "LDAP",
 	99: "Other",
 }
 
@@ -1032,6 +1047,8 @@ var DroneFlightsActivitySeverityIDCaptions = map[int]string{
 
 // DroneFlightsActivityStatusID values for DroneFlightsActivity.StatusID (Operational Status ID).
 const (
+	// The status is unknown.
+	DroneFlightsActivityStatusIDUnknown = 0
 	// The operational status is not reported.
 	DroneFlightsActivityStatusIDUndeclared = 1
 	// The Unmanned Aerial System (UAS) is grounded.
@@ -1045,16 +1062,21 @@ const (
 	DroneFlightsActivityStatusIDRemoteIDSystemFailure = 5
 	// An ASTM Reserved status is reported.
 	DroneFlightsActivityStatusIDReserved = 6
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DroneFlightsActivityStatusIDOther = 99
 )
 
 // DroneFlightsActivityStatusIDCaptions maps DroneFlightsActivity.StatusID (Operational Status ID) values to their captions.
 var DroneFlightsActivityStatusIDCaptions = map[int]string{
-	1: "Undeclared",
-	2: "Ground",
-	3: "Airborne",
-	4: "Emergency",
-	5: "Remote ID System Failure",
-	6: "Reserved",
+	0:  "Unknown",
+	1:  "Undeclared",
+	2:  "Ground",
+	3:  "Airborne",
+	4:  "Emergency",
+	5:  "Remote ID System Failure",
+	6:  "Reserved",
+	99: "Other",
 }
 
 // UnmannedSystems is the OCSF "unmanned_systems" event class (abstract base class). The Unmanned
@@ -1110,7 +1132,7 @@ type UnmannedSystems struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -1186,7 +1208,7 @@ type UnmannedSystems struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1517,14 +1539,21 @@ var UnmannedSystemsSeverityIDCaptions = map[int]string{
 
 // UnmannedSystemsStatusID values for UnmannedSystems.StatusID (Status ID).
 const (
+	// The status is unknown.
+	UnmannedSystemsStatusIDUnknown = 0
 	// The activity completed successfully.
 	UnmannedSystemsStatusIDSuccess = 1
 	// The activity failed.
 	UnmannedSystemsStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	UnmannedSystemsStatusIDOther = 99
 )
 
 // UnmannedSystemsStatusIDCaptions maps UnmannedSystems.StatusID (Status ID) values to their captions.
 var UnmannedSystemsStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

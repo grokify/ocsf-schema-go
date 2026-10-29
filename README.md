@@ -66,8 +66,10 @@ func main() {
 ```
 
 Attribute names marshal to OCSF snake_case (`activity_id`, `src_endpoint`, …).
-Required attributes marshal unconditionally; recommended/optional attributes carry
-`omitempty`. Booleans are `*bool` so an explicit `false` survives marshaling.
+Required attributes marshal unconditionally; recommended/optional attributes, and
+attributes a profile mixes in (such as `cloud` and `osint`, required only when the
+event declares the profile), carry `omitempty`. Booleans are `*bool` so an explicit
+`false` survives marshaling.
 
 ### Consuming an OCSF event
 
@@ -190,8 +192,12 @@ subset or `--extensions ""` for core-only bindings.
 - Object and event class names overlap in OCSF (e.g. `application`), which is why
   events and objects live in separate generated packages.
 - Hidden abstract objects (`_entity`, `_resource`) are flattened into their children and
-  not emitted. Abstract event classes (`base_event`, category bases) **are** emitted —
-  OCSF permits them as generic events — but have no `ClassUID` constants.
+  not emitted. Base Event (`base_event`) is a concrete class with `ClassUIDBaseEvent`
+  (0) in category `other` (0), as the OCSF schema server lists it, for events that fit
+  no other class. Category bases (`iam`, `network`, …) are emitted as structs but are
+  abstract and have no `ClassUID` constants.
+- Enums are refined down the `extends` chain, not replaced: a class that lists its own
+  activities keeps the dictionary's `0` (Unknown) and `99` (Other).
 - The validator does not check regex/range/max_len facets of dictionary types, and
   `type_name`-style sibling captions are not cross-checked; see
   `docs/specs/ROADMAP.md` for planned work (version-pinned generation, upstream diff CI).

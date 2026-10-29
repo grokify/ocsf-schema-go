@@ -28,6 +28,8 @@ const (
 
 // Event class unique identifiers (class_uid).
 const (
+	// Base Event
+	ClassUIDBaseEvent = 0
 	// File System Activity
 	ClassUIDFileActivity = 1001
 	// Kernel Extension Activity
@@ -237,14 +239,21 @@ var SeverityIDCaptions = map[int]string{
 
 // StatusID values for the status_id attribute shared by all event classes.
 const (
+	// The status is unknown.
+	StatusIDUnknown = 0
 	// The activity completed successfully.
 	StatusIDSuccess = 1
 	// The activity failed.
 	StatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	StatusIDOther = 99
 )
 
 // StatusIDCaptions maps the status_id attribute shared by all event classes values to their captions.
 var StatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

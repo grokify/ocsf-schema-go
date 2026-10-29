@@ -13,6 +13,8 @@ import (
 // false for class UIDs not defined by this schema version.
 func NewEventByClassUID(classUID int) (any, bool) {
 	switch classUID {
+	case ClassUIDBaseEvent:
+		return &BaseEvent{}, true
 	case ClassUIDFileActivity:
 		return &FileActivity{}, true
 	case ClassUIDKernelExtensionActivity:
@@ -213,6 +215,7 @@ func UnmarshalEvent(data []byte) (any, error) {
 
 // ClassNames maps class_uid values to OCSF class names (e.g. 3002 -> "authentication").
 var ClassNames = map[int]string{
+	ClassUIDBaseEvent:                         "base_event",
 	ClassUIDFileActivity:                      "file_activity",
 	ClassUIDKernelExtensionActivity:           "kernel_extension_activity",
 	ClassUIDKernelActivity:                    "kernel_activity",
@@ -303,6 +306,7 @@ var ClassNames = map[int]string{
 
 // ClassCaptions maps class_uid values to OCSF class captions (e.g. 3002 -> "Authentication").
 var ClassCaptions = map[int]string{
+	ClassUIDBaseEvent:                         "Base Event",
 	ClassUIDFileActivity:                      "File System Activity",
 	ClassUIDKernelExtensionActivity:           "Kernel Extension Activity",
 	ClassUIDKernelActivity:                    "Kernel Activity",

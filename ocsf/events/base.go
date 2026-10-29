@@ -5,10 +5,10 @@ package events
 
 import "github.com/grokify/ocsf-schema-go/ocsf/objects"
 
-// BaseEvent is the OCSF "base_event" event class (abstract base class). The base event is a
-// generic and concrete event. It also defines a set of attributes available in most event classes.
-// As a generic event that does not belong to any event category, it could be used to log events
-// that are not otherwise defined by the schema.
+// BaseEvent is the OCSF "base_event" event class (class_uid 0). The base event is a generic and
+// concrete event. It also defines a set of attributes available in most event classes. As a
+// generic event that does not belong to any event category, it could be used to log events that
+// are not otherwise defined by the schema.
 type BaseEvent struct {
 	// The normalized caption of action_id .
 	Action string `json:"action,omitempty"`
@@ -59,7 +59,7 @@ type BaseEvent struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -129,7 +129,7 @@ type BaseEvent struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -450,14 +450,21 @@ var BaseEventSeverityIDCaptions = map[int]string{
 
 // BaseEventStatusID values for BaseEvent.StatusID (Status ID).
 const (
+	// The status is unknown.
+	BaseEventStatusIDUnknown = 0
 	// The activity completed successfully.
 	BaseEventStatusIDSuccess = 1
 	// The activity failed.
 	BaseEventStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	BaseEventStatusIDOther = 99
 )
 
 // BaseEventStatusIDCaptions maps BaseEvent.StatusID (Status ID) values to their captions.
 var BaseEventStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }

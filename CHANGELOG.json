@@ -10,6 +10,51 @@
   ],
   "releases": [
     {
+      "version": "v0.2.0",
+      "date": "2026-10-29",
+      "highlights": [
+        {
+          "description": "Generated events validate strictly as produced: unused profile attributes are no longer written as null, classes keep the Unknown (0) and Other (99) enum values, `unmapped` accepts any keys, and Base Event is a concrete class with class_uid 0"
+        }
+      ],
+      "added": [
+        {
+          "description": "[events] `ClassUIDBaseEvent` (0) and Base Event entries in the class registry (`NewEventByClassUID`, `ClassNames`, `ClassCaptions`)",
+          "commit": "68be5b8"
+        }
+      ],
+      "fixed": [
+        {
+          "description": "[gen] Attributes a profile mixes in, such as `cloud` and `osint`, carry `omitempty`; an event without the profile was written with `\"cloud\": null` and `\"osint\": null`",
+          "commit": "b6bb307"
+        },
+        {
+          "description": "[schema] Enums are merged down the `extends` chain instead of replaced, so classes and objects keep the dictionary's Unknown (0) and Other (99): `authentication.activity_id`, `status_id` and `managed_entity.type_id` among others now accept them and generate their constants",
+          "commit": "a6edca6"
+        },
+        {
+          "description": "[schema] Base Event is concrete with class_uid 0 and category_uid 0, as the OCSF schema server lists it, so `ValidateEvent` dispatches events with class_uid 0",
+          "commit": "68be5b8"
+        },
+        {
+          "description": "[validate] The generic object type (`unmapped`, `xattributes`) accepts any keys when unknown attributes are errors, and still must be a JSON object",
+          "commit": "9f350cd"
+        }
+      ],
+      "tests": [
+        {
+          "description": "Regression tests against the embedded schema for profile attributes, inherited enum values, `unmapped` and Base Event",
+          "commit": "a47f2d5"
+        }
+      ],
+      "documentation": [
+        {
+          "description": "README and TRD describe profile `omitempty`, enum refinement and Base Event",
+          "commit": "b905654"
+        }
+      ]
+    },
+    {
       "version": "v0.1.0",
       "date": "2026-10-13",
       "commit": "9e2d930",

@@ -74,7 +74,7 @@ type DHCPActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -184,7 +184,7 @@ type DHCPActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -345,6 +345,7 @@ var DHCPActivityActionIDCaptions = map[int]string{
 
 // DHCPActivityActivityID values for DHCPActivity.ActivityID (Activity ID).
 const (
+	DHCPActivityActivityIDUnknown = 0
 	// DHCPDISCOVER
 	DHCPActivityActivityIDDiscover = 1
 	// DHCPOFFER
@@ -364,19 +365,22 @@ const (
 	DHCPActivityActivityIDInform = 8
 	// DHCPEXPIRE: A DHCP lease expired.
 	DHCPActivityActivityIDExpire = 9
+	DHCPActivityActivityIDOther  = 99
 )
 
 // DHCPActivityActivityIDCaptions maps DHCPActivity.ActivityID (Activity ID) values to their captions.
 var DHCPActivityActivityIDCaptions = map[int]string{
-	1: "Discover",
-	2: "Offer",
-	3: "Request",
-	4: "Decline",
-	5: "Ack",
-	6: "Nak",
-	7: "Release",
-	8: "Inform",
-	9: "Expire",
+	0:  "Unknown",
+	1:  "Discover",
+	2:  "Offer",
+	3:  "Request",
+	4:  "Decline",
+	5:  "Ack",
+	6:  "Nak",
+	7:  "Release",
+	8:  "Inform",
+	9:  "Expire",
+	99: "Other",
 }
 
 // DHCPActivityConfidenceID values for DHCPActivity.ConfidenceID (Confidence ID).
@@ -593,16 +597,23 @@ var DHCPActivitySeverityIDCaptions = map[int]string{
 
 // DHCPActivityStatusID values for DHCPActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DHCPActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	DHCPActivityStatusIDSuccess = 1
 	// The activity failed.
 	DHCPActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DHCPActivityStatusIDOther = 99
 )
 
 // DHCPActivityStatusIDCaptions maps DHCPActivity.StatusID (Status ID) values to their captions.
 var DHCPActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // DNSActivity is the OCSF "dns_activity" event class (class_uid 4003). DNS Activity events report
@@ -679,7 +690,7 @@ type DNSActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -796,7 +807,7 @@ type DNSActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -976,19 +987,23 @@ var DNSActivityActionIDCaptions = map[int]string{
 
 // DNSActivityActivityID values for DNSActivity.ActivityID (Activity ID).
 const (
+	DNSActivityActivityIDUnknown = 0
 	// The DNS query request.
 	DNSActivityActivityIDQuery = 1
 	// The DNS query response.
 	DNSActivityActivityIDResponse = 2
 	// Bidirectional DNS request and response traffic.
 	DNSActivityActivityIDTraffic = 6
+	DNSActivityActivityIDOther   = 99
 )
 
 // DNSActivityActivityIDCaptions maps DNSActivity.ActivityID (Activity ID) values to their captions.
 var DNSActivityActivityIDCaptions = map[int]string{
-	1: "Query",
-	2: "Response",
-	6: "Traffic",
+	0:  "Unknown",
+	1:  "Query",
+	2:  "Response",
+	6:  "Traffic",
+	99: "Other",
 }
 
 // DNSActivityConfidenceID values for DNSActivity.ConfidenceID (Confidence ID).
@@ -1120,6 +1135,8 @@ var DNSActivityDispositionIDCaptions = map[int]string{
 
 // DNSActivityFlagIds values for DNSActivity.FlagIds (DNS Header Flags).
 const (
+	// The flag is unknown.
+	DNSActivityFlagIdsUnknown = 0
 	// The responding server is authoritative for the domain. Set by the server in responses only.
 	DNSActivityFlagIdsAuthoritativeAnswer = 1
 	// The response was truncated because it exceeded the maximum UDP message size.
@@ -1134,16 +1151,21 @@ const (
 	// The client requests that the server disable DNSSEC validation. Set by the client and echoed
 	// in the response.
 	DNSActivityFlagIdsCheckingDisabled = 6
+	// The flag is not mapped. See the flags attribute, which contains a data source specific
+	// value.
+	DNSActivityFlagIdsOther = 99
 )
 
 // DNSActivityFlagIdsCaptions maps DNSActivity.FlagIds (DNS Header Flags) values to their captions.
 var DNSActivityFlagIdsCaptions = map[int]string{
-	1: "Authoritative Answer",
-	2: "Truncated Response",
-	3: "Recursion Desired",
-	4: "Recursion Available",
-	5: "Authentic Data",
-	6: "Checking Disabled",
+	0:  "Unknown",
+	1:  "Authoritative Answer",
+	2:  "Truncated Response",
+	3:  "Recursion Desired",
+	4:  "Recursion Available",
+	5:  "Authentic Data",
+	6:  "Checking Disabled",
+	99: "Other",
 }
 
 // DNSActivityObservationPointID values for DNSActivity.ObservationPointID (Observation Point ID).
@@ -1344,16 +1366,23 @@ var DNSActivitySeverityIDCaptions = map[int]string{
 
 // DNSActivityStatusID values for DNSActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	DNSActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	DNSActivityStatusIDSuccess = 1
 	// The activity failed.
 	DNSActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	DNSActivityStatusIDOther = 99
 )
 
 // DNSActivityStatusIDCaptions maps DNSActivity.StatusID (Status ID) values to their captions.
 var DNSActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // EmailActivity is the OCSF "email_activity" event class (class_uid 4009). Email Activity events
@@ -1422,7 +1451,7 @@ type EmailActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The command issued by the initiator (client), such as SMTP HELO or EHLO.
 	Command string `json:"command,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
@@ -1521,7 +1550,7 @@ type EmailActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -1659,6 +1688,7 @@ var EmailActivityActionIDCaptions = map[int]string{
 
 // EmailActivityActivityID values for EmailActivity.ActivityID (Activity ID).
 const (
+	EmailActivityActivityIDUnknown = 0
 	EmailActivityActivityIDSend    = 1
 	EmailActivityActivityIDReceive = 2
 	// Email being scanned (example: security scanning)
@@ -1669,15 +1699,18 @@ const (
 	// Email processed by an MTA, typically combining send, receive, and scan operations into a
 	// single activity.
 	EmailActivityActivityIDMTARelay = 5
+	EmailActivityActivityIDOther    = 99
 )
 
 // EmailActivityActivityIDCaptions maps EmailActivity.ActivityID (Activity ID) values to their captions.
 var EmailActivityActivityIDCaptions = map[int]string{
-	1: "Send",
-	2: "Receive",
-	3: "Scan",
-	4: "Trace",
-	5: "MTA Relay",
+	0:  "Unknown",
+	1:  "Send",
+	2:  "Receive",
+	3:  "Scan",
+	4:  "Trace",
+	5:  "MTA Relay",
+	99: "Other",
 }
 
 // EmailActivityConfidenceID values for EmailActivity.ConfidenceID (Confidence ID).
@@ -1711,7 +1744,10 @@ const (
 	EmailActivityDirectionIDOutbound = 2
 	// Email Internal, from inside the network destined for an entity inside network.
 	EmailActivityDirectionIDInternal = 3
-	EmailActivityDirectionIDOther    = 99
+	// Local network connection ( localhost ). The connection is intra-device, originating from and
+	// destined for services running on the same device.
+	EmailActivityDirectionIDLocal = 4
+	EmailActivityDirectionIDOther = 99
 )
 
 // EmailActivityDirectionIDCaptions maps EmailActivity.DirectionID (Direction ID) values to their captions.
@@ -1720,6 +1756,7 @@ var EmailActivityDirectionIDCaptions = map[int]string{
 	1:  "Inbound",
 	2:  "Outbound",
 	3:  "Internal",
+	4:  "Local",
 	99: "Other",
 }
 
@@ -1886,16 +1923,23 @@ var EmailActivitySeverityIDCaptions = map[int]string{
 
 // EmailActivityStatusID values for EmailActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	EmailActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	EmailActivityStatusIDSuccess = 1
 	// The activity failed.
 	EmailActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	EmailActivityStatusIDOther = 99
 )
 
 // EmailActivityStatusIDCaptions maps EmailActivity.StatusID (Status ID) values to their captions.
 var EmailActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // EmailFileActivity is the OCSF "email_file_activity" event class (class_uid 4011). Email File
@@ -1952,7 +1996,7 @@ type EmailFileActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -2029,7 +2073,7 @@ type EmailFileActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -2156,17 +2200,21 @@ var EmailFileActivityActionIDCaptions = map[int]string{
 
 // EmailFileActivityActivityID values for EmailFileActivity.ActivityID (Activity ID).
 const (
+	EmailFileActivityActivityIDUnknown = 0
 	EmailFileActivityActivityIDSend    = 1
 	EmailFileActivityActivityIDReceive = 2
 	// Email file being scanned (example: security scanning).
-	EmailFileActivityActivityIDScan = 3
+	EmailFileActivityActivityIDScan  = 3
+	EmailFileActivityActivityIDOther = 99
 )
 
 // EmailFileActivityActivityIDCaptions maps EmailFileActivity.ActivityID (Activity ID) values to their captions.
 var EmailFileActivityActivityIDCaptions = map[int]string{
-	1: "Send",
-	2: "Receive",
-	3: "Scan",
+	0:  "Unknown",
+	1:  "Send",
+	2:  "Receive",
+	3:  "Scan",
+	99: "Other",
 }
 
 // EmailFileActivityConfidenceID values for EmailFileActivity.ConfidenceID (Confidence ID).
@@ -2353,16 +2401,23 @@ var EmailFileActivitySeverityIDCaptions = map[int]string{
 
 // EmailFileActivityStatusID values for EmailFileActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	EmailFileActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	EmailFileActivityStatusIDSuccess = 1
 	// The activity failed.
 	EmailFileActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	EmailFileActivityStatusIDOther = 99
 )
 
 // EmailFileActivityStatusIDCaptions maps EmailFileActivity.StatusID (Status ID) values to their captions.
 var EmailFileActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // EmailURLActivity is the OCSF "email_url_activity" event class (class_uid 4012). Email URL
@@ -2419,7 +2474,7 @@ type EmailURLActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -2494,7 +2549,7 @@ type EmailURLActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
 	// the name of an anti-malware policy or an access control policy.
 	Policy *objects.Policy `json:"policy,omitempty"`
@@ -2623,17 +2678,21 @@ var EmailURLActivityActionIDCaptions = map[int]string{
 
 // EmailURLActivityActivityID values for EmailURLActivity.ActivityID (Activity ID).
 const (
+	EmailURLActivityActivityIDUnknown = 0
 	EmailURLActivityActivityIDSend    = 1
 	EmailURLActivityActivityIDReceive = 2
 	// Email URL being scanned (example: security scanning).
-	EmailURLActivityActivityIDScan = 3
+	EmailURLActivityActivityIDScan  = 3
+	EmailURLActivityActivityIDOther = 99
 )
 
 // EmailURLActivityActivityIDCaptions maps EmailURLActivity.ActivityID (Activity ID) values to their captions.
 var EmailURLActivityActivityIDCaptions = map[int]string{
-	1: "Send",
-	2: "Receive",
-	3: "Scan",
+	0:  "Unknown",
+	1:  "Send",
+	2:  "Receive",
+	3:  "Scan",
+	99: "Other",
 }
 
 // EmailURLActivityConfidenceID values for EmailURLActivity.ConfidenceID (Confidence ID).
@@ -2820,16 +2879,23 @@ var EmailURLActivitySeverityIDCaptions = map[int]string{
 
 // EmailURLActivityStatusID values for EmailURLActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	EmailURLActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	EmailURLActivityStatusIDSuccess = 1
 	// The activity failed.
 	EmailURLActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	EmailURLActivityStatusIDOther = 99
 )
 
 // EmailURLActivityStatusIDCaptions maps EmailURLActivity.StatusID (Status ID) values to their captions.
 var EmailURLActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // FTPActivity is the OCSF "ftp_activity" event class (class_uid 4008). File Transfer Protocol
@@ -2902,7 +2968,7 @@ type FTPActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The list of return codes to the FTP command.
 	Codes []int `json:"codes,omitempty"`
 	// The FTP command.
@@ -3018,7 +3084,7 @@ type FTPActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -3178,6 +3244,7 @@ var FTPActivityActionIDCaptions = map[int]string{
 
 // FTPActivityActivityID values for FTPActivity.ActivityID (Activity ID).
 const (
+	FTPActivityActivityIDUnknown = 0
 	// File upload to the FTP or SFTP site.
 	FTPActivityActivityIDPut = 1
 	// File download from the FTP or SFTP site.
@@ -3189,17 +3256,20 @@ const (
 	// Rename the file(s) in the FTP or SFTP site.
 	FTPActivityActivityIDRename = 5
 	// List files in a specified directory.
-	FTPActivityActivityIDList = 6
+	FTPActivityActivityIDList  = 6
+	FTPActivityActivityIDOther = 99
 )
 
 // FTPActivityActivityIDCaptions maps FTPActivity.ActivityID (Activity ID) values to their captions.
 var FTPActivityActivityIDCaptions = map[int]string{
-	1: "Put",
-	2: "Get",
-	3: "Poll",
-	4: "Delete",
-	5: "Rename",
-	6: "List",
+	0:  "Unknown",
+	1:  "Put",
+	2:  "Get",
+	3:  "Poll",
+	4:  "Delete",
+	5:  "Rename",
+	6:  "List",
+	99: "Other",
 }
 
 // FTPActivityConfidenceID values for FTPActivity.ConfidenceID (Confidence ID).
@@ -3416,16 +3486,23 @@ var FTPActivitySeverityIDCaptions = map[int]string{
 
 // FTPActivityStatusID values for FTPActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	FTPActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	FTPActivityStatusIDSuccess = 1
 	// The activity failed.
 	FTPActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	FTPActivityStatusIDOther = 99
 )
 
 // FTPActivityStatusIDCaptions maps FTPActivity.StatusID (Status ID) values to their captions.
 var FTPActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // HTTPActivity is the OCSF "http_activity" event class (class_uid 4002). HTTP Activity events
@@ -3497,7 +3574,7 @@ type HTTPActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -3615,7 +3692,7 @@ type HTTPActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -3775,6 +3852,7 @@ var HTTPActivityActionIDCaptions = map[int]string{
 
 // HTTPActivityActivityID values for HTTPActivity.ActivityID (Activity ID).
 const (
+	HTTPActivityActivityIDUnknown = 0
 	// The CONNECT method establishes a tunnel to the server identified by the target resource.
 	HTTPActivityActivityIDConnect = 1
 	// The DELETE method deletes the specified resource.
@@ -3859,10 +3937,12 @@ const (
 	HTTPActivityActivityIDUpdateRedirectReference = 39
 	// The VERSION-CONTROL method places the specified resource under version control.
 	HTTPActivityActivityIDVersionControl = 40
+	HTTPActivityActivityIDOther          = 99
 )
 
 // HTTPActivityActivityIDCaptions maps HTTPActivity.ActivityID (Activity ID) values to their captions.
 var HTTPActivityActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Connect",
 	2:  "Delete",
 	3:  "Get",
@@ -3903,6 +3983,7 @@ var HTTPActivityActivityIDCaptions = map[int]string{
 	38: "Update",
 	39: "Update Redirect Reference",
 	40: "Version Control",
+	99: "Other",
 }
 
 // HTTPActivityConfidenceID values for HTTPActivity.ConfidenceID (Confidence ID).
@@ -4119,16 +4200,23 @@ var HTTPActivitySeverityIDCaptions = map[int]string{
 
 // HTTPActivityStatusID values for HTTPActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	HTTPActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	HTTPActivityStatusIDSuccess = 1
 	// The activity failed.
 	HTTPActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	HTTPActivityStatusIDOther = 99
 )
 
 // HTTPActivityStatusIDCaptions maps HTTPActivity.StatusID (Status ID) values to their captions.
 var HTTPActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // Network is the OCSF "network" event class (abstract base class). Network event is a generic
@@ -4200,7 +4288,7 @@ type Network struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4306,7 +4394,7 @@ type Network struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -4686,16 +4774,23 @@ var NetworkSeverityIDCaptions = map[int]string{
 
 // NetworkStatusID values for Network.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NetworkStatusIDUnknown = 0
 	// The activity completed successfully.
 	NetworkStatusIDSuccess = 1
 	// The activity failed.
 	NetworkStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NetworkStatusIDOther = 99
 )
 
 // NetworkStatusIDCaptions maps Network.StatusID (Status ID) values to their captions.
 var NetworkStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // NetworkActivity is the OCSF "network_activity" event class (class_uid 4001). Network Activity
@@ -4767,7 +4862,7 @@ type NetworkActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -4893,7 +4988,7 @@ type NetworkActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -5054,6 +5149,7 @@ var NetworkActivityActionIDCaptions = map[int]string{
 
 // NetworkActivityActivityID values for NetworkActivity.ActivityID (Activity ID).
 const (
+	NetworkActivityActivityIDUnknown = 0
 	// A new network connection was opened.
 	NetworkActivityActivityIDOpen = 1
 	// The network connection was closed.
@@ -5070,17 +5166,20 @@ const (
 	NetworkActivityActivityIDTraffic = 6
 	// A network endpoint began listening for new network connections.
 	NetworkActivityActivityIDListen = 7
+	NetworkActivityActivityIDOther  = 99
 )
 
 // NetworkActivityActivityIDCaptions maps NetworkActivity.ActivityID (Activity ID) values to their captions.
 var NetworkActivityActivityIDCaptions = map[int]string{
-	1: "Open",
-	2: "Close",
-	3: "Reset",
-	4: "Fail",
-	5: "Refuse",
-	6: "Traffic",
-	7: "Listen",
+	0:  "Unknown",
+	1:  "Open",
+	2:  "Close",
+	3:  "Reset",
+	4:  "Fail",
+	5:  "Refuse",
+	6:  "Traffic",
+	7:  "Listen",
+	99: "Other",
 }
 
 // NetworkActivityConfidenceID values for NetworkActivity.ConfidenceID (Confidence ID).
@@ -5315,16 +5414,23 @@ var NetworkActivitySeverityIDCaptions = map[int]string{
 
 // NetworkActivityStatusID values for NetworkActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NetworkActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	NetworkActivityStatusIDSuccess = 1
 	// The activity failed.
 	NetworkActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NetworkActivityStatusIDOther = 99
 )
 
 // NetworkActivityStatusIDCaptions maps NetworkActivity.StatusID (Status ID) values to their captions.
 var NetworkActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // NetworkFileActivity is the OCSF "network_file_activity" event class (class_uid 4010). Network
@@ -5398,7 +5504,7 @@ type NetworkFileActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -5508,7 +5614,7 @@ type NetworkFileActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -5664,6 +5770,7 @@ var NetworkFileActivityActionIDCaptions = map[int]string{
 
 // NetworkFileActivityActivityID values for NetworkFileActivity.ActivityID (Activity ID).
 const (
+	NetworkFileActivityActivityIDUnknown = 0
 	// Upload a file.
 	NetworkFileActivityActivityIDUpload = 1
 	// Download a file.
@@ -5696,10 +5803,12 @@ const (
 	NetworkFileActivityActivityIDSync = 15
 	// Mark a file or folder to not sync with a computer.
 	NetworkFileActivityActivityIDUnsync = 16
+	NetworkFileActivityActivityIDOther  = 99
 )
 
 // NetworkFileActivityActivityIDCaptions maps NetworkFileActivity.ActivityID (Activity ID) values to their captions.
 var NetworkFileActivityActivityIDCaptions = map[int]string{
+	0:  "Unknown",
 	1:  "Upload",
 	2:  "Download",
 	3:  "Update",
@@ -5716,6 +5825,7 @@ var NetworkFileActivityActivityIDCaptions = map[int]string{
 	14: "Open",
 	15: "Sync",
 	16: "Unsync",
+	99: "Other",
 }
 
 // NetworkFileActivityConfidenceID values for NetworkFileActivity.ConfidenceID (Confidence ID).
@@ -5932,16 +6042,23 @@ var NetworkFileActivitySeverityIDCaptions = map[int]string{
 
 // NetworkFileActivityStatusID values for NetworkFileActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NetworkFileActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	NetworkFileActivityStatusIDSuccess = 1
 	// The activity failed.
 	NetworkFileActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NetworkFileActivityStatusIDOther = 99
 )
 
 // NetworkFileActivityStatusIDCaptions maps NetworkFileActivity.StatusID (Status ID) values to their captions.
 var NetworkFileActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // NTPActivity is the OCSF "ntp_activity" event class (class_uid 4013). The Network Time Protocol
@@ -6014,7 +6131,7 @@ type NTPActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -6125,7 +6242,7 @@ type NTPActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -6540,16 +6657,23 @@ var NTPActivitySeverityIDCaptions = map[int]string{
 
 // NTPActivityStatusID values for NTPActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	NTPActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	NTPActivityStatusIDSuccess = 1
 	// The activity failed.
 	NTPActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	NTPActivityStatusIDOther = 99
 )
 
 // NTPActivityStatusIDCaptions maps NTPActivity.StatusID (Status ID) values to their captions.
 var NTPActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // NTPActivityStratumID values for NTPActivity.StratumID (Stratum ID).
@@ -6652,7 +6776,7 @@ type RdpActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -6763,7 +6887,7 @@ type RdpActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -6929,6 +7053,7 @@ var RdpActivityActionIDCaptions = map[int]string{
 
 // RdpActivityActivityID values for RdpActivity.ActivityID (Activity ID).
 const (
+	RdpActivityActivityIDUnknown = 0
 	// The initial RDP request.
 	RdpActivityActivityIDInitialRequest = 1
 	// The initial RDP response.
@@ -6945,18 +7070,21 @@ const (
 	RdpActivityActivityIDDisconnect = 7
 	// An RDP connection reconnect.
 	RdpActivityActivityIDReconnect = 8
+	RdpActivityActivityIDOther     = 99
 )
 
 // RdpActivityActivityIDCaptions maps RdpActivity.ActivityID (Activity ID) values to their captions.
 var RdpActivityActivityIDCaptions = map[int]string{
-	1: "Initial Request",
-	2: "Initial Response",
-	3: "Connect Request",
-	4: "Connect Response",
-	5: "TLS Handshake",
-	6: "Traffic",
-	7: "Disconnect",
-	8: "Reconnect",
+	0:  "Unknown",
+	1:  "Initial Request",
+	2:  "Initial Response",
+	3:  "Connect Request",
+	4:  "Connect Response",
+	5:  "TLS Handshake",
+	6:  "Traffic",
+	7:  "Disconnect",
+	8:  "Reconnect",
+	99: "Other",
 }
 
 // RdpActivityConfidenceID values for RdpActivity.ConfidenceID (Confidence ID).
@@ -7173,16 +7301,23 @@ var RdpActivitySeverityIDCaptions = map[int]string{
 
 // RdpActivityStatusID values for RdpActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	RdpActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	RdpActivityStatusIDSuccess = 1
 	// The activity failed.
 	RdpActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	RdpActivityStatusIDOther = 99
 )
 
 // RdpActivityStatusIDCaptions maps RdpActivity.StatusID (Status ID) values to their captions.
 var RdpActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // SMBActivity is the OCSF "smb_activity" event class (class_uid 4006). Server Message Block (SMB)
@@ -7256,7 +7391,7 @@ type SMBActivity struct {
 	// The list of SMB dialects that the client speaks.
 	ClientDialects []string `json:"client_dialects,omitempty"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The command name (e.g. SMB2_COMMAND_CREATE, SMB1_COMMAND_WRITE_ANDX).
 	Command string `json:"command,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
@@ -7373,7 +7508,7 @@ type SMBActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -7540,6 +7675,7 @@ var SMBActivityActionIDCaptions = map[int]string{
 
 // SMBActivityActivityID values for SMBActivity.ActivityID (Activity ID).
 const (
+	SMBActivityActivityIDUnknown = 0
 	// The event pertains to file superseded activity (overwritten if it exists and created if
 	// not).
 	SMBActivityActivityIDFileSupersede = 1
@@ -7558,16 +7694,19 @@ const (
 	// The event pertains to file overwrite activity (the file is opened in a truncated form if it
 	// exists and created otherwise)
 	SMBActivityActivityIDFileOverwriteIf = 6
+	SMBActivityActivityIDOther           = 99
 )
 
 // SMBActivityActivityIDCaptions maps SMBActivity.ActivityID (Activity ID) values to their captions.
 var SMBActivityActivityIDCaptions = map[int]string{
-	1: "File Supersede",
-	2: "File Open",
-	3: "File Create",
-	4: "File Open If",
-	5: "File Overwrite",
-	6: "File Overwrite If",
+	0:  "Unknown",
+	1:  "File Supersede",
+	2:  "File Open",
+	3:  "File Create",
+	4:  "File Open If",
+	5:  "File Overwrite",
+	6:  "File Overwrite If",
+	99: "Other",
 }
 
 // SMBActivityConfidenceID values for SMBActivity.ConfidenceID (Confidence ID).
@@ -7805,16 +7944,23 @@ var SMBActivityShareTypeIDCaptions = map[int]string{
 
 // SMBActivityStatusID values for SMBActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	SMBActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	SMBActivityStatusIDSuccess = 1
 	// The activity failed.
 	SMBActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	SMBActivityStatusIDOther = 99
 )
 
 // SMBActivityStatusIDCaptions maps SMBActivity.StatusID (Status ID) values to their captions.
 var SMBActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // SSHActivity is the OCSF "ssh_activity" event class (class_uid 4007). SSH Activity events report
@@ -7893,7 +8039,7 @@ type SSHActivity struct {
 	// The Client HASSH fingerprinting object.
 	ClientHASSH *objects.HASSH `json:"client_hassh,omitempty"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -8001,7 +8147,7 @@ type SSHActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -8161,6 +8307,7 @@ var SSHActivityActionIDCaptions = map[int]string{
 
 // SSHActivityActivityID values for SSHActivity.ActivityID (Activity ID).
 const (
+	SSHActivityActivityIDUnknown = 0
 	// A new network connection was opened.
 	SSHActivityActivityIDOpen = 1
 	// The network connection was closed.
@@ -8177,17 +8324,20 @@ const (
 	SSHActivityActivityIDTraffic = 6
 	// A network endpoint began listening for new network connections.
 	SSHActivityActivityIDListen = 7
+	SSHActivityActivityIDOther  = 99
 )
 
 // SSHActivityActivityIDCaptions maps SSHActivity.ActivityID (Activity ID) values to their captions.
 var SSHActivityActivityIDCaptions = map[int]string{
-	1: "Open",
-	2: "Close",
-	3: "Reset",
-	4: "Fail",
-	5: "Refuse",
-	6: "Traffic",
-	7: "Listen",
+	0:  "Unknown",
+	1:  "Open",
+	2:  "Close",
+	3:  "Reset",
+	4:  "Fail",
+	5:  "Refuse",
+	6:  "Traffic",
+	7:  "Listen",
+	99: "Other",
 }
 
 // SSHActivityAuthTypeID values for SSHActivity.AuthTypeID (Authentication Type ID).
@@ -8434,16 +8584,23 @@ var SSHActivitySeverityIDCaptions = map[int]string{
 
 // SSHActivityStatusID values for SSHActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	SSHActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	SSHActivityStatusIDSuccess = 1
 	// The activity failed.
 	SSHActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	SSHActivityStatusIDOther = 99
 )
 
 // SSHActivityStatusIDCaptions maps SSHActivity.StatusID (Status ID) values to their captions.
 var SSHActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // TunnelActivity is the OCSF "tunnel_activity" event class (class_uid 4014). Tunnel Activity
@@ -8516,7 +8673,7 @@ type TunnelActivity struct {
 	// example, Detection Finding is 2004 .
 	ClassUID int `json:"class_uid"`
 	// Describes details about the Cloud environment where the event or finding was created.
-	Cloud *objects.Cloud `json:"cloud"`
+	Cloud *objects.Cloud `json:"cloud,omitempty"`
 	// The confidence, normalized to the caption of the confidence_id value. In the case of
 	// 'Other', it is defined by the event source.
 	Confidence string `json:"confidence,omitempty"`
@@ -8621,7 +8778,7 @@ type TunnelActivity struct {
 	// analyst commentary, and other contextual information. This information can be used to
 	// further enrich a detection or finding by providing decisioning support to other analysts and
 	// engineers.
-	OSINT []objects.OSINT `json:"osint"`
+	OSINT []objects.OSINT `json:"osint,omitempty"`
 	// The list of packet objects describing captured network packets.
 	PacketList []objects.Packet `json:"packet_list,omitempty"`
 	// The policy that pertains to the control that triggered the event, if applicable. For example
@@ -9026,16 +9183,23 @@ var TunnelActivitySeverityIDCaptions = map[int]string{
 
 // TunnelActivityStatusID values for TunnelActivity.StatusID (Status ID).
 const (
+	// The status is unknown.
+	TunnelActivityStatusIDUnknown = 0
 	// The activity completed successfully.
 	TunnelActivityStatusIDSuccess = 1
 	// The activity failed.
 	TunnelActivityStatusIDFailure = 2
+	// The status is not mapped. See the status attribute, which contains a data source specific
+	// value.
+	TunnelActivityStatusIDOther = 99
 )
 
 // TunnelActivityStatusIDCaptions maps TunnelActivity.StatusID (Status ID) values to their captions.
 var TunnelActivityStatusIDCaptions = map[int]string{
-	1: "Success",
-	2: "Failure",
+	0:  "Unknown",
+	1:  "Success",
+	2:  "Failure",
+	99: "Other",
 }
 
 // TunnelActivityTunnelTypeID values for TunnelActivity.TunnelTypeID (Tunnel Type ID).
