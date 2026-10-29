@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/releases/v0.1.0/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/releases/v0.2.0/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/specs/PLAN/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/specs/PRD/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/specs/ROADMAP/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/specs/TRD/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://grokify.github.io/ocsf-schema-go/upstream/signature-value-issue-1698/</loc>
+         <lastmod>2026-10-29</lastmod>
+    </url>
+</urlset>
