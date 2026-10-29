@@ -34,6 +34,7 @@ nav:
       - Plan: specs/PLAN.md
       - Roadmap: specs/ROADMAP.md
   - Releases:
+      - v0.2.0: releases/v0.2.0.md
       - v0.1.0: releases/v0.1.0.md
   - Upstream:
       - "Signature bytes (ocsf-schema#1698)": upstream/signature-value-issue-1698.md
